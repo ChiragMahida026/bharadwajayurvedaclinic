@@ -1,0 +1,59 @@
+<!-- CART -->
+<dialog id="cart-modal" aria-labelledby="cart-title" aria-modal="true">
+  <form method="dialog" class="modal-card" role="document">
+    <header class="modal-head">
+      <h3 id="cart-title">Your Cart</h3>
+      <button aria-label="Close cart" value="close" class="icon-btn" type="submit">✕</button>
+    </header>
+
+    <div id="cart-items" class="modal-body" role="list"></div>
+
+    <footer class="modal-foot">
+      <div class="total" aria-live="polite">Total: ₹<span id="cart-total">0</span></div>
+      <button id="checkout" type="button" class="btn btn-primary">Checkout (Razorpay UPI)</button>
+    </footer>
+  </form>
+</dialog>
+
+<!-- ADMIN -->
+<dialog id="admin-modal" aria-labelledby="admin-title" aria-modal="true">
+  <form class="modal-card" method="dialog" role="document">
+    <header class="modal-head">
+      <h3 id="admin-title">Admin Panel</h3>
+      <button aria-label="Close admin" value="close" class="icon-btn" type="submit">✕</button>
+    </header>
+
+    <section id="admin-login-section" class="modal-body" aria-describedby="admin-login-help">
+      <h4 class="mb-1">Login</h4>
+      <p id="admin-login-help" class="small muted">
+        Default: <code>admin</code> / <code>password123</code> — change in environment variables immediately.
+      </p>
+
+      <form id="admin-login" novalidate class="stack gap-2">
+        <label>Username <input name="username" autocomplete="username" required /></label>
+        <label>Password <input name="password" type="password" autocomplete="current-password" required /></label>
+        <button class="btn btn-primary" type="submit">Login</button>
+        <p id="admin-login-feedback" class="small" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="admin-dashboard" hidden class="modal-body">
+      <h4 class="mb-1">Products</h4>
+
+      <form id="product-form" class="grid two gap-2" novalidate>
+        <input type="hidden" name="id" />
+        <label>Name <input name="name" required minlength="2" /></label>
+        <label>Price (₹) <input name="price" type="number" min="1" step="1" required /></label>
+        <label class="col-span">Image URL <input name="imageUrl" type="url" inputmode="url" required /></label>
+        <label class="col-span">Description <textarea name="description" rows="3" required></textarea></label>
+
+        <div class="col-span flex gap-1">
+          <button class="btn btn-primary" type="submit">Save Product</button>
+          <button class="btn btn-ghost" type="reset" id="reset-product-form">Reset</button>
+        </div>
+      </form>
+
+      <div id="admin-products" class="grid three gap-2" role="list"></div>
+    </section>
+  </form>
+</dialog>
