@@ -112,8 +112,13 @@
     <h2 class="section-title reveal" style="--i:1">Services</h2>
 
     <div class="service-grid">
+
       <!-- 1) Panchakarma -->
-      <article class="svc-card reveal" style="--i:0">
+      <article class="svc-card reveal"
+               style="--i:0"
+               data-title="Panchakarma"
+               data-teaser="Detox &amp; rejuvenation tailored to your prakṛti for deep, lasting wellness."
+               >
         <div class="svc-icon" aria-hidden="true">🌿</div>
         <h3 class="svc-title">Panchakarma</h3>
         <p class="svc-blurb">
@@ -124,22 +129,28 @@
           <span class="chip">Detox</span><span class="chip">Rejuvenation</span><span class="chip">Metabolism</span>
         </div>
 
-        <details class="svc-more">
-          <summary>What’s included</summary>
-          <div class="svc-pop">
-            <ul class="svc-list">
-              <li>Prakṛti–vikṛti assessment &amp; pulse exam</li>
-              <li>Snehana &amp; Swedana (oleation &amp; sudation)</li>
-              <li>Vamana / Virechana / Basti (as indicated)</li>
-              <li>Rasāyana &amp; post‑care lifestyle guidance</li>
-            </ul>
-          </div>
-        </details>
-        <span class="svc-scrim" aria-hidden="true"></span>
+        <!-- Hover overlay -->
+        <div class="svc-hover">
+          <p>Practical, stage‑wise detox &amp; restoration. Gentle, guided, and effective.</p>
+          <button class="btn btn-primary svc-read">Read more</button>
+        </div>
+
+        <!-- Hidden details (for modal) -->
+        <template class="svc-detail">
+          <ul>
+            <li>Prakṛti–vikṛti assessment &amp; pulse exam</li>
+            <li>Snehana &amp; Swedana (oleation &amp; sudation)</li>
+            <li>Vamana / Virechana / Basti (as indicated)</li>
+            <li>Rasāyana &amp; post‑care lifestyle guidance</li>
+          </ul>
+        </template>
       </article>
 
       <!-- 2) Herbal Medicine -->
-      <article class="svc-card reveal" style="--i:1">
+      <article class="svc-card reveal"
+               style="--i:1"
+               data-title="Herbal Medicine"
+               data-teaser="Custom formulations rooted in classical texts to correct root‑cause imbalances.">
         <div class="svc-icon" aria-hidden="true">🍃</div>
         <h3 class="svc-title">Herbal Medicine</h3>
         <p class="svc-blurb">Custom formulations rooted in classical texts to correct root‑cause imbalances.</p>
@@ -147,21 +158,25 @@
           <span class="chip">Digestion</span><span class="chip">Immunity</span><span class="chip">Stress</span>
         </div>
 
-        <details class="svc-more">
-          <summary>What’s included</summary>
-          <div class="svc-pop">
-            <ul class="svc-list">
-              <li>Case history + doṣa mapping</li>
-              <li>Personalized churna / guggulu / taila plan</li>
-              <li>Safe interactions &amp; dosage education</li>
-            </ul>
-          </div>
-        </details>
-        <span class="svc-scrim" aria-hidden="true"></span>
+        <div class="svc-hover">
+          <p>Personal blends, safe guidance, and clear dosing education.</p>
+          <button class="btn btn-primary svc-read">Read more</button>
+        </div>
+
+        <template class="svc-detail">
+          <ul>
+            <li>Case history + doṣa mapping</li>
+            <li>Personalized churna / guggulu / taila plan</li>
+            <li>Safe interactions &amp; dosage education</li>
+          </ul>
+        </template>
       </article>
 
       <!-- 3) Diet Consultation -->
-      <article class="svc-card reveal" style="--i:2">
+      <article class="svc-card reveal"
+               style="--i:2"
+               data-title="Diet Consultation"
+               data-teaser="Dinacharya &amp; ṛtucharya guidance to balance digestion, immunity &amp; energy.">
         <div class="svc-icon" aria-hidden="true">🥗</div>
         <h3 class="svc-title">Diet Consultation</h3>
         <p class="svc-blurb"><em>Dinacharya</em> &amp; <em>ṛtucharya</em> guidance to balance digestion, immunity &amp; energy.</p>
@@ -169,21 +184,25 @@
           <span class="chip">Gut health</span><span class="chip">Weight balance</span><span class="chip">Hormonal support</span>
         </div>
 
-        <details class="svc-more">
-          <summary>What’s included</summary>
-          <div class="svc-pop">
-            <ul class="svc-list">
-              <li>Agnibala assessment (digestive fire)</li>
-              <li>Personal food map + sample meal plan</li>
-              <li>Daily routine &amp; sleep optimization</li>
-            </ul>
-          </div>
-        </details>
-        <span class="svc-scrim" aria-hidden="true"></span>
+        <div class="svc-hover">
+          <p>Personal food map, smart routines, and sleep optimization.</p>
+          <button class="btn btn-primary svc-read">Read more</button>
+        </div>
+
+        <template class="svc-detail">
+          <ul>
+            <li>Agnibala assessment (digestive fire)</li>
+            <li>Personal food map + sample meal plan</li>
+            <li>Daily routine &amp; sleep optimization</li>
+          </ul>
+        </template>
       </article>
 
       <!-- 4) Chronic Conditions -->
-      <article class="svc-card reveal" style="--i:3">
+      <article class="svc-card reveal"
+               style="--i:3"
+               data-title="Chronic Conditions"
+               data-teaser="IBS, joint pain, stress, metabolic &amp; lifestyle disorders with holistic protocols.">
         <div class="svc-icon" aria-hidden="true">🧘</div>
         <h3 class="svc-title">Chronic Conditions</h3>
         <p class="svc-blurb">IBS, joint pain, stress, metabolic and lifestyle disorders with holistic protocols.</p>
@@ -191,21 +210,25 @@
           <span class="chip">Pain</span><span class="chip">Stress</span><span class="chip">Lifestyle</span>
         </div>
 
-        <details class="svc-more">
-          <summary>What’s included</summary>
-          <div class="svc-pop">
-            <ul class="svc-list">
-              <li>Root‑cause plan with staged milestones</li>
-              <li>Yoga, breathwork &amp; herbal support</li>
-              <li>Periodic review and progress tracking</li>
-            </ul>
-          </div>
-        </details>
-        <span class="svc-scrim" aria-hidden="true"></span>
+        <div class="svc-hover">
+          <p>Root‑cause plan with milestones, yoga &amp; herb support.</p>
+          <button class="btn btn-primary svc-read">Read more</button>
+        </div>
+
+        <template class="svc-detail">
+          <ul>
+            <li>Root‑cause plan with staged milestones</li>
+            <li>Yoga, breathwork &amp; herbal support</li>
+            <li>Periodic review and progress tracking</li>
+          </ul>
+        </template>
       </article>
 
       <!-- 5) Abhyanga & Shirodhara -->
-      <article class="svc-card reveal" style="--i:4">
+      <article class="svc-card reveal"
+               style="--i:4"
+               data-title="Abhyanga &amp; Shirodhara"
+               data-teaser="Warm therapeutic oils and calming therapies for mind–body balance.">
         <div class="svc-icon" aria-hidden="true">💆</div>
         <h3 class="svc-title">Abhyanga &amp; Shirodhara</h3>
         <p class="svc-blurb">Warm therapeutic oils and calming therapies for mind–body balance.</p>
@@ -213,21 +236,25 @@
           <span class="chip">Nervous system</span><span class="chip">Sleep</span><span class="chip">Calm</span>
         </div>
 
-        <details class="svc-more">
-          <summary>What’s included</summary>
-          <div class="svc-pop">
-            <ul class="svc-list">
-              <li>Full‑body Abhyanga (custom taila)</li>
-              <li>Shirodhara stream or Pada‑abhyanga</li>
-              <li>Post‑therapy self‑care &amp; hydration guide</li>
-            </ul>
-          </div>
-        </details>
-        <span class="svc-scrim" aria-hidden="true"></span>
+        <div class="svc-hover">
+          <p>Deep relaxation with custom oils and gentle guidance.</p>
+          <button class="btn btn-primary svc-read">Read more</button>
+        </div>
+
+        <template class="svc-detail">
+          <ul>
+            <li>Full‑body Abhyanga (custom taila)</li>
+            <li>Shirodhara stream or Pada‑abhyanga</li>
+            <li>Post‑therapy self‑care &amp; hydration guide</li>
+          </ul>
+        </template>
       </article>
 
       <!-- 6) Trusted Reviews -->
-      <article class="svc-card reveal" style="--i:5">
+      <article class="svc-card reveal"
+               style="--i:5"
+               data-title="Trusted Reviews"
+               data-teaser="Patients rate us 5‑stars for genuine care, hygiene and real‑world results.">
         <div class="svc-icon" aria-hidden="true">⭐</div>
         <h3 class="svc-title">Trusted Reviews</h3>
         <p class="svc-blurb">Patients rate us 5‑stars for genuine care, hygiene and real‑world results.</p>
@@ -235,21 +262,25 @@
           <span class="chip">Verified</span><span class="chip">Compassionate</span><span class="chip">Clean clinic</span>
         </div>
 
-        <details class="svc-more">
-          <summary>Read more</summary>
-          <div class="svc-pop">
-            <ul class="svc-list">
-              <li>Transparent treatment plans</li>
-              <li>Follow‑ups that actually follow through</li>
-              <li>Quick support on WhatsApp</li>
-            </ul>
-          </div>
-        </details>
-        <span class="svc-scrim" aria-hidden="true"></span>
+        <div class="svc-hover">
+          <p>Transparent plans &amp; follow‑ups that truly follow through.</p>
+          <button class="btn btn-primary svc-read">Read more</button>
+        </div>
+
+        <template class="svc-detail">
+          <ul>
+            <li>Transparent treatment plans</li>
+            <li>Follow‑ups that actually follow through</li>
+            <li>Quick support on WhatsApp</li>
+          </ul>
+        </template>
       </article>
 
       <!-- 7) Women’s Health -->
-      <article class="svc-card reveal" style="--i:6">
+      <article class="svc-card reveal"
+               style="--i:6"
+               data-title="Women’s Health"
+               data-teaser="Ayurvedic care for PCOS, cycle balance, fertility &amp; post‑partum recovery.">
         <div class="svc-icon" aria-hidden="true">🌸</div>
         <h3 class="svc-title">Women’s Health</h3>
         <p class="svc-blurb">Ayurvedic care for PCOS, cycle balance, fertility &amp; post‑partum recovery.</p>
@@ -257,21 +288,25 @@
           <span class="chip">Cycle</span><span class="chip">Fertility</span><span class="chip">Post‑partum</span>
         </div>
 
-        <details class="svc-more">
-          <summary>What’s included</summary>
-          <div class="svc-pop">
-            <ul class="svc-list">
-              <li>Doṣa‑based cycle mapping</li>
-              <li>Herbal &amp; diet protocols for hormones</li>
-              <li>Stress &amp; sleep support</li>
-            </ul>
-          </div>
-        </details>
-        <span class="svc-scrim" aria-hidden="true"></span>
+        <div class="svc-hover">
+          <p>Hormone‑wise protocols, stress care and sleep support.</p>
+          <button class="btn btn-primary svc-read">Read more</button>
+        </div>
+
+        <template class="svc-detail">
+          <ul>
+            <li>Doṣa‑based cycle mapping</li>
+            <li>Herbal &amp; diet protocols for hormones</li>
+            <li>Stress &amp; sleep support</li>
+          </ul>
+        </template>
       </article>
 
       <!-- 8) Skin & Hair Care -->
-      <article class="svc-card reveal" style="--i:7">
+      <article class="svc-card reveal"
+               style="--i:7"
+               data-title="Skin &amp; Hair Care"
+               data-teaser="Holistic plans for acne, eczema, hair fall &amp; scalp health from the root.">
         <div class="svc-icon" aria-hidden="true">🌼</div>
         <h3 class="svc-title">Skin & Hair Care</h3>
         <p class="svc-blurb">Holistic plans for acne, eczema, hair fall &amp; scalp health from the root.</p>
@@ -279,57 +314,38 @@
           <span class="chip">Acne</span><span class="chip">Eczema</span><span class="chip">Hair fall</span>
         </div>
 
-        <details class="svc-more">
-          <summary>What’s included</summary>
-          <div class="svc-pop">
-            <ul class="svc-list">
-              <li>Agni &amp; toxin (āma) assessment</li>
-              <li>Internal herbs + external oils &amp; lepas</li>
-              <li>Diet &amp; lifestyle triggers plan</li>
-            </ul>
-          </div>
-        </details>
-        <span class="svc-scrim" aria-hidden="true"></span>
+        <div class="svc-hover">
+          <p>Assess agni &amp; āma; tune diet and gentle external care.</p>
+          <button class="btn btn-primary svc-read">Read more</button>
+        </div>
+
+        <template class="svc-detail">
+          <ul>
+            <li>Agni &amp; toxin (āma) assessment</li>
+            <li>Internal herbs + external oils &amp; lepas</li>
+            <li>Diet &amp; lifestyle triggers plan</li>
+          </ul>
+        </template>
       </article>
+
     </div>
   </div>
 </section>
 
-<script>
-  // Keep only one pop-card open; close on outside click or ESC
-  document.addEventListener('click', (e) => {
-    // Close if user clicked the scrim
-    const scrim = e.target.closest('.svc-scrim');
-    if (scrim) {
-      const details = scrim.previousElementSibling?.closest('details.svc-more');
-      if (details) details.removeAttribute('open');
-      return;
-    }
-
-    // If they clicked the summary, allow native toggle but close others
-    const clickedSummary = e.target.closest('summary');
-    if (clickedSummary) {
-      const current = clickedSummary.closest('details.svc-more');
-      document.querySelectorAll('details.svc-more[open]').forEach(d => {
-        if (d !== current) d.removeAttribute('open');
-      });
-      return; // let the browser toggle current
-    }
-
-    // Clicked outside any card? close all
-    if (!e.target.closest('.svc-card')) {
-      document.querySelectorAll('details.svc-more[open]').forEach(d => d.removeAttribute('open'));
-    }
-  });
-
-  // ESC to close all
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('details.svc-more[open]').forEach(d => d.removeAttribute('open'));
-    }
-  });
-</script>
-
+<!-- Modal for service details -->
+<dialog id="svc-modal" class="svc-modal" aria-label="Service details">
+  <div class="modal-card">
+    <header>
+      <h3 id="svc-modal-title">Service</h3>
+      <button class="icon-btn" id="svc-modal-close" aria-label="Close">✕</button>
+    </header>
+    <div id="svc-modal-body" class="svc-modal-body"></div>
+    <footer class="svc-modal-nav">
+      <button class="btn" id="svc-prev" aria-label="Previous service">← Prev</button>
+      <button class="btn btn-primary" id="svc-next" aria-label="Next service">Next →</button>
+    </footer>
+  </div>
+</dialog>
 
 <!-- PRODUCTS -->
 <section id="products" class="section">
@@ -407,13 +423,81 @@
 </section>
 
 <script>
-  // Optional UX: only one service drawer open at a time
-  document.addEventListener('click', (e) => {
-    if (!(e.target instanceof Element)) return;
-    const details = e.target.closest('details.svc-more');
-    if (!details) return;
-    document.querySelectorAll('details.svc-more[open]').forEach(d => {
-      if (d !== details) d.removeAttribute('open');
+  /* =============== About lightbox =============== */
+  (function () {
+    const dlg = document.getElementById('about-lightbox');
+    const img = dlg.querySelector('.lightbox-img');
+    document.querySelectorAll('.about-thumb').forEach(btn => {
+      btn.addEventListener('click', () => {
+        img.src = btn.dataset.full;
+        dlg.showModal();
+      });
     });
-  });
+    dlg.querySelector('.lightbox-close').addEventListener('click', () => dlg.close());
+  }());
+
+  /* =============== Service modal + hover =============== */
+  (function () {
+    const cards = [...document.querySelectorAll('.svc-card')];
+    const modal = document.getElementById('svc-modal');
+    const titleEl = document.getElementById('svc-modal-title');
+    const bodyEl = document.getElementById('svc-modal-body');
+    const btnPrev = document.getElementById('svc-prev');
+    const btnNext = document.getElementById('svc-next');
+    const btnClose = document.getElementById('svc-modal-close');
+
+    let index = 0;
+
+    function render(i) {
+      index = (i + cards.length) % cards.length;
+      const card = cards[index];
+      titleEl.textContent = card.dataset.title || card.querySelector('.svc-title').textContent;
+      const tpl = card.querySelector('template.svc-detail');
+      bodyEl.innerHTML = '';
+      if (tpl) {
+        bodyEl.appendChild(tpl.content.cloneNode(true));
+      } else {
+        bodyEl.innerHTML = `<p>${card.dataset.teaser || ''}</p>`;
+      }
+    }
+
+    cards.forEach((card, i) => {
+      card.querySelectorAll('.svc-read').forEach(btn => {
+        btn.addEventListener('click', () => {
+          render(i);
+          modal.showModal();
+        });
+      });
+    });
+
+    btnPrev.addEventListener('click', () => render(index - 1));
+    btnNext.addEventListener('click', () => render(index + 1));
+    btnClose.addEventListener('click', () => modal.close());
+
+    // close on backdrop click
+    modal.addEventListener('click', (e) => {
+      const dialogRect = modal.querySelector('.modal-card').getBoundingClientRect();
+      if (e.clientX < dialogRect.left || e.clientX > dialogRect.right ||
+          e.clientY < dialogRect.top || e.clientY > dialogRect.bottom) {
+        modal.close();
+      }
+    });
+
+    // ESC key (native) works; add left/right arrows
+    modal.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') render(index + 1);
+      if (e.key === 'ArrowLeft') render(index - 1);
+    });
+
+    // touch swipe
+    let sx = 0, sy = 0;
+    modal.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
+    modal.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - sx;
+      const dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        if (dx < 0) render(index + 1); else render(index - 1);
+      }
+    });
+  }());
 </script>
