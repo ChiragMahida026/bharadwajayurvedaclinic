@@ -68,11 +68,11 @@ h4 {
 }
 
 h1 {
-    font-size: clamp(1.9rem, 3.4vw, 3.2rem)
+    font-size: clamp(1.8rem, 5.8vw, 3.2rem)
 }
 
 h2 {
-    font-size: clamp(1.4rem, 2.2vw, 2.2rem)
+    font-size: clamp(1.4rem, 2.8vw, 2.2rem)
 }
 
 .lead {
@@ -128,7 +128,7 @@ section[id] {
     color: #fff;
     border: 0;
     box-shadow: 0 8px 20px rgba(47, 63, 50, .24);
-    transition: background .3s ease, transform .2s ease, box-shadow .2s ease;
+    transition: background .3s, transform .2s, box-shadow .2s;
 }
 
 .btn-primary:hover {
@@ -219,9 +219,8 @@ section[id] {
     height: 64px;
     width: auto;
     object-fit: contain;
-    image-rendering: -webkit-optimize-contrast;
     filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .03));
-    transition: transform .2s ease, height .2s ease;
+    transition: transform .2s, height .2s
 }
 
 .brand:hover .brand-logo {
@@ -291,7 +290,7 @@ section[id] {
     letter-spacing: .3px;
     font-size: .95rem;
     opacity: 0;
-    animation: fadeIn 1.2s ease forwards .15s
+    animation: fadeIn 1.2s ease forwards .15s;
 }
 
 @media (max-width:720px) {
@@ -308,7 +307,7 @@ section[id] {
     opacity: .5;
 }
 
-/* NAV (desktop essentials) */
+/* NAV */
 .nav {
     justify-self: center;
     position: relative
@@ -469,7 +468,6 @@ section[id] {
     opacity: 0;
     transition: opacity 900ms ease;
     filter: saturate(1.06) contrast(1.05);
-    will-change: opacity, transform;
     pointer-events: none;
 }
 
@@ -480,13 +478,14 @@ section[id] {
 .hero .hero-content {
     position: relative;
     z-index: 1;
-    background: rgba(255, 255, 255, .80);
+    background: rgba(255, 255, 255, .82);
     backdrop-filter: blur(6px) saturate(115%);
     -webkit-backdrop-filter: blur(6px) saturate(115%);
     border-radius: 18px;
     padding: 2rem;
     box-shadow: 0 20px 50px rgba(0, 0, 0, .15), 0 2px 0 rgba(255, 255, 255, .6) inset;
     border: 1px solid rgba(185, 136, 63, .22);
+    /* max-width: 920px; */
 }
 
 .hero .hero-content::before {
@@ -495,7 +494,7 @@ section[id] {
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, .35) inset;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .35) inset
 }
 
 .hero .hero-content h1 {
@@ -529,6 +528,29 @@ section[id] {
     flex-wrap: wrap
 }
 
+@media (max-width:720px) {
+    .section {
+        padding: 3.5rem 0
+    }
+
+    .hero {
+        min-height: 66vh
+    }
+
+    .hero .hero-content {
+        padding: 1.2rem 1rem
+    }
+
+    .hero .hero-content h1 {
+        font-size: clamp(1.6rem, 7vw, 2.2rem)
+    }
+
+    .cta-row .btn {
+        flex: 1 1 auto;
+        justify-content: center
+    }
+}
+
 /* ===========================================================
    ABOUT
    =========================================================== */
@@ -557,10 +579,9 @@ section[id] {
     border: 1px solid var(--edge);
     box-shadow: 0 10px 20px rgba(0, 0, 0, .06);
     font-weight: 600;
-    color: var(--accent);
+    color: var(--accent)
 }
 
-/* Collage grid */
 .about-gallery {
     --r: 16px;
     display: grid;
@@ -579,7 +600,7 @@ section[id] {
     overflow: hidden;
     box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
     background: #000;
-    line-height: 0;
+    line-height: 0
 }
 
 .about-thumb img {
@@ -588,7 +609,7 @@ section[id] {
     object-fit: cover;
     transform: scale(1.02);
     transition: transform .5s cubic-bezier(.2, .8, .2, 1), filter .35s ease, opacity .35s ease;
-    filter: saturate(1.02) contrast(1.02);
+    filter: saturate(1.02) contrast(1.02)
 }
 
 .about-thumb:hover img {
@@ -662,7 +683,7 @@ section[id] {
     background: rgba(0, 0, 0, .45);
     border-radius: 10px;
     padding: .4rem .6rem;
-    border: 1px solid rgba(255, 255, 255, .25);
+    border: 1px solid rgba(255, 255, 255, .25)
 }
 
 .about-lightbox[open] {
@@ -694,9 +715,8 @@ section[id] {
 /* ===========================================================
    SECTION TITLES
    =========================================================== */
-.section .section-title,
-.section>h2 {
-    font-size: clamp(1.8rem, 2.4vw, 2.3rem);
+.section .section-title {
+    font-size: clamp(1.8rem, 2.6vw, 2.3rem);
     margin: 0 0 1rem;
     letter-spacing: .2px
 }
@@ -717,10 +737,10 @@ section[id] {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1rem;
-    align-items: stretch;
+    align-items: stretch
 }
 
-/* Card */
+/* Card base */
 .svc-card {
     --r: 18px;
     position: relative;
@@ -730,16 +750,14 @@ section[id] {
     padding: 1rem;
     min-height: 260px;
     height: 360px;
-    /* fixed height; no grid jump */
     border-radius: var(--r);
     border: 1px solid var(--edge);
     background: var(--paper);
     box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
-    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    overflow: visible;
-    /* allow floating pop-card */
+    transition: transform .18s, box-shadow .18s, border-color .18s;
+    overflow: hidden;
     isolation: isolate;
-    /* keep pop shadows inside stacking context */
+    will-change: transform;
 }
 
 .svc-card::before {
@@ -748,7 +766,7 @@ section[id] {
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    background: linear-gradient(180deg, rgba(185, 136, 63, .06), transparent 30%);
+    background: linear-gradient(180deg, rgba(185, 136, 63, .06), transparent 30%)
 }
 
 .svc-card:hover {
@@ -795,132 +813,102 @@ section[id] {
     font-size: .78rem;
     border: 1px solid var(--edge);
     background: #fff;
-    color: #37503d;
+    color: #37503d
 }
 
-/* —— New floating pop‑card pattern —— */
-
-.svc-more {
-    margin-top: auto;
-    position: relative;
-    /* anchor for the pop-card */
-    display: block;
-    padding-bottom: .1rem;
-    z-index: 2;
-    /* <-- keep summary+popover above the scrim */
-}
-
-.svc-more>summary {
-    cursor: pointer;
-    list-style: none;
-    font-weight: 700;
-    color: var(--accent);
-    display: inline-flex;
-    align-items: center;
-    gap: .45rem;
-    background: #fff;
-    border: 1px solid var(--edge);
-    border-radius: 12px;
-    padding: .48rem .8rem;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, .06);
-    transition: transform .15s ease, box-shadow .15s ease;
-}
-
-.svc-more>summary::-webkit-details-marker {
-    display: none
-}
-
-.svc-more>summary:hover {
-    transform: translateY(-1px)
-}
-
-/* Card scrim when open */
-.svc-scrim {
+/* Hover overlay (desktop) */
+.svc-hover {
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: rgba(0, 0, 0, .03);
+    inset: 10px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .62);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid rgba(231, 224, 209, .85);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, .15);
+    display: grid;
+    place-content: center;
+    text-align: center;
+    padding: 1rem;
     opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(.985);
+    transition: opacity .34s cubic-bezier(.2, .7, .2, 1), transform .34s cubic-bezier(.2, .7, .2, 1);
+    will-change: opacity, transform;
     pointer-events: none;
-    transition: opacity .2s ease;
-    z-index: 1;
-    /* <-- sits under summary/pop */
 }
 
-.svc-more[open]~.svc-scrim,
-.svc-more[open] .svc-scrim {
+.svc-hover p {
+    margin: .2rem 0 .8rem;
+    color: #2f372f
+}
+
+.svc-card:hover .svc-hover {
     opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
     pointer-events: auto
 }
 
-/* Floating panel */
-.svc-pop {
-    position: absolute;
-    left: 50%;
-    bottom: 54px;
-    /* sits above the summary button */
-    transform: translateX(-50%) translateY(8px) scale(.98);
-    width: min(92%, 340px);
-    background: radial-gradient(120% 140% at 20% 0%, rgba(255, 255, 255, .9), rgba(255, 255, 255, .78));
-    backdrop-filter: blur(8px) saturate(130%);
-    -webkit-backdrop-filter: blur(8px) saturate(130%);
-    border: 1px solid var(--edge);
-    border-radius: 14px;
-    box-shadow: 0 18px 42px rgba(0, 0, 0, .18), 0 0 0 1px rgba(255, 255, 255, .55) inset;
-    overflow: auto;
-    max-height: 0;
-    opacity: 0;
-    pointer-events: none;
-    padding: 0 .9rem;
-    transition: max-height .28s ease, opacity .22s ease, transform .22s ease, padding .22s ease;
-    z-index: 2;
+.svc-card:hover .svc-title,
+.svc-card:hover .svc-blurb,
+.svc-card:hover .svc-tags {
+    filter: saturate(.95);
+    opacity: .92
 }
 
-.svc-pop::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -8px;
-    transform: translateX(-50%);
-    width: 16px;
-    height: 16px;
-    background: #fff;
-    border: 1px solid var(--edge);
-    border-left-color: transparent;
-    border-top-color: transparent;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
-    transform-origin: center;
-    rotate: 45deg;
-}
-
-.svc-more[open] .svc-pop {
-    max-height: 200px;
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0) scale(1);
-    padding: .75rem .9rem;
-}
-
-.svc-list {
-    margin: .1rem 0 0 .9rem;
-    padding: 0;
-    font-size: .95rem
-}
-
-.svc-list li {
-    margin: .28rem 0
-}
-
-/* Mobile tweaks */
-@media (max-width:640px) {
+/* Touch-first behavior: show details inline, no overlay flicker */
+@media (hover:none),
+(pointer:coarse) {
     .svc-card {
-        height: 340px
+        height: auto
     }
 
-    .svc-pop {
-        width: 94%;
-        bottom: 56px;
+    .svc-hover {
+        position: static;
+        inset: auto;
+        border-radius: 12px;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        padding: .6rem 0 0;
     }
+}
+
+/* Modal */
+.svc-modal .modal-card {
+    max-width: 640px;
+    width: min(92vw, 640px)
+}
+
+.svc-modal-body ul {
+    margin: .2rem 0 0 1.1rem;
+    padding: 0
+}
+
+.svc-modal-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: .6rem;
+    margin-top: 1rem
+}
+
+/* ===========================================================
+   PRODUCTS GRID
+   =========================================================== */
+.grid.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem
+}
+
+.card {
+    border: 1px solid var(--edge);
+    border-radius: 12px;
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .06);
 }
 
 /* ===========================================================
@@ -943,7 +931,7 @@ section[id] {
     border-radius: var(--radius);
     background: var(--paper);
     padding: 1.2rem;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow)
 }
 
 .contact-form label {
@@ -1049,7 +1037,7 @@ section[id] {
     text-align: center
 }
 
-/* Floating WA (mobile) */
+/* Floating WA (mobile only) */
 .fab-wa {
     position: fixed;
     right: 16px;
@@ -1087,7 +1075,7 @@ section[id] {
     border-radius: 50%;
     border: 3px solid #d9caa7;
     border-top-color: var(--accent);
-    animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite
 }
 
 :focus-visible {
@@ -1120,11 +1108,16 @@ section[id] {
     border-left: 1px solid var(--edge);
     display: flex;
     flex-direction: column;
+    will-change: transform;
+    contain: paint;
+    visibility: hidden;
+    /* important: prevent ghost text */
 }
 
 .drawer.open {
     transform: translateX(0);
-    box-shadow: -10px 0 40px rgba(0, 0, 0, .15)
+    box-shadow: -10px 0 40px rgba(0, 0, 0, .15);
+    visibility: visible
 }
 
 .drawer-inner {
@@ -1211,7 +1204,7 @@ dialog::backdrop {
     font-size: 1.2rem
 }
 
-/* Mobile layout tweaks */
+/* Mobile layout tweaks for header */
 @media (max-width:1020px) {
     .header-wrap {
         grid-template-columns: auto 1fr;
