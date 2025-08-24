@@ -97,7 +97,6 @@ a:hover {
     color: var(--muted)
 }
 
-/* anchor offset for sticky header */
 section[id] {
     scroll-margin-top: 110px
 }
@@ -429,8 +428,8 @@ section[id] {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: linear-gradient(180deg, rgba(185, 136, 63, .28) 0%, rgba(251, 250, 247, .55) 65%, rgba(251, 250, 247, .78) 100%);
-    mix-blend-mode: multiply;
+    background: none;
+    /* Removed darkening overlay */
 }
 
 .hero-media::after {
@@ -438,7 +437,8 @@ section[id] {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(85% 65% at 50% 35%, rgba(0, 0, 0, 0) 60%, rgba(10, 12, 9, .20) 100%);
+    background: none;
+    /* Removed darkening overlay */
 }
 
 .hero::after {
@@ -538,7 +538,7 @@ section[id] {
     }
 
     .hero .hero-content {
-        padding: 1.2rem 1rem
+        padding: 1.2rem 0
     }
 
     .hero .hero-content h1 {
@@ -698,7 +698,7 @@ section[id] {
     border-left: 4px solid var(--accent-2);
     border-radius: 14px;
     background: #fff;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, .06);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .06)
 }
 
 .shloka-card blockquote {
@@ -742,22 +742,23 @@ section[id] {
 
 /* Card base */
 .svc-card {
+    --glass-alpha: .40;
+    --glass-blur: 4px;
     --r: 18px;
     position: relative;
     display: grid;
     grid-template-rows: auto auto 1fr auto;
     gap: .55rem;
-    padding: 1rem;
+    padding: 1.1rem;
     min-height: 260px;
     height: 360px;
     border-radius: var(--r);
     border: 1px solid var(--edge);
     background: var(--paper);
     box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
-    transition: transform .18s, box-shadow .18s, border-color .18s;
     overflow: hidden;
     isolation: isolate;
-    will-change: transform;
+    transition: .18s transform, .18s box-shadow, .18s border-color;
 }
 
 .svc-card::before {
@@ -766,7 +767,7 @@ section[id] {
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    background: linear-gradient(180deg, rgba(185, 136, 63, .06), transparent 30%)
+    background: radial-gradient(120% 70% at 50% -10%, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0) 55%), linear-gradient(180deg, rgba(185, 136, 63, .06), transparent 30%);
 }
 
 .svc-card:hover {
@@ -785,7 +786,7 @@ section[id] {
     color: #284331;
     background: radial-gradient(120% 120% at 30% 20%, #fff 0%, #f7f4ec 70%);
     border: 1px solid var(--edge);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6)
 }
 
 .svc-title {
@@ -816,24 +817,24 @@ section[id] {
     color: #37503d
 }
 
-/* Hover overlay (desktop) */
+/* Hover glass */
 .svc-hover {
     position: absolute;
     inset: 10px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, .62);
-    backdrop-filter: blur(10px) saturate(140%);
-    -webkit-backdrop-filter: blur(10px) saturate(140%);
-    border: 1px solid rgba(231, 224, 209, .85);
-    box-shadow: 0 18px 42px rgba(0, 0, 0, .15);
+    z-index: 2;
+    background: rgba(255, 255, 255, var(--glass-alpha));
+    backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    border: 1px solid rgba(231, 224, 209, .75);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, .12);
     display: grid;
     place-content: center;
     text-align: center;
     padding: 1rem;
     opacity: 0;
     transform: translate3d(0, 10px, 0) scale(.985);
-    transition: opacity .34s cubic-bezier(.2, .7, .2, 1), transform .34s cubic-bezier(.2, .7, .2, 1);
-    will-change: opacity, transform;
+    transition: opacity .32s cubic-bezier(.2, .7, .2, 1), transform .32s cubic-bezier(.2, .7, .2, 1);
     pointer-events: none;
 }
 
@@ -848,14 +849,7 @@ section[id] {
     pointer-events: auto
 }
 
-.svc-card:hover .svc-title,
-.svc-card:hover .svc-blurb,
-.svc-card:hover .svc-tags {
-    filter: saturate(.95);
-    opacity: .92
-}
-
-/* Touch-first behavior: show details inline, no overlay flicker */
+/* Touch: show details inline so the button is tappable */
 @media (hover:none),
 (pointer:coarse) {
     .svc-card {
@@ -872,14 +866,86 @@ section[id] {
         opacity: 1;
         transform: none;
         pointer-events: auto;
-        padding: .6rem 0 0;
+        padding: .6rem 0 0
     }
 }
 
-/* Modal */
+/* ======================= MODAL (with/without native <dialog>) ======================= */
+@keyframes modalIn {
+    from {
+        transform: translateY(12px) scale(.98);
+        opacity: 0
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1
+    }
+}
+
+@keyframes modalOut {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1
+    }
+
+    to {
+        transform: translateY(8px) scale(.98);
+        opacity: 0
+    }
+}
+
+dialog {
+    position: fixed;
+    inset: 0;
+    display: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    z-index: 1600;
+}
+
+dialog[open] {
+    display: grid;
+    place-items: center
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, .42);
+    backdrop-filter: blur(2px)
+}
+
 .svc-modal .modal-card {
+    background: var(--paper);
+    border: 1px solid var(--edge);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow), 0 30px 60px rgba(0, 0, 0, .18);
+    width: min(92vw, 640px);
     max-width: 640px;
-    width: min(92vw, 640px)
+    padding: 1.5rem;
+    animation: modalIn .28s cubic-bezier(.2, .7, .2, 1);
+}
+
+dialog.closing .modal-card {
+    animation: modalOut .18s ease both
+}
+
+.svc-modal .modal-card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem
+}
+
+.svc-modal h3 {
+    margin: 0
+}
+
+.icon-btn {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.2rem
 }
 
 .svc-modal-body ul {
@@ -892,6 +958,22 @@ section[id] {
     justify-content: space-between;
     gap: .6rem;
     margin-top: 1rem
+}
+
+/* Fallback scrim used only when native <dialog> is unavailable — namespaced */
+.modal-scrim {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .42);
+    backdrop-filter: blur(2px);
+    z-index: 1500;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.modal-scrim[hidden] {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none
 }
 
 /* ===========================================================
@@ -908,7 +990,7 @@ section[id] {
     border-radius: 12px;
     background: #fff;
     padding: 1rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .06);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .06)
 }
 
 /* ===========================================================
@@ -1083,6 +1165,13 @@ section[id] {
     outline-offset: 3px
 }
 
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important
+    }
+}
+
 @keyframes fadeIn {
     to {
         opacity: 1
@@ -1095,7 +1184,7 @@ section[id] {
     }
 }
 
-/* Drawer & dialogs */
+/* Drawer & its own scrim (kept as your original) */
 .drawer {
     position: fixed;
     inset: 0 0 0 auto;
@@ -1111,7 +1200,6 @@ section[id] {
     will-change: transform;
     contain: paint;
     visibility: hidden;
-    /* important: prevent ghost text */
 }
 
 .drawer.open {
@@ -1146,14 +1234,23 @@ section[id] {
     border-color: var(--edge)
 }
 
+/* If your drawer still uses a generic .scrim, these styles remain */
 .scrim {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, .3);
     z-index: 1300;
     transition: opacity .3s ease, visibility .3s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* When you want it visible, toggle this class in JS */
+.scrim.is-visible {
     opacity: 1;
-    visibility: visible
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .scrim[hidden] {
@@ -1162,49 +1259,7 @@ section[id] {
     pointer-events: none
 }
 
-dialog {
-    border: 1px solid var(--edge);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 0;
-    max-width: 500px;
-    width: 90vw
-}
-
-dialog:not([open]) {
-    display: none
-}
-
-dialog::backdrop {
-    background: rgba(0, 0, 0, .4);
-    backdrop-filter: blur(4px)
-}
-
-.modal-card {
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem
-}
-
-.modal-card header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem
-}
-
-.modal-card h3 {
-    margin: 0
-}
-
-.icon-btn {
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    font-size: 1.2rem
-}
-
-/* Mobile layout tweaks for header */
+/* Mobile header tweaks */
 @media (max-width:1020px) {
     .header-wrap {
         grid-template-columns: auto 1fr;

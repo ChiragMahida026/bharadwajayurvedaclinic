@@ -98,10 +98,10 @@
     </div>
   </div>
 
-  <!-- Lightbox -->
-  <dialog id="about-lightbox" class="about-lightbox" aria-label="Photo viewer">
+  <!-- Lightbox (start hidden to override CSS) -->
+  <dialog id="about-lightbox" class="about-lightbox" aria-label="Photo viewer" style="display:none">
     <button class="lightbox-close icon-btn" aria-label="Close viewer">✕</button>
-    <img class="lightbox-img" alt="">
+    <img class="lightbox-img" alt="" />
   </dialog>
 </section>
 
@@ -112,11 +112,9 @@
     <h2 class="section-title">Services</h2>
 
     <div class="service-grid">
-
+      <!-- Cards (unchanged) -->
       <!-- 1) Panchakarma -->
-      <article class="svc-card"
-               data-title="Panchakarma"
-               data-teaser="Detox &amp; rejuvenation tailored to your prakṛti for deep, lasting wellness.">
+      <article class="svc-card" data-title="Panchakarma" data-teaser="Detox &amp; rejuvenation tailored to your prakṛti for deep, lasting wellness.">
         <div class="svc-icon" aria-hidden="true">🌿</div>
         <h3 class="svc-title">Panchakarma</h3>
         <p class="svc-blurb">
@@ -126,12 +124,10 @@
         <div class="svc-tags">
           <span class="chip">Detox</span><span class="chip">Rejuvenation</span><span class="chip">Metabolism</span>
         </div>
-
         <div class="svc-hover">
           <p>Practical, stage‑wise detox &amp; restoration. Gentle, guided, and effective.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
-
         <template class="svc-detail">
           <ul>
             <li>Prakṛti–vikṛti assessment &amp; pulse exam</li>
@@ -143,21 +139,17 @@
       </article>
 
       <!-- 2) Herbal Medicine -->
-      <article class="svc-card"
-               data-title="Herbal Medicine"
-               data-teaser="Custom formulations rooted in classical texts to correct root‑cause imbalances.">
+      <article class="svc-card" data-title="Herbal Medicine" data-teaser="Custom formulations rooted in classical texts to correct root‑cause imbalances.">
         <div class="svc-icon" aria-hidden="true">🍃</div>
         <h3 class="svc-title">Herbal Medicine</h3>
         <p class="svc-blurb">Custom formulations rooted in classical texts to correct root‑cause imbalances.</p>
         <div class="svc-tags">
           <span class="chip">Digestion</span><span class="chip">Immunity</span><span class="chip">Stress</span>
         </div>
-
         <div class="svc-hover">
           <p>Personal blends, safe guidance, and clear dosing education.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
-
         <template class="svc-detail">
           <ul>
             <li>Case history + doṣa mapping</li>
@@ -168,21 +160,17 @@
       </article>
 
       <!-- 3) Diet Consultation -->
-      <article class="svc-card"
-               data-title="Diet Consultation"
-               data-teaser="Dinacharya &amp; ṛtucharya guidance to balance digestion, immunity &amp; energy.">
+      <article class="svc-card" data-title="Diet Consultation" data-teaser="Dinacharya &amp; ṛtucharya guidance to balance digestion, immunity &amp; energy.">
         <div class="svc-icon" aria-hidden="true">🥗</div>
         <h3 class="svc-title">Diet Consultation</h3>
         <p class="svc-blurb"><em>Dinacharya</em> &amp; <em>ṛtucharya</em> guidance to balance digestion, immunity &amp; energy.</p>
         <div class="svc-tags">
           <span class="chip">Gut health</span><span class="chip">Weight balance</span><span class="chip">Hormonal support</span>
         </div>
-
         <div class="svc-hover">
           <p>Personal food map, smart routines, and sleep optimization.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
-
         <template class="svc-detail">
           <ul>
             <li>Agnibala assessment (digestive fire)</li>
@@ -193,21 +181,17 @@
       </article>
 
       <!-- 4) Chronic Conditions -->
-      <article class="svc-card"
-               data-title="Chronic Conditions"
-               data-teaser="IBS, joint pain, stress, metabolic &amp; lifestyle disorders with holistic protocols.">
+      <article class="svc-card" data-title="Chronic Conditions" data-teaser="IBS, joint pain, stress, metabolic &amp; lifestyle disorders with holistic protocols.">
         <div class="svc-icon" aria-hidden="true">🧘</div>
         <h3 class="svc-title">Chronic Conditions</h3>
         <p class="svc-blurb">IBS, joint pain, stress, metabolic and lifestyle disorders with holistic protocols.</p>
         <div class="svc-tags">
           <span class="chip">Pain</span><span class="chip">Stress</span><span class="chip">Lifestyle</span>
         </div>
-
         <div class="svc-hover">
           <p>Root‑cause plan with milestones, yoga &amp; herb support.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
-
         <template class="svc-detail">
           <ul>
             <li>Root‑cause plan with staged milestones</li>
@@ -218,21 +202,17 @@
       </article>
 
       <!-- 5) Abhyanga & Shirodhara -->
-      <article class="svc-card"
-               data-title="Abhyanga &amp; Shirodhara"
-               data-teaser="Warm therapeutic oils and calming therapies for mind–body balance.">
+      <article class="svc-card" data-title="Abhyanga &amp; Shirodhara" data-teaser="Warm therapeutic oils and calming therapies for mind–body balance.">
         <div class="svc-icon" aria-hidden="true">💆</div>
-        <h3 class="svc-title">Abhyanga &amp; Shirodhara</h3>
+        <h3 class="svc-title">Abhyanga & Shirodhara</h3>
         <p class="svc-blurb">Warm therapeutic oils and calming therapies for mind–body balance.</p>
         <div class="svc-tags">
           <span class="chip">Nervous system</span><span class="chip">Sleep</span><span class="chip">Calm</span>
         </div>
-
         <div class="svc-hover">
           <p>Deep relaxation with custom oils and gentle guidance.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
-
         <template class="svc-detail">
           <ul>
             <li>Full‑body Abhyanga (custom taila)</li>
@@ -243,21 +223,17 @@
       </article>
 
       <!-- 6) Trusted Reviews -->
-      <article class="svc-card"
-               data-title="Trusted Reviews"
-               data-teaser="Patients rate us 5‑stars for genuine care, hygiene and real‑world results.">
+      <article class="svc-card" data-title="Trusted Reviews" data-teaser="Patients rate us 5‑stars for genuine care, hygiene and real‑world results.">
         <div class="svc-icon" aria-hidden="true">⭐</div>
         <h3 class="svc-title">Trusted Reviews</h3>
         <p class="svc-blurb">Patients rate us 5‑stars for genuine care, hygiene and real‑world results.</p>
         <div class="svc-tags">
           <span class="chip">Verified</span><span class="chip">Compassionate</span><span class="chip">Clean clinic</span>
         </div>
-
         <div class="svc-hover">
           <p>Transparent plans &amp; follow‑ups that truly follow through.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
-
         <template class="svc-detail">
           <ul>
             <li>Transparent treatment plans</li>
@@ -268,21 +244,17 @@
       </article>
 
       <!-- 7) Women’s Health -->
-      <article class="svc-card"
-               data-title="Women’s Health"
-               data-teaser="Ayurvedic care for PCOS, cycle balance, fertility &amp; post‑partum recovery.">
+      <article class="svc-card" data-title="Women’s Health" data-teaser="Ayurvedic care for PCOS, cycle balance, fertility &amp; post‑partum recovery.">
         <div class="svc-icon" aria-hidden="true">🌸</div>
         <h3 class="svc-title">Women’s Health</h3>
         <p class="svc-blurb">Ayurvedic care for PCOS, cycle balance, fertility &amp; post‑partum recovery.</p>
         <div class="svc-tags">
           <span class="chip">Cycle</span><span class="chip">Fertility</span><span class="chip">Post‑partum</span>
         </div>
-
         <div class="svc-hover">
           <p>Hormone‑wise protocols, stress care and sleep support.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
-
         <template class="svc-detail">
           <ul>
             <li>Doṣa‑based cycle mapping</li>
@@ -293,21 +265,17 @@
       </article>
 
       <!-- 8) Skin & Hair Care -->
-      <article class="svc-card"
-               data-title="Skin &amp; Hair Care"
-               data-teaser="Holistic plans for acne, eczema, hair fall &amp; scalp health from the root.">
+      <article class="svc-card" data-title="Skin &amp; Hair Care" data-teaser="Holistic plans for acne, eczema, hair fall &amp; scalp health from the root.">
         <div class="svc-icon" aria-hidden="true">🌼</div>
         <h3 class="svc-title">Skin & Hair Care</h3>
         <p class="svc-blurb">Holistic plans for acne, eczema, hair fall &amp; scalp health from the root.</p>
         <div class="svc-tags">
           <span class="chip">Acne</span><span class="chip">Eczema</span><span class="chip">Hair fall</span>
         </div>
-
         <div class="svc-hover">
           <p>Assess agni &amp; āma; tune diet and gentle external care.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
-
         <template class="svc-detail">
           <ul>
             <li>Agni &amp; toxin (āma) assessment</li>
@@ -316,14 +284,13 @@
           </ul>
         </template>
       </article>
-
     </div>
   </div>
 </section>
 
 <!-- Modal for service details -->
-<dialog id="svc-modal" class="svc-modal" aria-label="Service details">
-  <div class="modal-card">
+<dialog id="svc-modal" class="svc-modal" aria-label="Service details" aria-describedby="svc-modal-body" aria-modal="true">
+  <div class="modal-card" role="document">
     <header>
       <h3 id="svc-modal-title">Service</h3>
       <button class="icon-btn" id="svc-modal-close" aria-label="Close">✕</button>
@@ -335,6 +302,8 @@
     </footer>
   </div>
 </dialog>
+<!-- Fallback backdrop for non-<dialog> browsers (namespaced) -->
+<div id="svc-scrim" class="modal-scrim" hidden></div>
 
 <!-- PRODUCTS -->
 <section id="products" class="section">
@@ -412,29 +381,73 @@
 </section>
 
 <script>
-  /* =============== About lightbox =============== */
+  /* ================== SAFETY: force-close any overlays on entry ================== */
+  function closeAllOverlays() {
+    document.querySelectorAll('dialog').forEach(dlg => {
+      try { if (typeof dlg.close === 'function') dlg.close(); } catch(_) {}
+      dlg.removeAttribute('open');
+      dlg.classList.remove('closing');
+      dlg.style.display = 'none';
+    });
+    const svcScrim = document.getElementById('svc-scrim');
+    if (svcScrim) svcScrim.hidden = true;
+    document.querySelectorAll('.scrim').forEach(s => {
+      s.classList.remove('is-visible');
+      s.hidden = true;
+      s.style.pointerEvents = 'none';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', closeAllOverlays);
+  window.addEventListener('pageshow', closeAllOverlays);
+  window.addEventListener('focus', closeAllOverlays);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') closeAllOverlays();
+  });
+
+  /* =============== About lightbox (explicitly manage display) =============== */
   (function () {
     const dlg = document.getElementById('about-lightbox');
+    if (!dlg) return;
     const img = dlg.querySelector('.lightbox-img');
+    const openDlg = (src) => {
+      img.src = src || '';
+      if (typeof dlg.showModal === 'function') dlg.showModal();
+      else dlg.setAttribute('open', '');
+      dlg.style.display = 'grid';
+    };
+    const closeDlg = () => {
+      if (typeof dlg.close === 'function') dlg.close();
+      else dlg.removeAttribute('open');
+      dlg.style.display = 'none';
+    };
+
     document.querySelectorAll('.about-thumb').forEach(btn => {
-      btn.addEventListener('click', () => {
-        img.src = btn.dataset.full;
-        dlg.showModal();
-      });
+      btn.addEventListener('click', () => openDlg(btn.dataset.full || ''));
     });
-    dlg.querySelector('.lightbox-close').addEventListener('click', () => dlg.close());
+    dlg.querySelector('.lightbox-close').addEventListener('click', closeDlg);
+    dlg.addEventListener('click', (e) => {
+      const imgRect = img.getBoundingClientRect();
+      if (e.clientX < imgRect.left || e.clientX > imgRect.right || e.clientY < imgRect.top || e.clientY > imgRect.bottom) {
+        closeDlg();
+      }
+    });
+    dlg.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDlg(); });
   }());
 
-  /* =============== Service modal + hover =============== */
+  /* =============== Service modal + fallback scrim =============== */
   (function () {
-    const cards = [...document.querySelectorAll('.svc-card')];
-    const modal = document.getElementById('svc-modal');
+    const cards   = Array.from(document.querySelectorAll('.svc-card'));
+    const modal   = document.getElementById('svc-modal');
+    const scrim   = document.getElementById('svc-scrim'); // fallback only
     const titleEl = document.getElementById('svc-modal-title');
-    const bodyEl = document.getElementById('svc-modal-body');
+    const bodyEl  = document.getElementById('svc-modal-body');
     const btnPrev = document.getElementById('svc-prev');
     const btnNext = document.getElementById('svc-next');
-    const btnClose = document.getElementById('svc-modal-close');
+    const btnClose= document.getElementById('svc-modal-close');
 
+    if (!cards.length || !modal) return;
+
+    const nativeDialog = typeof modal.showModal === 'function';
     let index = 0;
 
     function render(i) {
@@ -443,42 +456,51 @@
       titleEl.textContent = card.dataset.title || card.querySelector('.svc-title').textContent;
       const tpl = card.querySelector('template.svc-detail');
       bodyEl.innerHTML = '';
-      if (tpl) bodyEl.appendChild(tpl.content.cloneNode(true));
+      if (tpl && tpl.content) bodyEl.appendChild(tpl.content.cloneNode(true));
       else bodyEl.innerHTML = `<p>${card.dataset.teaser || ''}</p>`;
+    }
+
+    function openModal() {
+      modal.classList.remove('closing');
+      if (nativeDialog) modal.showModal(); else { modal.setAttribute('open', ''); modal.style.display = 'grid'; if (scrim) scrim.hidden = false; }
+    }
+
+    function closeModal() {
+      modal.classList.add('closing');
+      const finish = () => {
+        if (nativeDialog) modal.close();
+        else { modal.removeAttribute('open'); modal.style.display = 'none'; if (scrim) scrim.hidden = true; }
+        modal.removeEventListener('animationend', finish);
+      };
+      modal.addEventListener('animationend', finish);
     }
 
     cards.forEach((card, i) => {
       card.querySelectorAll('.svc-read').forEach(btn => {
-        btn.addEventListener('click', () => {
-          render(i);
-          modal.showModal();
-        });
+        btn.addEventListener('click', (e) => { e.preventDefault(); render(i); openModal(); });
+      });
+      const hover = card.querySelector('.svc-hover');
+      if (hover) hover.addEventListener('click', (e) => {
+        if (e.target.closest('.svc-read')) return;
+        render(i); openModal();
       });
     });
 
     btnPrev.addEventListener('click', () => render(index - 1));
     btnNext.addEventListener('click', () => render(index + 1));
-    btnClose.addEventListener('click', () => modal.close());
+    btnClose.addEventListener('click', closeModal);
+    scrim && scrim.addEventListener('click', closeModal);
 
-    // Close on backdrop click
     modal.addEventListener('click', (e) => {
-      const rect = modal.querySelector('.modal-card').getBoundingClientRect();
-      if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) modal.close();
+      const panel = modal.querySelector('.modal-card');
+      const r = panel.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeModal();
     });
 
-    // Arrow keys
     modal.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
       if (e.key === 'ArrowRight') render(index + 1);
-      if (e.key === 'ArrowLeft') render(index - 1);
-    });
-
-    // Basic swipe
-    let sx = 0, sy = 0;
-    modal.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-    modal.addEventListener('touchend', (e) => {
-      const dx = e.changedTouches[0].clientX - sx;
-      const dy = e.changedTouches[0].clientY - sy;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) { dx < 0 ? render(index + 1) : render(index - 1); }
+      if (e.key === 'ArrowLeft')  render(index - 1);
     });
   }());
 </script>
