@@ -475,20 +475,82 @@ section[id] {
     animation: kenburns 16s ease-out both;
 }
 
-/* Card */
+/* Floating emoji leaves (enhanced) */
+.leaf-float {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.leaf-float span {
+    position: absolute;
+    top: 100%;
+    font-size: 1.2rem;
+    /* slightly smaller base for balance */
+    opacity: 0;
+    filter: blur(.2px);
+    animation: leafRise 14s linear infinite;
+}
+
+/* add gentle variety in size/tilt */
+.leaf-float span:nth-child(odd) {
+    font-size: 1.6rem;
+    transform: rotate(-15deg);
+}
+
+.leaf-float span:nth-child(even) {
+    font-size: 1.3rem;
+    transform: rotate(10deg);
+}
+
+.leaf-float span:nth-child(1) {
+    left: 6%;
+    animation-delay: 0s;
+}
+
+.leaf-float span:nth-child(2) {
+    left: 22%;
+    animation-delay: 2s;
+}
+
+.leaf-float span:nth-child(3) {
+    left: 38%;
+    animation-delay: 4s;
+}
+
+.leaf-float span:nth-child(4) {
+    left: 58%;
+    animation-delay: 6s;
+}
+
+.leaf-float span:nth-child(5) {
+    left: 76%;
+    animation-delay: 8s;
+}
+
+.leaf-float span:nth-child(6) {
+    left: 90%;
+    animation-delay: 10s;
+}
+
+/* Plant‑tinted glass card — softened greens & golds (less white) */
 .hero .hero-content {
     position: relative;
-    z-index: 1;
-    background: rgba(255, 255, 255, .86);
+    z-index: 2;
+    border-radius: 20px;
+    padding: 2rem;
+    background:
+        /* greener, softer glass */
+        linear-gradient(180deg, rgba(240, 245, 238, .92), rgba(235, 242, 236, .88)),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><g fill='none' stroke='%23c7d8cd' stroke-opacity='.22' stroke-width='1'><path d='M0 100 C40 80, 60 40, 100 20'/><path d='M20 140 C60 120, 80 80, 120 60'/></g></svg>") repeat;
     backdrop-filter: blur(10px) saturate(125%);
     -webkit-backdrop-filter: blur(10px) saturate(125%);
-    border-radius: 18px;
-    padding: 2rem;
+    border: 1px solid rgba(46, 94, 66, .20);
     box-shadow:
-        0 24px 60px rgba(0, 0, 0, .16),
-        0 2px 0 rgba(255, 255, 255, .65) inset,
-        0 0 0 1px rgba(185, 136, 63, .16) inset;
-    border: 1px solid rgba(185, 136, 63, .22);
+        0 24px 58px rgba(27, 45, 31, .25),
+        0 2px 0 rgba(255, 255, 255, .35) inset,
+        0 0 0 1px rgba(185, 136, 63, .18) inset;
     animation: floatUp .6s cubic-bezier(.2, .7, .2, 1) .05s both;
     will-change: transform, opacity;
 }
@@ -500,6 +562,19 @@ section[id] {
     border-radius: inherit;
     pointer-events: none;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, .35) inset;
+}
+
+.hero .hero-content::after {
+    /* subtle botanical border glow */
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(59, 92, 70, .12), rgba(185, 136, 63, .12));
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    padding: 1px;
 }
 
 /* Heading polish */
@@ -552,13 +627,13 @@ section[id] {
     inset: 0 -40%;
     transform: translateX(-120%);
     background: linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, .5) 50%, transparent 60%);
-    opacity: .0;
+    opacity: 0;
 }
 
 @keyframes shine {
     0% {
         transform: translateX(-120%);
-        opacity: .0;
+        opacity: 0;
     }
 
     30% {
@@ -567,7 +642,7 @@ section[id] {
 
     100% {
         transform: translateX(120%);
-        opacity: .0;
+        opacity: 0;
     }
 }
 
@@ -608,7 +683,7 @@ section[id] {
     }
 
     .hero .hero-content {
-        padding: 1.2rem 0;
+        padding: 1.2rem .9rem;
     }
 
     .hero .hero-content h1 {
@@ -621,7 +696,7 @@ section[id] {
     }
 }
 
-/* Motion keyframes (respect reduce-motion below) */
+/* Motion keyframes */
 @keyframes kenburns {
     0% {
         transform: scale(1.04) translateY(0);
@@ -644,53 +719,41 @@ section[id] {
     }
 }
 
+/* Enhanced natural drifting for emojis */
+@keyframes leafRise {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(.9);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .7;
+    }
+
+    40% {
+        transform: translateY(-40vh) translateX(-20px) rotate(45deg) scale(1.05);
+    }
+
+    70% {
+        transform: translateY(-80vh) translateX(30px) rotate(90deg) scale(1);
+        opacity: .6;
+    }
+
+    100% {
+        transform: translateY(-120vh) translateX(-15px) rotate(120deg) scale(1.1);
+        opacity: 0;
+    }
+}
+
 /* Respect user's reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
-    .hero-slides img.active {
-        animation: none !important;
-    }
 
+    .hero-slides img.active,
     .hero .hero-content,
-    .hero .hero-content>* {
+    .hero .hero-content>*,
+    .leaf-float span {
         animation: none !important;
     }
-}
-
-/* Eyebrow / microcopy */
-.eyebrow {
-    display: inline-block;
-    font-weight: 700;
-    font-size: .9rem;
-    letter-spacing: .3px;
-    color: #2b3b2e;
-    background: linear-gradient(180deg, #fff, rgba(255, 255, 255, .6));
-    border: 1px solid var(--edge);
-    border-radius: 999px;
-    padding: .35rem .7rem;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, .06);
-    margin: 0 0 .6rem;
-}
-
-.microcopy {
-    margin: .6rem 0 0;
-    font-size: .92rem;
-    color: var(--muted);
-    letter-spacing: .2px;
-    opacity: .95;
-}
-
-/* Animated accent underline (no CLS) */
-.accent-underline {
-    background-image: linear-gradient(120deg, #e7c27a 0%, #b9883f 100%);
-    background-repeat: no-repeat;
-    background-size: 100% .2em;
-    background-position: 0 90%;
-    transition: background-size .4s ease;
-    padding-bottom: .05em;
-}
-
-.hero:hover .accent-underline {
-    background-size: 100% .6em;
 }
 
 /* ===========================================================
