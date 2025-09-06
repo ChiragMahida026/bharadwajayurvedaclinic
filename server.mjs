@@ -38,30 +38,45 @@ if (TRUST_PROXY) app.set("trust proxy", 1);
   CSP here tries to be reasonably strict while allowing fonts and the Razorpay checkout.
   If you change how/when you load external scripts (eg. lazy-loading Razorpay) update CSP accordingly.
 */
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      useDefaults: true,
-      directives: {
-        "default-src": ["'self'"],
-        "script-src": ["'self'", "https://checkout.razorpay.com"],
-        "connect-src": ["'self'", "https://checkout.razorpay.com"],
-        "img-src": ["'self'", "data:", "https:"],
-        "frame-src": ["https://checkout.razorpay.com", "https://api.razorpay.com"],
-        "style-src": ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
-        "font-src": ["'self'", "https://fonts.gstatic.com", "data:"],
-        "object-src": ["'none'"],
-        "base-uri": ["'self'"],
-        "frame-ancestors": ["'self'"]
-      }
-    },
-    crossOriginOpenerPolicy: { policy: "same-origin" },
-    crossOriginResourcePolicy: { policy: "same-site" },
-    referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-    // HSTS is useful in production
-    hsts: NODE_ENV === "production" ? { maxAge: 60 * 60 * 24 * 365, includeSubDomains: true, preload: true } : false
-  })
-);
+app.use(helmet({
+  contentSecurityPolicy: {
+    useDefaults: true,
+    directives: {
+      "default-src": ["'self'"],
+      "script-src": [
+        "'self'",
+        "https://checkout.razorpay.com",
+        "https://maps.googleapis.com",
+        "https://maps.gstatic.com"
+      ],
+      "connect-src": [
+        "'self'",
+        "https://checkout.razorpay.com",
+        "https://maps.googleapis.com",
+        "https://maps.gstatic.com"
+      ],
+      "img-src": ["'self'", "data:", "https:"],
+      /* allow Google Maps embed frames */
+      "frame-src": [
+        "'self'",
+        "https://www.google.com",
+        "https://www.google.com/maps",
+        "https://maps.google.com",
+        "https://www.google.com/maps/embed",
+        "https://checkout.razorpay.com"
+      ],
+      /* styles/fonts */
+      "style-src": ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
+      "font-src": ["'self'", "https://fonts.gstatic.com", "data:"],
+      "object-src": ["'none'"],
+      "base-uri": ["'self'"],
+      "frame-ancestors": ["'self'"]
+    }
+  },
+  crossOriginOpenerPolicy: { policy: "same-origin" },
+  crossOriginResourcePolicy: { policy: "same-site" },
+  referrerPolicy: { policy: "strict-origin-when-cross-origin" }
+}));
 
 app.disable("x-powered-by");
 app.use(compression());

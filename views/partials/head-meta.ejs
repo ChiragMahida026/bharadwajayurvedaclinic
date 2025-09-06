@@ -29,14 +29,13 @@
 <!-- Fonts (display=swap recommended) -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- Critical CSS: preload then apply for faster first paint; noscript fallback -->
-<link rel="preload" href="/style.css" as="style" onload="this.rel='stylesheet'">
+<!-- CSS (CSP-friendly: plain stylesheet link) -->
 <link rel="stylesheet" href="/style.css">
 
 <!-- App JS (deferred) -->
 <script defer src="/app.js"></script>
 
-<!-- Razorpay: only preconnect here; load checkout.js where you initiate checkout (recommended) -->
+<!-- Razorpay: defer load -->
 <link rel="preconnect" href="https://checkout.razorpay.com" crossorigin>
 <script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
@@ -58,12 +57,12 @@
 <meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : 'Authentic Ayurveda in Surat: Panchakarma, herbal medicine, diet consultation and holistic treatments by Dr. Jayveersinh J. Mahida.' %>">
 <meta name="twitter:image" content="<%= typeof imageUrl !== 'undefined' ? imageUrl : '/assets/BHARADWAJ%20LOGO%20WITH%20NAME.png' %>">
 
-<!-- Search engines / verification (optional) -->
+<!-- Optional: verification -->
 <% if (typeof googleSiteVerification !== 'undefined' && googleSiteVerification) { %>
   <meta name="google-site-verification" content="<%= googleSiteVerification %>">
 <% } %>
 
-<!-- Structured data (Organization) -->
+<!-- Structured data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
