@@ -1,32 +1,102 @@
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo" aria-label="Site footer">
+  <!-- decorative shloka strip (hidden from assistive tech) -->
   <section class="shloka-band devanagari" aria-hidden="true">
     ॐ धन्वन्तरये नमः · सर्वे भवन्तु सुखिनः · आयुर्वेदोऽमृतानाम्
   </section>
 
   <div class="container footer-grid">
-    <div class="foot-brand">
+    <!-- BRAND -->
+    <div class="foot-brand" itemscope itemtype="https://schema.org/Organization">
       <div class="glyph" aria-hidden="true">✺</div>
-      <h3 class="mb-1">Bharadwaj Ayurveda</h3>
-      <p class="small">Authentic Ayurveda for holistic well‑being in Surat.</p>
+
+      <h3 class="mb-1" itemprop="name">Bharadwaj Ayurveda</h3>
+      <p class="small" itemprop="description">Authentic Ayurveda for holistic well-being in Surat.</p>
+
+      <!-- Optional micro contact links inside organization -->
+      <div class="small" style="margin-top:.6rem">
+        <a href="tel:+917990625845" itemprop="telephone" aria-label="Call Bharadwaj Ayurveda">07990 625845</a>
+        <span aria-hidden="true"> · </span>
+        <a href="mailto:info@bharadwajayurveda.example" itemprop="email" aria-label="Email Bharadwaj Ayurveda">info@bharadwajayurveda.example</a>
+      </div>
     </div>
 
+    <!-- NAVIGATION -->
     <nav aria-label="Footer navigation">
-      <h4>Explore</h4>
-      <ul class="footer-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <h4 class="visually-hidden">Explore</h4>
+      <ul class="footer-links" role="list">
+        <li role="listitem"><a href="#about">About</a></li>
+        <li role="listitem"><a href="#services">Services</a></li>
+        <li role="listitem"><a href="#products">Products</a></li>
+        <li role="listitem"><a href="#contact">Contact</a></li>
+        <li role="listitem"><a href="/privacy">Privacy</a></li>
+        <li role="listitem"><a href="/terms">Terms</a></li>
       </ul>
     </nav>
 
-    <address>
-      <h4>Contact</h4>
-      <p>Phone: <a href="tel:+917990625845">079906 25845</a></p>
-      <p>WhatsApp: <a href="https://wa.me/7990625845" target="_blank" rel="noopener noreferrer">Message us</a></p>
-      <p>106, Raghuvir Symphony Shoppers, Althan Canal Road, Surat, Gujarat 395007</p>
+    <!-- CONTACT / ADDRESS -->
+    <address class="small" aria-label="Contact information" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+      <h4 class="visually-hidden">Contact</h4>
+
+      <p>
+        <strong>Phone:</strong>
+        <a href="tel:+917990625845" aria-label="Call Bharadwaj Ayurveda">+91 79906 25845</a>
+      </p>
+
+      <p>
+        <strong>WhatsApp:</strong>
+        <a href="https://wa.me/917990625845" target="_blank" rel="noopener noreferrer" aria-label="Message Bharadwaj Ayurveda on WhatsApp">
+          Message us on WhatsApp
+        </a>
+      </p>
+
+      <p itemprop="streetAddress">106, Raghuvir Symphony Shoppers, Althan Canal Road</p>
+      <p>
+        <span itemprop="addressLocality">Surat</span>,
+        <span itemprop="addressRegion">Gujarat</span>
+        <span itemprop="postalCode">395007</span>
+      </p>
+
+      <!-- Link to map for convenience -->
+      <p>
+        <a href="https://www.google.com/maps/search/?api=1&query=106+Raghuvir+Symphony+Shoppers+Althan+Canal+Road+Surat" target="_blank" rel="noopener noreferrer">
+          View on map
+        </a>
+      </p>
     </address>
   </div>
 
-  <div class="copy small">&copy; <span id="year"></span> Bharadwaj Ayurveda Clinic • All rights reserved.</div>
+  <div class="container copy small" style="display:flex;justify-content:space-between;align-items:center;gap:.8rem">
+    <div>&copy; <span id="year"></span> Bharadwaj Ayurveda Clinic • All rights reserved.</div>
+
+    <!-- small social / action group -->
+    <div style="display:flex;gap:.6rem;align-items:center">
+      <!-- WhatsApp CTA (visible on mobile due to CSS) -->
+      <a class="fab-wa small" href="https://wa.me/917990625845" target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
+        💬 WhatsApp
+      </a>
+
+      <!-- Optional: small sitemap / accessibility link -->
+      <a href="/sitemap.xml" aria-label="Sitemap">Sitemap</a>
+    </div>
+  </div>
+
+  <!-- JSON-LD Organization structured data (improves SEO) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bharadwaj Ayurveda",
+      "url": "<%= typeof siteUrl !== 'undefined' ? siteUrl : '/' %>",
+      "logo": "<%= typeof logoUrl !== 'undefined' ? logoUrl : '/assets/logo.png' %>",
+      "telephone": "+91 79906 25845",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "106, Raghuvir Symphony Shoppers, Althan Canal Road",
+        "addressLocality": "Surat",
+        "addressRegion": "Gujarat",
+        "postalCode": "395007",
+        "addressCountry": "IN"
+      }
+    }
+  </script>
 </footer>
