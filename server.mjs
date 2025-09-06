@@ -43,28 +43,11 @@ app.use(helmet({
     useDefaults: true,
     directives: {
       "default-src": ["'self'"],
-      "script-src": [
-        "'self'",
-        "https://checkout.razorpay.com",
-        "https://maps.googleapis.com",
-        "https://maps.gstatic.com"
-      ],
-      "connect-src": [
-        "'self'",
-        "https://checkout.razorpay.com",
-        "https://maps.googleapis.com",
-        "https://maps.gstatic.com"
-      ],
+      "script-src": ["'self'", "https://checkout.razorpay.com", "https://maps.googleapis.com", "https://maps.gstatic.com"],
+      "connect-src": ["'self'", "https://checkout.razorpay.com", "https://maps.googleapis.com", "https://maps.gstatic.com"],
       "img-src": ["'self'", "data:", "https:"],
       /* allow Google Maps embed frames */
-      "frame-src": [
-        "'self'",
-        "https://www.google.com",
-        "https://www.google.com/maps",
-        "https://maps.google.com",
-        "https://www.google.com/maps/embed",
-        "https://checkout.razorpay.com"
-      ],
+      "frame-src": ["'self'", "https://www.google.com", "https://maps.google.com", "https://www.google.com/maps", "https://checkout.razorpay.com"],
       /* styles/fonts */
       "style-src": ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
       "font-src": ["'self'", "https://fonts.gstatic.com", "data:"],
