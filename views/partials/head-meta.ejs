@@ -1,88 +1,35 @@
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-
-<title><%= typeof title !== 'undefined' ? title : (typeof defaultTitle !== 'undefined' ? defaultTitle : 'Bharadwaj Ayurveda Clinic | Dr. Jayveersinh J. Mahida') %></title>
-
-<meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Authentic Ayurveda in Surat: Panchakarma, herbal medicine, diet consultation and holistic treatments by Dr. Jayveersinh J. Mahida.' %>" />
-<link rel="canonical" href="<%= typeof siteUrl !== 'undefined' ? siteUrl : 'https://bharadwaj-ayurveda.example/' %>" />
-<meta name="robots" content="<%= typeof robots !== 'undefined' ? robots : 'index,follow' %>" />
-
-<!-- Theme & color scheme -->
-<meta name="theme-color" content="<%= typeof themeColor !== 'undefined' ? themeColor : '#364f3b' %>" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bharadwaj Ayurveda Clinic | Dr. Jayveersinh J. Mahida</title>
+<meta name="description" content="Authentic Ayurveda in Surat: Panchakarma, herbal medicine, diet consultation and holistic treatments by Dr. Jayveersinh J. Mahida." />
+<meta name="theme-color" content="#364f3b" />
 <meta name="color-scheme" content="light dark" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<link rel="canonical" href="https://bharadwaj-ayurveda.example/" />
+<meta name="robots" content="index,follow" />
 
 <!-- Favicons / PWA -->
-<link rel="manifest" href="<%= typeof manifest !== 'undefined' ? manifest : '/site.webmanifest' %>">
 <link rel="icon" href="/assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
-<!-- Performance: preconnect / dns-prefetch for critical origins -->
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<!-- Fonts (use display=swap + preconnect) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://checkout.razorpay.com">
-<link rel="dns-prefetch" href="https://www.google-analytics.com">
-
-<!-- Fonts (display=swap recommended) -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- CSS (CSP-friendly: plain stylesheet link) -->
-<link rel="stylesheet" href="/style.css">
+<!-- CSS -->
+<link rel="stylesheet" href="/style.css" />
 
-<!-- App JS (deferred) -->
+<!-- JS (Razorpay must be allowed in CSP) -->
 <script defer src="/app.js"></script>
-
-<!-- Razorpay: defer load -->
 <link rel="preconnect" href="https://checkout.razorpay.com" crossorigin>
 <script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-<!-- Open Graph -->
-<meta property="og:locale" content="en_IN" />
-<meta property="og:site_name" content="<%= typeof siteName !== 'undefined' ? siteName : 'Bharadwaj Ayurveda' %>">
-<meta property="og:title" content="<%= typeof title !== 'undefined' ? title : (typeof defaultTitle !== 'undefined' ? defaultTitle : 'Bharadwaj Ayurveda Clinic') %>">
-<meta property="og:description" content="<%= typeof description !== 'undefined' ? description : 'Authentic Ayurveda in Surat: Panchakarma, herbal medicine, diet consultation and holistic treatments by Dr. Jayveersinh J. Mahida.' %>">
-<meta property="og:url" content="<%= typeof siteUrl !== 'undefined' ? siteUrl : 'https://bharadwaj-ayurveda.example/' %>">
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="Bharadwaj Ayurveda Clinic">
+<meta property="og:description" content="Holistic Ayurvedic care by Dr. Jayveersinh J. Mahida — Panchakarma, herbal medicine, diet consultation.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="<%= typeof imageUrl !== 'undefined' ? imageUrl : '/assets/BHARADWAJ%20LOGO%20WITH%20NAME.png' %>">
-<meta property="og:image:alt" content="<%= typeof imageAlt !== 'undefined' ? imageAlt : 'Bharadwaj Ayurveda Clinic logo' %>">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<!-- Twitter -->
+<meta property="og:image" content="/assets/BHARADWAJ%20LOGO%20WITH%20NAME.png">
+<meta property="og:image:alt" content="Bharadwaj Ayurveda Clinic logo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="<%= typeof title !== 'undefined' ? title : (typeof defaultTitle !== 'undefined' ? defaultTitle : 'Bharadwaj Ayurveda Clinic') %>">
-<meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : 'Authentic Ayurveda in Surat: Panchakarma, herbal medicine, diet consultation and holistic treatments by Dr. Jayveersinh J. Mahida.' %>">
-<meta name="twitter:image" content="<%= typeof imageUrl !== 'undefined' ? imageUrl : '/assets/BHARADWAJ%20LOGO%20WITH%20NAME.png' %>">
-
-<!-- Optional: verification -->
-<% if (typeof googleSiteVerification !== 'undefined' && googleSiteVerification) { %>
-  <meta name="google-site-verification" content="<%= googleSiteVerification %>">
-<% } %>
-
-<!-- Structured data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "<%= typeof siteName !== 'undefined' ? siteName : 'Bharadwaj Ayurveda' %>",
-  "url": "<%= typeof siteUrl !== 'undefined' ? siteUrl : 'https://bharadwaj-ayurveda.example/' %>",
-  "logo": "<%= typeof imageUrl !== 'undefined' ? imageUrl : '/assets/BHARADWAJ%20LOGO%20WITH%20NAME.png' %>",
-  "contactPoint": [{
-    "@type": "ContactPoint",
-    "telephone": "+917990625845",
-    "contactType": "customer service",
-    "areaServed": "IN"
-  }],
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "106, Raghuvir Symphony Shoppers, Althan Canal Road",
-    "addressLocality": "Surat",
-    "addressRegion": "Gujarat",
-    "postalCode": "395007",
-    "addressCountry": "IN"
-  }
-}
-</script>

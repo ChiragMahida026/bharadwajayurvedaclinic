@@ -1,27 +1,5 @@
-<!-- drawer.ejs (improved) -->
-<aside
-  class="drawer"
-  id="drawer-menu"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="drawer-title"
-  aria-hidden="true"
->
-  <div class="drawer-inner" role="document">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem">
-      <h3 id="drawer-title" class="visually-hidden">Site navigation</h3>
-
-      <!-- Close button inside drawer for keyboard users -->
-      <button
-        type="button"
-        class="icon-btn drawer-close"
-        aria-label="Close navigation"
-        data-drawer-dismiss
-      >
-        ✕
-      </button>
-    </div>
-
+<aside class="drawer" id="drawer-menu" aria-hidden="true">
+  <div class="drawer-inner">
     <nav class="drawer-nav" aria-label="Mobile navigation">
       <a href="#home" data-section="home">Home</a>
       <a href="#about" data-section="about">About</a>
@@ -31,16 +9,9 @@
     </nav>
 
     <!-- Mobile CTA -->
-    <a
-      class="btn btn-primary wide mt-2"
-      href="https://wa.me/7990625845"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a class="btn btn-primary wide mt-2" href="https://wa.me/7990625845" target="_blank" rel="noopener">
       <span class="wa-ic">💬</span> WhatsApp
     </a>
   </div>
 </aside>
-
-<!-- scrim must sit next to drawer in DOM -->
-<div id="drawer-scrim" class="scrim" hidden aria-hidden="true"></div>
+<div class="scrim" hidden></div>
