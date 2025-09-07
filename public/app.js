@@ -120,20 +120,17 @@
       setInterval(() => {
         i = (i + 1) % slides.length;
         show(i);
-      }, 6000); // calm
+      }, 6000);
     }
 
-    // Gentle parallax on scroll (depth without distraction)
     const onScroll = () => {
       const hero = document.querySelector('.hero');
       if (!hero) return;
       const rect = hero.getBoundingClientRect();
       const vh = Math.max(window.innerHeight, 1);
-      // progress -1 (above) to 1 (below), clamp to [-1,1]
       const p = Math.max(-1, Math.min(1, (rect.top + rect.height * 0.4) / vh - 0.4));
       const active = slides.find(s => s.classList.contains('active')) || slides[0];
-      // translate a few pixels & slight scale for depth
-      const y = p * -12; // move opposite to scroll
+      const y = p * -12;
       active.style.transform = `translate3d(0, ${y}px, 0) scale(1.04)`;
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -178,6 +175,7 @@
       feedbackEl.textContent = 'Sending...';
       feedbackEl.style.color = 'var(--muted)';
       form.setAttribute('aria-busy', 'true');
+      form.querySelector('button').disabled = true; // Disable button during send
 
       try {
         const res = await fetch('/api/contact', {
@@ -196,6 +194,7 @@
         feedbackEl.style.color = 'var(--danger)';
       } finally {
         form.setAttribute('aria-busy', 'false');
+        form.querySelector('button').disabled = false; // Re-enable
         setTimeout(() => { feedbackEl.textContent = ''; }, 5000);
       }
     });
@@ -208,34 +207,43 @@
   })();
 })();
 
-/* ================= About gallery lightbox ================= */
+/* ================= About gallery lightbox (Improved) ================= */
 (() => {
   const thumbs = document.querySelectorAll('.about-thumb');
   const dlg = document.getElementById('about-lightbox');
   const img = dlg?.querySelector('.lightbox-img');
   const closeBtn = dlg?.querySelector('.lightbox-close');
 
-  if (!thumbs.length || !dlg || !img) return;
+  if (!thumbs.length || !dlg || !img || !closeBtn) return;
 
-  const open = (src) => {
+  // Open the dialog with the correct image source
+  const openDialog = (src) => {
     img.src = src;
     dlg.showModal();
   };
-  const close = () => dlg.close();
 
+  // Close the dialog
+  const closeDialog = () => dlg.close();
+
+  // Listen for the native 'close' event for any necessary cleanup
+  dlg.addEventListener('close', () => {
+    // Clear the src to prevent a flash of the old image next time
+    img.src = '';
+  });
+
+  // Attach click listeners to all thumbnail buttons
   thumbs.forEach(btn => {
     btn.addEventListener('click', () => {
       const src = btn.getAttribute('data-full') || btn.querySelector('img')?.src;
-      if (src) open(src);
+      if (src) openDialog(src);
     });
   });
 
-  closeBtn?.addEventListener('click', close);
+  // Attach click listener to the custom close button
+  closeBtn.addEventListener('click', closeDialog);
+
+  // Close when clicking on the backdrop (the dialog element itself)
   dlg.addEventListener('click', (e) => {
-    // click outside image closes
-    if (e.target === dlg) close();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && dlg.open) close();
+    if (e.target === dlg) closeDialog();
   });
 })();

@@ -2,7 +2,7 @@
 <section id="home" class="hero" aria-label="Bharadwaj Ayurveda — Hero">
   <!-- Decorative background slides -->
   <div class="hero-media" aria-hidden="true">
-    <div class="hero-slides">
+    <div class="hero-slides" aria-hidden="true">
       <img src="/assets/1st.png" alt="" class="active" decoding="async" fetchpriority="high" />
       <img src="/assets/2nd.png" alt="" loading="lazy" decoding="async" />
       <img src="/assets/3rd.png" alt="" loading="lazy" decoding="async" />
@@ -15,15 +15,15 @@
   </div>
 
   <div class="container">
-    <div class="hero-content plant-card">
-      <p class="eyebrow">🌿 Authentic • Personalised • Evidence‑informed ✨</p>
+    <div class="hero-content plant-card" role="region" aria-labelledby="hero-title">
+      <p class="eyebrow">🌿 Authentic • Personalised • Evidence-informed ✨</p>
 
-      <h1>
+      <h1 id="hero-title">
         Authentic Ayurveda for
-        <span class="accent-underline">Modern Well‑being</span>
+        <span class="accent-underline">Modern Well-being</span>
       </h1>
 
-      <p class="lead guru-mantra devanagari" lang="sa">
+      <p class="lead guru-mantra devanagari" lang="sa" aria-hidden="false">
         आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्
       </p>
 
@@ -35,46 +35,46 @@
 
       <div class="cta-row" role="group" aria-label="Primary actions">
         <a href="#services" class="btn btn-primary" aria-label="Explore our Ayurvedic services">
-          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" class="icon">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" class="icon" focusable="false">
             <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <span>Explore Services</span>
         </a>
 
         <a href="#contact" class="btn btn-ghost" aria-label="Book an appointment">
-          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" class="icon">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" class="icon" focusable="false">
             <path d="M8 7V3m8 4V3M4 11h16M6 21h12a2 2 0 0 0 2-2v-8H4v8a2 2 0 0 0 2 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <span>Book Appointment</span>
         </a>
       </div>
 
-      <p class="microcopy">🌿 Root‑cause approach • ✨ Gentle, sustainable care</p>
+      <p class="microcopy">🌿 Root-cause approach • ✨ Gentle, sustainable care</p>
     </div>
   </div>
 </section>
 
 
 <!-- ABOUT -->
-<section id="about" class="section about" data-title="About">
+<section id="about" class="section about" data-title="About" aria-labelledby="about-title">
   <div class="container">
-    <p class="section-kicker devanagari">परिचय</p>
+    <p class="section-kicker devanagari" aria-hidden="true">परिचय</p>
 
     <div class="about-wrap">
       <!-- Left: Copy -->
       <div class="about-copy">
-        <h2 class="section-title">Our Approach to Healing</h2>
+        <h2 id="about-title" class="section-title">Our Approach to Healing</h2>
 
         <figure class="shloka-card">
-          <blockquote class="devanagari">
+          <blockquote class="devanagari" lang="sa">
             धर्मार्थकाममोक्षाणाम् आरोग्यं मूलमुत्तमम् ।<br>
             रोगस्तस्यापहारश्च खलु धर्मादिकर्मणाम् ॥
           </blockquote>
           <figcaption>
             <em>Dharmārtha-kāma-mokṣāṇām ārogyaṃ mūlam uttamam. Rogas tasyāpahāraś ca khalu dharmādi-karmaṇām.</em>
             <span class="muted small" style="display:block;margin-top:.25rem;">
-              “Health is the foundation for life’s four aims—dharma (duty), artha (prosperity),
-              kāma (fulfillment) and mokṣa (liberation). Illness steals that capacity.”
+              "Health is the foundation for life's four aims—dharma (duty), artha (prosperity),
+              kāma (fulfillment) and mokṣa (liberation). Illness steals that capacity."
               — <span class="accent">Caraka Saṃhitā</span>
             </span>
           </figcaption>
@@ -136,14 +136,17 @@
 </section>
 
 <!-- SERVICES -->
-<section id="services" class="section alt">
+<section id="services" class="section alt" aria-labelledby="services-title">
   <div class="container">
-    <p class="section-kicker devanagari">सेवा</p>
-    <h2 class="section-title">Services</h2>
+    <p class="section-kicker devanagari" aria-hidden="true">सेवा</p>
+    <h2 id="services-title" class="section-title">Our Ayurvedic Services</h2>
+    <p class="lead" style="max-width:65ch;margin-inline:auto;text-align:center;margin-bottom:2rem;">
+      We offer comprehensive Ayurvedic treatments tailored to your unique constitution and health needs.
+    </p>
 
-    <div class="service-grid">
+    <div class="service-grid" role="list">
       <!-- 1) Panchakarma -->
-      <article class="svc-card" data-title="Panchakarma" data-teaser="Detox &amp; rejuvenation tailored to your prakṛti for deep, lasting wellness.">
+      <article class="svc-card" role="listitem" data-title="Panchakarma" data-teaser="Detox &amp; rejuvenation tailored to your prakṛti for deep, lasting wellness.">
         <div class="svc-icon" aria-hidden="true">🌿</div>
         <h3 class="svc-title">Panchakarma</h3>
         <p class="svc-blurb">
@@ -153,7 +156,7 @@
         <div class="svc-tags">
           <span class="chip">Detox</span><span class="chip">Rejuvenation</span><span class="chip">Metabolism</span>
         </div>
-        <div class="svc-hover">
+        <div class="svc-hover" aria-hidden="true">
           <p>Practical, stage-wise detox &amp; restoration. Gentle, guided, and effective.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
@@ -168,14 +171,14 @@
       </article>
 
       <!-- 2) Herbal Medicine -->
-      <article class="svc-card" data-title="Herbal Medicine" data-teaser="Custom formulations rooted in classical texts to correct root-cause imbalances.">
+      <article class="svc-card" role="listitem" data-title="Herbal Medicine" data-teaser="Custom formulations rooted in classical texts to correct root-cause imbalances.">
         <div class="svc-icon" aria-hidden="true">🍃</div>
         <h3 class="svc-title">Herbal Medicine</h3>
         <p class="svc-blurb">Custom formulations rooted in classical texts to correct root-cause imbalances.</p>
         <div class="svc-tags">
           <span class="chip">Digestion</span><span class="chip">Immunity</span><span class="chip">Stress</span>
         </div>
-        <div class="svc-hover">
+        <div class="svc-hover" aria-hidden="true">
           <p>Personal blends, safe guidance, and clear dosing education.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
@@ -189,14 +192,14 @@
       </article>
 
       <!-- 3) Diet Consultation -->
-      <article class="svc-card" data-title="Diet Consultation" data-teaser="Dinacharya &amp; ṛtucharya guidance to balance digestion, immunity &amp; energy.">
+      <article class="svc-card" role="listitem" data-title="Diet Consultation" data-teaser="Dinacharya &amp; ṛtucharya guidance to balance digestion, immunity &amp; energy.">
         <div class="svc-icon" aria-hidden="true">🥗</div>
         <h3 class="svc-title">Diet Consultation</h3>
         <p class="svc-blurb"><em>Dinacharya</em> &amp; <em>ṛtucharya</em> guidance to balance digestion, immunity &amp; energy.</p>
         <div class="svc-tags">
           <span class="chip">Gut health</span><span class="chip">Weight balance</span><span class="chip">Hormonal support</span>
         </div>
-        <div class="svc-hover">
+        <div class="svc-hover" aria-hidden="true">
           <p>Personal food map, smart routines, and sleep optimization.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
@@ -210,14 +213,14 @@
       </article>
 
       <!-- 4) Chronic Conditions -->
-      <article class="svc-card" data-title="Chronic Conditions" data-teaser="IBS, joint pain, stress, metabolic &amp; lifestyle disorders with holistic protocols.">
+      <article class="svc-card" role="listitem" data-title="Chronic Conditions" data-teaser="IBS, joint pain, stress, metabolic &amp; lifestyle disorders with holistic protocols.">
         <div class="svc-icon" aria-hidden="true">🧘</div>
         <h3 class="svc-title">Chronic Conditions</h3>
         <p class="svc-blurb">IBS, joint pain, stress, metabolic and lifestyle disorders with holistic protocols.</p>
         <div class="svc-tags">
           <span class="chip">Pain</span><span class="chip">Stress</span><span class="chip">Lifestyle</span>
         </div>
-        <div class="svc-hover">
+        <div class="svc-hover" aria-hidden="true">
           <p>Root-cause plan with milestones, yoga &amp; herb support.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
@@ -231,14 +234,14 @@
       </article>
 
       <!-- 5) Abhyanga & Shirodhara -->
-      <article class="svc-card" data-title="Abhyanga &amp; Shirodhara" data-teaser="Warm therapeutic oils and calming therapies for mind–body balance.">
+      <article class="svc-card" role="listitem" data-title="Abhyanga &amp; Shirodhara" data-teaser="Warm therapeutic oils and calming therapies for mind–body balance.">
         <div class="svc-icon" aria-hidden="true">💆</div>
         <h3 class="svc-title">Abhyanga & Shirodhara</h3>
         <p class="svc-blurb">Warm therapeutic oils and calming therapies for mind–body balance.</p>
         <div class="svc-tags">
           <span class="chip">Nervous system</span><span class="chip">Sleep</span><span class="chip">Calm</span>
         </div>
-        <div class="svc-hover">
+        <div class="svc-hover" aria-hidden="true">
           <p>Deep relaxation with custom oils and gentle guidance.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
@@ -252,14 +255,14 @@
       </article>
 
       <!-- 6) Trusted Reviews -->
-      <article class="svc-card" data-title="Trusted Reviews" data-teaser="Patients rate us 5-stars for genuine care, hygiene and real-world results.">
+      <article class="svc-card" role="listitem" data-title="Trusted Reviews" data-teaser="Patients rate us 5-stars for genuine care, hygiene and real-world results.">
         <div class="svc-icon" aria-hidden="true">⭐</div>
         <h3 class="svc-title">Trusted Reviews</h3>
         <p class="svc-blurb">Patients rate us 5-stars for genuine care, hygiene and real-world results.</p>
         <div class="svc-tags">
           <span class="chip">Verified</span><span class="chip">Compassionate</span><span class="chip">Clean clinic</span>
         </div>
-        <div class="svc-hover">
+        <div class="svc-hover" aria-hidden="true">
           <p>Transparent plans &amp; follow-ups that truly follow through.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
@@ -272,15 +275,15 @@
         </template>
       </article>
 
-      <!-- 7) Women’s Health -->
-      <article class="svc-card" data-title="Women’s Health" data-teaser="Ayurvedic care for PCOS, cycle balance, fertility &amp; post-partum recovery.">
+      <!-- 7) Women's Health -->
+      <article class="svc-card" role="listitem" data-title="Women's Health" data-teaser="Ayurvedic care for PCOS, cycle balance, fertility &amp; post-partum recovery.">
         <div class="svc-icon" aria-hidden="true">🌸</div>
-        <h3 class="svc-title">Women’s Health</h3>
+        <h3 class="svc-title">Women's Health</h3>
         <p class="svc-blurb">Ayurvedic care for PCOS, cycle balance, fertility &amp; post-partum recovery.</p>
         <div class="svc-tags">
           <span class="chip">Cycle</span><span class="chip">Fertility</span><span class="chip">Post-partum</span>
         </div>
-        <div class="svc-hover">
+        <div class="svc-hover" aria-hidden="true">
           <p>Hormone-wise protocols, stress care and sleep support.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
@@ -294,14 +297,14 @@
       </article>
 
       <!-- 8) Skin & Hair Care -->
-      <article class="svc-card" data-title="Skin &amp; Hair Care" data-teaser="Holistic plans for acne, eczema, hair fall &amp; scalp health from the root.">
+      <article class="svc-card" role="listitem" data-title="Skin &amp; Hair Care" data-teaser="Holistic plans for acne, eczema, hair fall &amp; scalp health from the root.">
         <div class="svc-icon" aria-hidden="true">🌼</div>
         <h3 class="svc-title">Skin & Hair Care</h3>
         <p class="svc-blurb">Holistic plans for acne, eczema, hair fall &amp; scalp health from the root.</p>
         <div class="svc-tags">
           <span class="chip">Acne</span><span class="chip">Eczema</span><span class="chip">Hair fall</span>
         </div>
-        <div class="svc-hover">
+        <div class="svc-hover" aria-hidden="true">
           <p>Assess agni &amp; āma; tune diet and gentle external care.</p>
           <button class="btn btn-primary svc-read" type="button">Read more</button>
         </div>
@@ -315,30 +318,88 @@
       </article>
     </div>
   </div>
+
+  <!-- Service modal (used by JS) -->
+  <dialog id="svc-modal" class="svc-modal" aria-label="Service details" style="display:none">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="svc-modal-title" tabindex="0">
+      <header>
+        <h3 id="svc-modal-title">Service</h3>
+        <div>
+          <button id="svc-prev" class="icon-btn" aria-label="Previous service">◀</button>
+          <button id="svc-next" class="icon-btn" aria-label="Next service">▶</button>
+          <button id="svc-modal-close" class="icon-btn" aria-label="Close">✕</button>
+        </div>
+      </header>
+      <div id="svc-modal-body" class="svc-modal-body"></div>
+      <div class="svc-modal-nav">
+        <button id="svc-modal-close-2" class="btn btn-ghost" aria-label="Close">Close</button>
+        <a href="#contact" class="btn btn-primary" aria-label="Book appointment">Book Appointment</a>
+      </div>
+    </div>
+  </dialog>
+  <div id="svc-scrim" class="modal-scrim" hidden></div>
 </section>
 
-<!-- Modal for service details -->
-<dialog id="svc-modal" class="svc-modal" aria-label="Service details" aria-describedby="svc-modal-body" aria-modal="true" tabindex="-1" style="display:none">
-  <div class="modal-card" role="document">
-    <header>
-      <h3 id="svc-modal-title">Service</h3>
-      <button class="icon-btn" id="svc-modal-close" aria-label="Close">✕</button>
-    </header>
-    <div id="svc-modal-body" class="svc-modal-body"></div>
-    <footer class="svc-modal-nav">
-      <button class="btn" id="svc-prev" aria-label="Previous service">← Prev</button>
-      <button class="btn btn-primary" id="svc-next" aria-label="Next service">Next →</button>
-    </footer>
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section" aria-labelledby="testimonials-title">
+  <div class="container">
+    <p class="section-kicker devanagari" aria-hidden="true">समीक्षा</p>
+    <h2 id="testimonials-title" class="section-title">Patient Experiences</h2>
+    <p class="lead" style="max-width:65ch;margin-inline:auto;text-align:center;margin-bottom:2rem;">
+      Hear from those who have experienced healing through our Ayurvedic treatments.
+    </p>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p>"I had been suffering from chronic arthritis for years. After just three months of treatment at Bharadwaj Ayurvedic Clinic, my pain has reduced significantly and I can move much better."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SP</div>
+            <div>
+              <h4>Sunita Patel</h4>
+              <p>Patient for 2 years</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p>"The Panchakarma therapy was a transformative experience. I feel rejuvenated and more energetic than I have in years. The staff is caring and knowledgeable."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AM</div>
+            <div>
+              <h4>Arjun Mehta</h4>
+              <p>Patient for 1 year</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p>"Dr. Bharadwaj's herbal medicines have helped my digestive issues when modern medicine failed. His approach is holistic and personalized."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PK</div>
+            <div>
+              <h4>Priya Kumar</h4>
+              <p>Patient for 3 years</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</dialog>
-<!-- Fallback backdrop for non-<dialog> browsers (namespaced) -->
-<div id="svc-scrim" class="modal-scrim" hidden></div>
+</section>
 
 <!-- PRODUCTS -->
-<section id="products" class="section">
+<section id="products" class="section alt" aria-labelledby="products-title">
   <div class="container">
-    <p class="section-kicker devanagari">उत्पाद</p>
-    <h2 class="section-title">Our Herbal Products</h2>
+    <p class="section-kicker devanagari" aria-hidden="true">उत्पाद</p>
+    <h2 id="products-title" class="section-title">Our Herbal Products</h2>
     <p class="lead" style="max-width:65ch;margin-inline:auto;text-align:center;margin-bottom:2rem;">
       We offer a carefully selected range of authentic Ayurvedic products—prepared according to classical methods—to support your daily routine.
     </p>
@@ -349,6 +410,7 @@
         <h3>Triphala Churna</h3>
         <p class="small muted">A classic blend for detoxification and digestive health.</p>
         <strong>₹250</strong>
+        <button class="btn btn-primary" style="margin-top: 10px;">Add to Cart</button>
       </article>
 
       <article class="card">
@@ -356,6 +418,7 @@
         <h3>Ashwagandha Tablets</h3>
         <p class="small muted">An adaptogenic herb to combat stress and boost vitality.</p>
         <strong>₹350</strong>
+        <button class="btn btn-primary" style="margin-top: 10px;">Add to Cart</button>
       </article>
 
       <article class="card">
@@ -363,19 +426,21 @@
         <h3>Mahanarayan Oil</h3>
         <p class="small muted">A therapeutic oil for joint pain and muscle stiffness.</p>
         <strong>₹450</strong>
+        <button class="btn btn-primary" style="margin-top: 10px;">Add to Cart</button>
       </article>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section alt">
+<section id="contact" class="section" aria-labelledby="contact-title">
   <div class="container">
-    <p class="section-kicker devanagari">सम्पर्क</p>
-    <h2 class="section-title">Contact</h2>
+    <p class="section-kicker devanagari" aria-hidden="true">सम्पर्क</p>
+    <h2 id="contact-title" class="section-title">Contact Us</h2>
 
     <div class="contact-wrap">
       <div class="contact-card">
+        <h3>Get In Touch</h3>
         <ul class="contact-list" style="list-style:none;padding:0;">
           <li><strong>Phone:</strong> <a href="tel:+917990625845">079906 25845</a></li>
           <li style="margin-top:.5rem;"><strong>WhatsApp:</strong> <a href="https://wa.me/7990625845" target="_blank" rel="noopener">wa.me/7990625845</a></li>
@@ -390,6 +455,8 @@
           <input id="cname" type="text" name="name" required minlength="2" />
           <label for="cemail">Email</label>
           <input id="cemail" type="email" name="email" required />
+          <label for="cphone">Phone</label>
+          <input id="cphone" type="tel" name="phone" />
           <label for="cmsg">Message</label>
           <textarea id="cmsg" name="message" rows="4" required minlength="10"></textarea>
 
@@ -400,15 +467,24 @@
         </form>
       </div>
 
-      <div class="map-card">
-        <iframe title="Map to Bharadwaj Ayurveda Clinic" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=Raghuvir%20Symphony%20Shoppers%20Althan%20Surat&output=embed"></iframe>
-      </div>
+     <div class="map-card" aria-hidden="false">
+<iframe
+  title="Bharadwaj Ayurveda Clinic — location"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps?q=Bharadwaj+Ayurveda+clinic,+Surat&hl=en&z=17&output=embed"
+  width="100%"
+  height="100%"
+  style="border:0;"
+  allowfullscreen=""
+></iframe>
+
+</div>
     </div>
   </div>
 </section>
 
+<!-- JS: lightbox, service modal & behaviour (keeps all original logic) -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     /* ================== Close any overlays on entry ================== */
@@ -416,13 +492,12 @@
       document.querySelectorAll('dialog').forEach(dlg => {
         try { if (typeof dlg.close === 'function') dlg.close(); } catch(_) {}
         dlg.removeAttribute('open');
-        // Clear inline display so CSS can control visibility next time.
         dlg.style.display = 'none';
         dlg.classList.remove('closing');
       });
       const svcScrim = document.getElementById('svc-scrim');
       if (svcScrim) svcScrim.hidden = true;
-      document.querySelectorAll('.scrim').forEach(s => {
+      document.querySelectorAll('.scrim, .modal-scrim').forEach(s => {
         s.classList.remove('is-visible');
         s.hidden = true;
         s.style.pointerEvents = 'none';
@@ -439,7 +514,6 @@
 
       const openDlg = (src) => {
         img.src = src || '';
-        // Always ensure inline display is visible (fixes native dialog being hidden by inline style)
         dlg.style.display = 'grid';
         if (typeof dlg.showModal === 'function') dlg.showModal();
         else dlg.setAttribute('open', '');
@@ -454,12 +528,11 @@
           dlg.removeEventListener('animationend', finish);
         };
         dlg.addEventListener('animationend', finish);
-        // If no animation, still close quickly
         if (getComputedStyle(dlg).animationName === 'none') finish();
       };
 
       document.querySelectorAll('.about-thumb').forEach(btn => {
-        btn.addEventListener('click', () => openDlg(btn.dataset.full || ''));
+        btn.addEventListener('click', () => openDlg(btn.dataset.full || btn.querySelector('img').src));
       });
       dlg.querySelector('.lightbox-close').addEventListener('click', closeDlg);
       dlg.addEventListener('click', (e) => {
@@ -499,17 +572,14 @@
 
       function openModal() {
         modal.classList.remove('closing');
-        // Critical fix: make sure inline display is not 'none' for native <dialog>
         modal.style.display = 'grid';
         if (nativeDialog) {
-          // If already open, close first to avoid DOMException
           if (modal.hasAttribute('open')) { try { modal.close(); } catch(_) {} }
           modal.showModal();
         } else {
           modal.setAttribute('open', '');
           if (scrim) scrim.hidden = false;
         }
-        // Focus modal for accessibility
         modal.focus();
       }
 
@@ -524,7 +594,6 @@
           modal.removeEventListener('animationend', finish);
         };
         modal.addEventListener('animationend', finish);
-        // If no animation is defined, fall back to immediate finish
         if (getComputedStyle(modal).animationName === 'none') finish();
       }
 
@@ -546,14 +615,17 @@
       });
 
       // Modal controls
-      btnPrev.addEventListener('click', () => render(index - 1));
-      btnNext.addEventListener('click', () => render(index + 1));
-      btnClose.addEventListener('click', closeModal);
+      if (btnPrev) btnPrev.addEventListener('click', () => render(index - 1));
+      if (btnNext) btnNext.addEventListener('click', () => render(index + 1));
+      if (btnClose) btnClose.addEventListener('click', closeModal);
+      const closeButtons = modal.querySelectorAll('#svc-modal-close-2');
+      closeButtons.forEach(b => b.addEventListener('click', closeModal));
       if (scrim) scrim.addEventListener('click', closeModal);
 
       // Click outside the panel closes
       modal.addEventListener('click', (e) => {
         const panel = modal.querySelector('.modal-card');
+        if (!panel) return;
         const r = panel.getBoundingClientRect();
         if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeModal();
       });
