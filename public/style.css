@@ -763,6 +763,19 @@ section[id] {
   }
 }
 
+/* simple fadeIn used by multiple hero elements */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion:reduce) {
 
   .hero-slides img.active,
@@ -976,7 +989,7 @@ section[id] {
   box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
   overflow: hidden;
   isolation: isolate;
-  transition: .18s transform, .18s box-shadow, .18s border-color
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 
 .svc-card::before {
