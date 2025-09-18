@@ -208,6 +208,9 @@ section[id] {
   border-top: 3px solid #d7c6a0;
   border-bottom: 1px solid var(--edge);
   backdrop-filter: saturate(120%) blur(6px);
+  -webkit-backdrop-filter: saturate(120%) blur(6px);
+  background-color: rgba(244, 237, 222, 0.95);
+  /* Fallback for backdrop-filter */
   transition: box-shadow .2s ease, padding .2s ease;
   animation: headerIn .6s ease both;
 }
@@ -567,6 +570,8 @@ section[id] {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(245, 249, 243, 0.72));
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background-color: rgba(255, 255, 255, 0.85);
+  /* Fallback for backdrop-filter */
 
   box-shadow: 0 28px 50px rgba(0, 0, 0, 0.25),
     inset 0 0 0 1px rgba(255, 255, 255, 0.35),
@@ -1432,6 +1437,9 @@ dialog.closing .modal-card {
   width: min(86vw, 320px);
   background: rgba(251, 250, 247, .92);
   backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  background-color: rgba(251, 250, 247, 0.95);
+  /* Fallback for backdrop-filter */
   transform: translateX(105%);
   transition: transform .3s cubic-bezier(.22, 1, .36, 1);
   z-index: 1400;
@@ -1643,4 +1651,554 @@ dialog.closing .modal-card {
   margin-top: 1rem;
   font-size: 0.95rem;
   color: var(--muted);
+}
+
+/* ===========================================================
+   RESPONSIVE TWEAKS (append to end of file)
+   Purpose: improve layout at common breakpoints without changing design
+   =========================================================== */
+
+/* Basic fluid typography helpers */
+:root {
+  /* optional: slightly reduce radii & shadows on small screens for density */
+  --radius-sm: 12px;
+  --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* -- Extra small devices (phones, portrait) */
+@media (max-width: 420px) {
+  :root {
+    --radius: 12px;
+    --shadow: var(--shadow-sm);
+  }
+
+  html {
+    font-size: 14px;
+  }
+
+  .container {
+    width: 94%;
+    max-width: 1000px;
+  }
+
+  /* Header and brand */
+  .brand-logo {
+    height: 48px;
+  }
+
+  .site-header {
+    padding: .4rem 0;
+    border-top-width: 2px;
+  }
+
+  .header-wrap {
+    gap: .4rem;
+    padding: .3rem 0;
+  }
+
+  /* Compact hero */
+  .hero {
+    min-height: 56vh;
+  }
+
+  .hero .hero-content {
+    padding: 1rem;
+    border-radius: 14px;
+    margin-inline: 0.6rem;
+  }
+
+  .hero .hero-content h1 {
+    font-size: clamp(1.35rem, 6vw, 1.8rem);
+  }
+
+  .hero .hero-content .lead {
+    font-size: .96rem;
+    line-height: 1.6;
+  }
+
+  /* Buttons and CTA */
+  .cta-row {
+    gap: .6rem;
+  }
+
+  .btn {
+    padding: .72rem .9rem;
+    font-size: .95rem;
+    border-radius: 10px;
+  }
+
+  .btn-primary::after {
+    transition-duration: .42s;
+  }
+
+  /* Cards and grids */
+  .svc-card {
+    height: auto;
+    padding: .9rem;
+    min-height: 220px;
+  }
+
+  .card {
+    padding: .85rem;
+    border-radius: 10px;
+  }
+
+  .about-gallery {
+    grid-template-areas: "a" "b" "c" "d";
+    grid-template-columns: 1fr;
+    gap: .7rem;
+  }
+
+  .about-thumb.a,
+  .about-thumb.b,
+  .about-thumb.c,
+  .about-thumb.d {
+    min-height: 180px;
+  }
+
+  .contact-wrap {
+    grid-template-columns: 1fr;
+    gap: .8rem;
+    padding: .6rem 0;
+  }
+
+  .map-card {
+    min-height: 220px;
+  }
+
+  .fab-wa {
+    right: 12px;
+    bottom: 12px;
+    padding: .6rem .9rem;
+  }
+
+  .hero-slides img {
+    object-position: center 30%;
+  }
+}
+
+/* -- Small devices (large phones / small tablets) */
+@media (min-width: 421px) and (max-width: 720px) {
+  html {
+    font-size: 15px;
+  }
+
+  .brand-logo {
+    height: 56px;
+  }
+
+  .header-wrap {
+    padding: .35rem 0;
+  }
+
+  .hero {
+    min-height: 64vh;
+  }
+
+  .hero .hero-content {
+    padding: 1.2rem;
+    border-radius: 16px;
+  }
+
+  .svc-card {
+    height: auto;
+    min-height: 240px;
+  }
+
+  .about-thumb.a {
+    min-height: 320px;
+  }
+
+  .about-thumb.b,
+  .about-thumb.c,
+  .about-thumb.d {
+    min-height: 200px;
+  }
+
+  .grid.catalog {
+    gap: 1rem;
+  }
+
+  .testimonial-card {
+    padding: 18px;
+  }
+}
+
+/* -- Medium devices (tablets & small laptops) */
+@media (min-width: 721px) and (max-width: 1020px) {
+  html {
+    font-size: 16px;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1100px;
+  }
+
+  .brand-logo {
+    height: 58px;
+  }
+
+  .brand-text {
+    display: none;
+  }
+
+  /* already used at 1020 but keep consistent */
+
+  .hero {
+    min-height: 68vh;
+  }
+
+  .hero .hero-content {
+    padding: clamp(1.6rem, 2.8vw, 2.4rem);
+    border-radius: 18px;
+  }
+
+  .about-wrap {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .about-gallery {
+    grid-template-areas: "a a" "b c" "d d";
+    grid-template-columns: 1fr 1fr;
+    gap: .8rem;
+  }
+
+  .about-thumb.a {
+    min-height: 380px;
+  }
+
+  .svc-card {
+    height: auto;
+    min-height: 300px;
+  }
+
+  .svc-card .svc-hover {
+    inset: 8px;
+    padding: .9rem;
+  }
+
+  .contact-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.6rem 0;
+  }
+}
+
+/* -- Large devices (desktops, wide screens) */
+@media (min-width: 1021px) and (max-width: 1400px) {
+  html {
+    font-size: 17px;
+  }
+
+  .container {
+    width: 92%;
+    max-width: 1200px;
+  }
+
+  .hero {
+    min-height: 72vh;
+  }
+
+  .hero .hero-content {
+    padding: clamp(2rem, 3.2vw, 3rem);
+    max-width: 920px;
+  }
+
+  .about-wrap {
+    grid-template-columns: 1.05fr .95fr;
+    gap: 1.4rem;
+  }
+
+  .about-gallery {
+    grid-template-columns: 1.2fr .9fr .9fr;
+    grid-template-areas: "a a b" "a a c" "d d c";
+  }
+
+  .about-thumb.a {
+    min-height: 420px;
+  }
+
+  .svc-card {
+    height: 360px;
+  }
+
+  /* original desktop height */
+  .svc-card .svc-hover {
+    inset: 10px;
+  }
+
+  .nav-list {
+    gap: .1rem;
+  }
+
+  .nav-list a {
+    padding: .45rem .8rem;
+  }
+}
+
+/* Accessibility: allow a more compact header when scrolled on narrow screens */
+@media (max-width: 920px) {
+  .site-header.scrolled .brand-logo {
+    height: 48px;
+    transition: height .18s ease;
+  }
+
+  .site-header.scrolled .header-wrap {
+    padding-top: .18rem;
+    padding-bottom: .18rem;
+  }
+}
+
+/* Ensure images never overflow cards */
+img,
+picture,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Reduce heavy box-shadows for small screens for performance */
+@media (max-width: 720px) {
+
+  .box-shadow,
+  .card,
+  .svc-card,
+  .testimonial-card,
+  .contact-card,
+  .map-card {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* final safety: ensure elements that used fixed heights can grow */
+.hero-slides img,
+.about-thumb img {
+  min-height: 120px;
+  max-height: none;
+  object-fit: cover;
+}
+
+/* End responsive tweaks */
+
+/* =========================
+   HOME.EJS specific responsiveness / minor fixes
+   (append this to end of style.css)
+   ========================= */
+
+/* Make hero-media decorative and non-interactive (avoid blocking clicks) */
+.hero-media {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Ensure hero images scale responsively inside the hero-media */
+.hero-slides picture,
+.hero-slides img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  pointer-events: none;
+  /* background only */
+}
+
+/* Prevent the picture element from collapsing in some browsers */
+.hero-slides picture {
+  display: block;
+  height: 100%;
+}
+
+/* Ensure hero content floats above background and has safe margins on small screens */
+.hero .hero-content.hero-card {
+  position: relative;
+  z-index: 2;
+  margin-inline: auto;
+  /* keep comfortable breathing room on very small screens */
+  padding: clamp(1rem, 3.5vw, 2.6rem);
+  max-width: 940px;
+  box-sizing: border-box;
+}
+
+/* Slight vertical offset (visually centered on small screens) */
+@media (max-width:720px) {
+  .hero {
+    align-items: start;
+    padding-top: 3.2rem;
+    padding-bottom: 2.2rem;
+  }
+
+  .hero .hero-content {
+    margin-top: 0;
+  }
+}
+
+/* Ensure the floating leaf emojis don't overlap important text on small screens */
+.leaf-float {
+  z-index: 1;
+  opacity: .9;
+}
+
+@media (max-width:640px) {
+  .leaf-float {
+    display: none;
+  }
+
+  /* already hiding in some rules, but ensure consistency */
+}
+
+/* Gallery: make thumbnail buttons display block & remove default button styling */
+.about-gallery .about-thumb {
+  border: 0;
+  background: none;
+  padding: 0;
+  display: block;
+  width: 100%;
+  cursor: zoom-in;
+}
+
+.about-gallery .about-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* When gallery uses grid on small screens, allow sensible heights */
+@media (max-width: 640px) {
+
+  .about-thumb.a,
+  .about-thumb.b,
+  .about-thumb.c,
+  .about-thumb.d {
+    min-height: 200px;
+  }
+}
+
+/* Ensure svc-card content can grow on small screens (avoid overflow) */
+.svc-card {
+  min-height: 260px;
+  height: auto;
+  /* allow card to expand rather than forcing fixed height on narrow screens */
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+/* Keep svc-hover at the same size as the card, but don't force layout breaks */
+.svc-hover {
+  inset: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Map card: keep comfortable height on small screens and smaller phones */
+.map-card {
+  min-height: 300px;
+}
+
+@media (max-width:420px) {
+  .map-card {
+    min-height: 220px;
+  }
+}
+
+/* Avoid hero images causing layout reflow when they are loading */
+.hero-slides img,
+.hero-slides picture img {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* small utility: ensure buttons inside .about-thumb don't receive focus ring weirdness */
+.about-thumb:focus {
+  outline: 3px solid rgba(199, 154, 74, 0.18);
+  outline-offset: 4px;
+}
+
+/* Fix dialog fallback: ensure modal is scrollable on very small screens */
+.svc-modal .modal-card {
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+}
+
+/* End of home-specific tweaks */
+
+/* Print styles */
+@media print {
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: black;
+    background: white !important;
+  }
+
+  .site-header,
+  .fab-wa,
+  .hero-media,
+  .leaf-float,
+  .nav-toggle,
+  .drawer,
+  .scrim,
+  .modal-scrim,
+  dialog {
+    display: none !important;
+  }
+
+  .section {
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .hero .hero-content {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+
+  .btn,
+  .fab-wa {
+    display: none !important;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    border: 1px solid #000 !important;
+    background: white !important;
+  }
+
+  .map-card {
+    display: none !important;
+  }
+
+  .testimonial-card,
+  .svc-card,
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+  }
+
+  a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
 }

@@ -1,17 +1,34 @@
-<!-- <aside class="drawer" id="drawer-menu" aria-hidden="true">
+<aside class="drawer" id="drawer-menu" aria-hidden="true" aria-labelledby="drawer-title">
   <div class="drawer-inner">
+    <header class="drawer-header">
+      <h2 id="drawer-title" class="sr-only">Mobile Navigation Menu</h2>
+      <button class="drawer-close icon-btn" aria-label="Close navigation menu" type="button">
+        ✕
+      </button>
+    </header>
+
     <nav class="drawer-nav" aria-label="Mobile navigation">
-      <a href="#home" data-section="home">Home</a>
-      <a href="#about" data-section="about">About</a>
-      <a href="#services" data-section="services">Services</a>
-      <a href="#products" data-section="products">Products</a>
-      <a href="#contact" data-section="contact">Contact</a>
+      <ul role="list">
+        <li><a href="#home" data-section="home" aria-describedby="home-desc">Home</a></li>
+        <span id="home-desc" class="sr-only">Go to home section</span>
+        <li><a href="#about" data-section="about" aria-describedby="about-desc">About</a></li>
+        <span id="about-desc" class="sr-only">Learn about our services</span>
+        <li><a href="#services" data-section="services" aria-describedby="services-desc">Services</a></li>
+        <span id="services-desc" class="sr-only">View our Ayurvedic services</span>
+        <li><a href="#products" data-section="products" aria-describedby="products-desc">Products</a></li>
+        <span id="products-desc" class="sr-only">Browse our herbal products</span>
+        <li><a href="#contact" data-section="contact" aria-describedby="contact-desc">Contact</a></li>
+        <span id="contact-desc" class="sr-only">Get in touch with us</span>
+      </ul>
     </nav>
 
-    Mobile CTA -->
-    <!-- <a class="btn btn-primary wide mt-2" href="https://wa.me/7990625845" target="_blank" rel="noopener">
-      <span class="wa-ic">💬</span> WhatsApp
-    </a>
+    <div class="drawer-cta">
+      <a class="btn btn-primary wide" href="https://wa.me/7990625845" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <span class="wa-ic" aria-hidden="true">💬</span>
+        WhatsApp
+      </a>
+    </div>
   </div>
 </aside>
-<div class="scrim" hidden></div> -->
+
+<div class="scrim" hidden aria-hidden="true"></div>

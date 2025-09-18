@@ -113,14 +113,34 @@
     if (!slides.length) return;
 
     let i = 0;
+    let intervalId = null;
     const show = (idx) => slides.forEach((img, n) => img.classList.toggle('active', n === idx));
     show(0);
 
-    if (slides.length > 1) {
-      setInterval(() => {
+    const startSlideshow = () => {
+      if (intervalId || slides.length <= 1) return;
+      intervalId = setInterval(() => {
         i = (i + 1) % slides.length;
         show(i);
       }, 6000);
+    };
+
+    const stopSlideshow = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    if (slides.length > 1) {
+      startSlideshow();
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopSlideshow();
+        } else {
+          startSlideshow();
+        }
+      });
     }
 
     const onScroll = () => {
@@ -172,6 +192,19 @@
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
+      // Basic validation
+      if (!data.name || !data.email || !data.message) {
+        feedbackEl.textContent = 'Please fill in all required fields.';
+        feedbackEl.style.color = 'var(--danger)';
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        feedbackEl.textContent = 'Please enter a valid email address.';
+        feedbackEl.style.color = 'var(--danger)';
+        return;
+      }
+
       feedbackEl.textContent = 'Sending...';
       feedbackEl.style.color = 'var(--muted)';
       form.setAttribute('aria-busy', 'true');
@@ -190,6 +223,7 @@
         feedbackEl.style.color = 'var(--success)';
         form.reset();
       } catch (err) {
+        console.error('Contact form submission error:', err);
         feedbackEl.textContent = err.message;
         feedbackEl.style.color = 'var(--danger)';
       } finally {
@@ -246,4 +280,160 @@
   dlg.addEventListener('click', (e) => {
     if (e.target === dlg) closeDialog();
   });
+})();
+
+/* ================= 9) Enhanced Navigation Ink Effect ================= */
+(() => {
+  const ink = document.querySelector('.nav-ink');
+  if (!ink) return;
+
+  // Show ink on page load
+  setTimeout(() => {
+    ink.classList.add('active');
+  }, 500);
+})();
+
+/* ================= 10) Performance Optimizations ================= */
+(() => {
+  // Preload critical images
+  const criticalImages = [
+    '/assets/final_logo.png',
+    '/assets/1st.png'
+  ];
+
+  criticalImages.forEach(src => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = src;
+    document.head.appendChild(link);
+  });
+
+  // Lazy load non-critical images
+  if ('IntersectionObserver' in window) {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+          }
+          imageObserver.unobserve(img);
+        }
+      });
+    });
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+  }
+})();
+
+/* ================= 11) Enhanced Animations ================= */
+(() => {
+  // Add entrance animations for service cards
+  if ('IntersectionObserver' in window) {
+    const cards = document.querySelectorAll('.svc-card');
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.animation = `fadeInUp 0.6s ease forwards`;
+          }, index * 150);
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => cardObserver.observe(card));
+  }
+
+  // Add CSS for fadeInUp animation
+  if (!document.querySelector('#dynamic-animations')) {
+    const style = document.createElement('style');
+    style.id = 'dynamic-animations';
+    style.textContent = `
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .svc-card {
+          opacity: 0;
+        }
+      `;
+    document.head.appendChild(style);
+  }
+})();
+
+/* ================= 7) Sticky Header Fallback ================= */
+(() => {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  // Check if CSS sticky is supported and working
+  const isStickySupported = () => {
+    const testEl = document.createElement('div');
+    testEl.style.position = 'sticky';
+    testEl.style.top = '0';
+    return testEl.style.position === 'sticky';
+  };
+
+  // Fallback sticky positioning
+  const updateHeaderPosition = () => {
+    const scrollY = window.scrollY;
+
+    if (scrollY > 0) {
+      header.classList.add('scrolled');
+      // Force position if CSS sticky fails
+      if (getComputedStyle(header).position !== 'sticky') {
+        header.style.position = 'fixed';
+        header.style.top = '0';
+        header.style.width = '100%';
+        header.style.zIndex = '1200';
+      }
+    } else {
+      header.classList.remove('scrolled');
+      // Reset if using fallback
+      if (header.style.position === 'fixed') {
+        header.style.position = '';
+        header.style.top = '';
+        header.style.width = '';
+      }
+    }
+
+    lastScrollY = scrollY;
+    ticking = false;
+  };
+
+  // Throttled scroll handler
+  const onScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateHeaderPosition);
+      ticking = true;
+    }
+  };
+
+  // Only use fallback if CSS sticky might not work
+  if (!isStickySupported() || /MSIE|Trident/.test(navigator.userAgent)) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+  } else {
+    // Still listen for scroll to add/remove scrolled class
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
 })();

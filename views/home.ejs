@@ -350,42 +350,57 @@
     </p>
 
     <div class="testimonials-grid">
-      <div class="testimonial-card">
+      <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="Bharadwaj Ayurveda Clinic" />
         <div class="testimonial-content">
-          <div class="stars" aria-hidden="true">★★★★★</div>
-          <p>"I had been suffering from chronic arthritis for years. After just three months of treatment at Bharadwaj Ayurvedic Clinic, my pain has reduced significantly and I can move much better."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">SP</div>
+          <div class="stars" aria-label="5 out of 5 stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+            <meta itemprop="ratingValue" content="5" />
+            <meta itemprop="bestRating" content="5" />
+            ★★★★★
+          </div>
+          <blockquote itemprop="reviewBody">"I had been suffering from chronic arthritis for years. After just three months of treatment at Bharadwaj Ayurvedic Clinic, my pain has reduced significantly and I can move much better."</blockquote>
+          <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="author-avatar" aria-hidden="true">SP</div>
             <div>
-              <h4>Sunita Patel</h4>
+              <h4 itemprop="name">Sunita Patel</h4>
               <p>Patient for 2 years</p>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="testimonial-card">
+      <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="Bharadwaj Ayurveda Clinic" />
         <div class="testimonial-content">
-          <div class="stars" aria-hidden="true">★★★★★</div>
-          <p>"The Panchakarma therapy was a transformative experience. I feel rejuvenated and more energetic than I have in years. The staff is caring and knowledgeable."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">AM</div>
+          <div class="stars" aria-label="5 out of 5 stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+            <meta itemprop="ratingValue" content="5" />
+            <meta itemprop="bestRating" content="5" />
+            ★★★★★
+          </div>
+          <blockquote itemprop="reviewBody">"The Panchakarma therapy was a transformative experience. I feel rejuvenated and more energetic than I have in years. The staff is caring and knowledgeable."</blockquote>
+          <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="author-avatar" aria-hidden="true">AM</div>
             <div>
-              <h4>Arjun Mehta</h4>
+              <h4 itemprop="name">Arjun Mehta</h4>
               <p>Patient for 1 year</p>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="testimonial-card">
+      <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="Bharadwaj Ayurveda Clinic" />
         <div class="testimonial-content">
-          <div class="stars" aria-hidden="true">★★★★★</div>
-          <p>"Dr. Bharadwaj's herbal medicines have helped my digestive issues when modern medicine failed. His approach is holistic and personalized."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">PK</div>
+          <div class="stars" aria-label="5 out of 5 stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+            <meta itemprop="ratingValue" content="5" />
+            <meta itemprop="bestRating" content="5" />
+            ★★★★★
+          </div>
+          <blockquote itemprop="reviewBody">"Dr. Bharadwaj's herbal medicines have helped my digestive issues when modern medicine failed. His approach is holistic and personalized."</blockquote>
+          <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="author-avatar" aria-hidden="true">AM</div>
             <div>
-              <h4>Priya Kumar</h4>
+              <h4 itemprop="name">Priya Kumar</h4>
               <p>Patient for 3 years</p>
             </div>
           </div>
@@ -400,33 +415,51 @@
   <div class="container">
     <p class="section-kicker devanagari" aria-hidden="true">उत्पाद</p>
     <h2 id="products-title" class="section-title">Our Herbal Products</h2>
-    <p class="lead" style="max-width:65ch;margin-inline:auto;text-align:center;margin-bottom:2rem;">
+    <p class="lead section-description">
       We offer a carefully selected range of authentic Ayurvedic products—prepared according to classical methods—to support your daily routine.
     </p>
 
     <div class="grid catalog">
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1617635839423-1d02b54f2436?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Triphala Churna" style="width:100%;border-radius:.8rem;margin-bottom:1rem">
-        <h3>Triphala Churna</h3>
-        <p class="small muted">A classic blend for detoxification and digestive health.</p>
-        <strong>₹250</strong>
-        <button class="btn btn-primary" style="margin-top: 10px;">Add to Cart</button>
+      <article class="card" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="brand" content="Bharadwaj Ayurveda" />
+        <meta itemprop="manufacturer" content="Bharadwaj Ayurveda Clinic" />
+        <img src="https://images.unsplash.com/photo-1617635839423-1d02b54f2436?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Triphala Churna - Ayurvedic herbal supplement" loading="lazy" class="product-image" itemprop="image">
+        <h3 itemprop="name">Triphala Churna</h3>
+        <p class="small muted" itemprop="description">A classic blend for detoxification and digestive health.</p>
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="INR" />
+          <meta itemprop="price" content="250" />
+          <strong>₹250</strong>
+        </div>
+        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
       </article>
 
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1591024388304-38827c320150?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Ashwagandha Tablets" style="width:100%;border-radius:.8rem;margin-bottom:1rem">
-        <h3>Ashwagandha Tablets</h3>
-        <p class="small muted">An adaptogenic herb to combat stress and boost vitality.</p>
-        <strong>₹350</strong>
-        <button class="btn btn-primary" style="margin-top: 10px;">Add to Cart</button>
+      <article class="card" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="brand" content="Bharadwaj Ayurveda" />
+        <meta itemprop="manufacturer" content="Bharadwaj Ayurveda Clinic" />
+        <img src="https://images.unsplash.com/photo-1591024388304-38827c320150?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Ashwagandha Tablets - Ayurvedic stress relief supplement" loading="lazy" class="product-image" itemprop="image">
+        <h3 itemprop="name">Ashwagandha Tablets</h3>
+        <p class="small muted" itemprop="description">An adaptogenic herb to combat stress and boost vitality.</p>
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="INR" />
+          <meta itemprop="price" content="350" />
+          <strong>₹350</strong>
+        </div>
+        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
       </article>
 
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1605309329743-c90a7d87a421?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Mahanarayan Oil" style="width:100%;border-radius:.8rem;margin-bottom:1rem">
-        <h3>Mahanarayan Oil</h3>
-        <p class="small muted">A therapeutic oil for joint pain and muscle stiffness.</p>
-        <strong>₹450</strong>
-        <button class="btn btn-primary" style="margin-top: 10px;">Add to Cart</button>
+      <article class="card" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="brand" content="Bharadwaj Ayurveda" />
+        <meta itemprop="manufacturer" content="Bharadwaj Ayurveda Clinic" />
+        <img src="https://images.unsplash.com/photo-1605309329743-c90a7d87a421?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Mahanarayan Oil - Ayurvedic therapeutic oil" loading="lazy" class="product-image" itemprop="image">
+        <h3 itemprop="name">Mahanarayan Oil</h3>
+        <p class="small muted" itemprop="description">A therapeutic oil for joint pain and muscle stiffness.</p>
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="INR" />
+          <meta itemprop="price" content="450" />
+          <strong>₹450</strong>
+        </div>
+        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
       </article>
     </div>
   </div>
@@ -439,47 +472,87 @@
     <h2 id="contact-title" class="section-title">Contact Us</h2>
 
     <div class="contact-wrap">
-      <div class="contact-card">
+      <div class="contact-card" itemscope itemtype="https://schema.org/LocalBusiness">
+        <meta itemprop="name" content="Bharadwaj Ayurveda Clinic" />
+        <meta itemprop="description" content="Traditional Ayurvedic healthcare clinic specializing in Panchakarma therapy, herbal medicines, and holistic wellness treatments" />
+        <meta itemprop="url" content="https://bharadwajayurveda.com" />
+        <meta itemprop="telephone" content="+91-7990625845" />
+        <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <meta itemprop="streetAddress" content="106, Raghuvir Symphony Shoppers, Althan Canal Road, Althan" />
+          <meta itemprop="addressLocality" content="Surat" />
+          <meta itemprop="addressRegion" content="Gujarat" />
+          <meta itemprop="postalCode" content="395007" />
+          <meta itemprop="addressCountry" content="IN" />
+        </div>
+        <div itemprop="openingHours" content="Mo-Sa 09:00-13:00,16:00-20:00"></div>
+        <meta itemprop="priceRange" content="₹₹" />
+
         <h3>Get In Touch</h3>
-        <ul class="contact-list" style="list-style:none;padding:0;">
-          <li><strong>Phone:</strong> <a href="tel:+917990625845">079906 25845</a></li>
-          <li style="margin-top:.5rem;"><strong>WhatsApp:</strong> <a href="https://wa.me/7990625845" target="_blank" rel="noopener">wa.me/7990625845</a></li>
-          <li style="margin-top:.5rem;"><strong>Location:</strong> 106, Raghuvir Symphony Shoppers, Althan Canal Road, Althan, Surat, Gujarat – 395007</li>
-          <li style="margin-top:.5rem;"><strong>Hours:</strong> Mon–Sat 09:00–13:00 &amp; 16:00–20:00 · Sun Closed</li>
+        <ul class="contact-list">
+          <li><strong>Phone:</strong> <a href="tel:+917990625845" itemprop="telephone">079906 25845</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/7990625845" target="_blank" rel="noopener">wa.me/7990625845</a></li>
+          <li><strong>Location:</strong> <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="streetAddress">106, Raghuvir Symphony Shoppers, Althan Canal Road, Althan</span>, <span itemprop="addressLocality">Surat</span>, <span itemprop="addressRegion">Gujarat</span> – <span itemprop="postalCode">395007</span></span></li>
+          <li><strong>Hours:</strong> <time itemprop="openingHours" datetime="Mo-Sa 09:00-13:00,16:00-20:00">Mon–Sat 09:00–13:00 &amp; 16:00–20:00</time> · Sun Closed</li>
         </ul>
 
-        <hr style="border:0;border-top:1px solid var(--edge);margin:1.5rem 0;">
+        <hr class="section-divider">
 
-        <form id="contact-form" class="contact-form" novalidate>
-          <label for="cname">Full Name</label>
-          <input id="cname" type="text" name="name" required minlength="2" />
-          <label for="cemail">Email</label>
-          <input id="cemail" type="email" name="email" required />
-          <label for="cphone">Phone</label>
-          <input id="cphone" type="tel" name="phone" />
-          <label for="cmsg">Message</label>
-          <textarea id="cmsg" name="message" rows="4" required minlength="10"></textarea>
+        <form id="contact-form" class="contact-form" novalidate role="form" aria-labelledby="contact-heading">
+          <div class="form-group">
+            <label for="cname">Full Name</label>
+            <input id="cname" type="text" name="name" required minlength="2" aria-describedby="name-error" aria-required="true" />
+            <span id="name-error" class="error-message" role="alert" aria-live="polite"></span>
+          </div>
 
-          <div style="margin-top:.8rem;">
-            <button class="btn btn-primary" type="submit">Send Message</button>
-            <span id="contact-feedback" class="small" style="margin-left:.6rem;"></span>
+          <div class="form-group">
+            <label for="cemail">Email</label>
+            <input id="cemail" type="email" name="email" required aria-describedby="email-error" aria-required="true" />
+            <span id="email-error" class="error-message" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="cphone">Phone</label>
+            <input id="cphone" type="tel" name="phone" aria-describedby="phone-error" />
+            <span id="phone-error" class="error-message" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="cmsg">Message</label>
+            <textarea id="cmsg" name="message" rows="4" required minlength="10" aria-describedby="message-error" aria-required="true"></textarea>
+            <span id="message-error" class="error-message" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit" aria-describedby="contact-feedback">Send Message</button>
+            <span id="contact-feedback" class="small" role="status" aria-live="polite"></span>
           </div>
         </form>
       </div>
 
-     <div class="map-card" aria-hidden="false">
-<iframe
-  title="Bharadwaj Ayurveda Clinic — location"
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade"
-  src="https://www.google.com/maps?q=Bharadwaj+Ayurveda+clinic,+Surat&hl=en&z=17&output=embed"
-  width="100%"
-  height="100%"
-  style="border:0;"
-  allowfullscreen=""
-></iframe>
-
-</div>
+     <div class="map-card">
+        <div id="map-container" class="map-placeholder" role="img" aria-label="Interactive map showing Bharadwaj Ayurveda Clinic location in Surat, Gujarat">
+          <div class="map-placeholder-content">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <p>Click to load map</p>
+            <button id="load-map-btn" class="btn btn-secondary" type="button">Load Interactive Map</button>
+          </div>
+        </div>
+        <iframe
+          id="google-map"
+          title="Bharadwaj Ayurveda Clinic — location"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Bharadwaj+Ayurveda+clinic,+Surat&hl=en&z=17&output=embed"
+          width="100%"
+          height="100%"
+          class="map-iframe hidden"
+          allowfullscreen=""
+          aria-hidden="true"
+        ></iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -636,5 +709,139 @@
         if (e.key === 'ArrowLeft')  render(index - 1);
       });
     }());
+
+    /* =============== Lazy load Google Maps =============== */
+    (function () {
+      const loadMapBtn = document.getElementById('load-map-btn');
+      const mapContainer = document.getElementById('map-container');
+      const googleMap = document.getElementById('google-map');
+
+      if (!loadMapBtn || !googleMap) return;
+
+      loadMapBtn.addEventListener('click', () => {
+        googleMap.style.display = 'block';
+        mapContainer.style.display = 'none';
+        googleMap.setAttribute('aria-hidden', 'false');
+        // Focus management for accessibility
+        googleMap.focus();
+      });
+    }());
+
+    /* =============== Enhanced Contact Form =============== */
+    (function () {
+      const form = document.getElementById('contact-form');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const feedback = document.getElementById('contact-feedback');
+      const inputs = form.querySelectorAll('input, textarea');
+
+      if (!form) return;
+
+      // Real-time validation
+      inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearFieldError);
+      });
+
+      function validateField(e) {
+        const field = e.target;
+        const errorSpan = document.getElementById(field.id + '-error');
+        const value = field.value.trim();
+
+        errorSpan.textContent = '';
+        field.setAttribute('aria-invalid', 'false');
+
+        if (field.hasAttribute('required') && !value) {
+          errorSpan.textContent = `${field.labels[0].textContent} is required`;
+          field.setAttribute('aria-invalid', 'true');
+          return false;
+        }
+
+        if (field.type === 'email' && value) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) {
+            errorSpan.textContent = 'Please enter a valid email address';
+            field.setAttribute('aria-invalid', 'true');
+            return false;
+          }
+        }
+
+        if (field.minLength && value.length < field.minLength) {
+          errorSpan.textContent = `Minimum ${field.minLength} characters required`;
+          field.setAttribute('aria-invalid', 'true');
+          return false;
+        }
+
+        return true;
+      }
+
+      function clearFieldError(e) {
+        const field = e.target;
+        const errorSpan = document.getElementById(field.id + '-error');
+        if (errorSpan.textContent && field.value.trim()) {
+          errorSpan.textContent = '';
+          field.setAttribute('aria-invalid', 'false');
+        }
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Validate all fields
+        let isValid = true;
+        inputs.forEach(input => {
+          if (!validateField({ target: input })) {
+            isValid = false;
+          }
+        });
+
+        if (!isValid) {
+          feedback.textContent = 'Please correct the errors above';
+          feedback.className = 'small error';
+          return;
+        }
+
+        // Show loading state
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        submitBtn.setAttribute('aria-busy', 'true');
+
+        feedback.textContent = '';
+        feedback.className = 'small';
+
+        try {
+          // Simulate form submission (replace with actual endpoint)
+          const formData = new FormData(form);
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            body: formData
+          });
+
+          if (response.ok) {
+            feedback.textContent = 'Message sent successfully! We\'ll get back to you soon.';
+            feedback.className = 'small success';
+            form.reset();
+            // Reset validation states
+            inputs.forEach(input => {
+              input.setAttribute('aria-invalid', 'false');
+              const errorSpan = document.getElementById(input.id + '-error');
+              errorSpan.textContent = '';
+            });
+          } else {
+            throw new Error('Failed to send message');
+          }
+        } catch (error) {
+          console.error('Form submission error:', error);
+          feedback.textContent = 'Failed to send message. Please try again or contact us directly.';
+          feedback.className = 'small error';
+        } finally {
+          // Reset button state
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute('aria-busy');
+        }
+      });
+    })();
   });
 </script>
+
