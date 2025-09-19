@@ -1,0 +1,31 @@
+<section class="section" aria-labelledby="admin-title">
+  <div class="container">
+    <h2 id="admin-title" class="section-title">Products</h2>
+    <form method="post" action="/admin/products" class="contact-form" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:860px;margin-bottom:1.5rem">
+      <input name="name" placeholder="Name" required>
+      <input name="price" placeholder="Price (INR)" type="number" min="0" step="0.01" required>
+      <input name="imageUrl" placeholder="Image URL (or leave blank)">
+      <textarea name="description" placeholder="Description" style="grid-column:1/-1"></textarea>
+      <button class="btn btn-primary" type="submit" style="grid-column:1/-1;justify-self:start">Add Product</button>
+    </form>
+
+    <table style="width:100%;border-collapse:collapse">
+      <thead><tr><th align="left">Name</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>
+        <% products.forEach(p => { %>
+          <tr>
+            <td><strong><%= p.name %></strong><br><small class="muted"><%= p.description || '' %></small></td>
+            <td align="center">₹<%= p.price %></td>
+            <td align="center"><%= p.active ? 'Active' : 'Hidden' %></td>
+            <td align="center">
+              <form method="post" action="/admin/products/<%= p._id %>/toggle" style="display:inline"><button class="btn btn-ghost" type="submit"><%= p.active ? 'Hide' : 'Show' %></button></form>
+              <form method="post" action="/admin/products/<%= p._id %>/delete" style="display:inline" onsubmit="return confirm('Delete product?')"><button class="btn btn-primary" type="submit">Delete</button></form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <form method="post" action="/admin/logout" style="margin-top:1rem"><button class="btn btn-ghost" type="submit">Logout</button></form>
+  </div>
+</section>

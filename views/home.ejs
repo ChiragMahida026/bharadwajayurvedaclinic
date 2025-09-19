@@ -3,25 +3,15 @@
   <!-- Decorative background slides -->
   <div class="hero-media" aria-hidden="true">
     <div class="hero-slides" aria-hidden="true">
-      <img src="/assets/1st.png" alt="" class="active" decoding="async" fetchpriority="high" />
-      <img src="/assets/2nd.png" alt="" loading="lazy" decoding="async" />
-      <img src="/assets/3rd.png" alt="" loading="lazy" decoding="async" />
+      <img src="/assets/1st.png" alt="Ayurveda herbs and utensils" class="active" decoding="async" fetchpriority="high" />
     </div>
   </div>
 
-  <!-- Floating leaves (pure CSS animation) -->
-  <div class="leaf-float" aria-hidden="true">
-    <span>🌿</span><span>🍃</span><span>🌱</span><span>🍀</span><span>🌿</span><span>🍃</span>
-  </div>
+  
 
   <div class="container">
     <div class="hero-content plant-card" role="region" aria-labelledby="hero-title">
-      <p class="eyebrow">🌿 Authentic • Personalised • Evidence-informed ✨</p>
-
-      <h1 id="hero-title">
-        Authentic Ayurveda for
-        <span class="accent-underline">Modern Well-being</span>
-      </h1>
+      <h1 id="hero-title">Bharadwaj Ayurveda Clinic</h1>
 
       <p class="lead guru-mantra devanagari" lang="sa" aria-hidden="false">
         आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्
@@ -420,50 +410,56 @@
     </p>
 
     <div class="grid catalog">
-      <article class="card" itemscope itemtype="https://schema.org/Product">
-        <meta itemprop="brand" content="Bharadwaj Ayurveda" />
-        <meta itemprop="manufacturer" content="Bharadwaj Ayurveda Clinic" />
-        <img src="https://images.unsplash.com/photo-1617635839423-1d02b54f2436?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Triphala Churna - Ayurvedic herbal supplement" loading="lazy" class="product-image" itemprop="image">
-        <h3 itemprop="name">Triphala Churna</h3>
-        <p class="small muted" itemprop="description">A classic blend for detoxification and digestive health.</p>
-        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <meta itemprop="priceCurrency" content="INR" />
-          <meta itemprop="price" content="250" />
-          <strong>₹250</strong>
-        </div>
-        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
-      </article>
-
-      <article class="card" itemscope itemtype="https://schema.org/Product">
-        <meta itemprop="brand" content="Bharadwaj Ayurveda" />
-        <meta itemprop="manufacturer" content="Bharadwaj Ayurveda Clinic" />
-        <img src="https://images.unsplash.com/photo-1591024388304-38827c320150?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Ashwagandha Tablets - Ayurvedic stress relief supplement" loading="lazy" class="product-image" itemprop="image">
-        <h3 itemprop="name">Ashwagandha Tablets</h3>
-        <p class="small muted" itemprop="description">An adaptogenic herb to combat stress and boost vitality.</p>
-        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <meta itemprop="priceCurrency" content="INR" />
-          <meta itemprop="price" content="350" />
-          <strong>₹350</strong>
-        </div>
-        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
-      </article>
-
-      <article class="card" itemscope itemtype="https://schema.org/Product">
-        <meta itemprop="brand" content="Bharadwaj Ayurveda" />
-        <meta itemprop="manufacturer" content="Bharadwaj Ayurveda Clinic" />
-        <img src="https://images.unsplash.com/photo-1605309329743-c90a7d87a421?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600" alt="Mahanarayan Oil - Ayurvedic therapeutic oil" loading="lazy" class="product-image" itemprop="image">
-        <h3 itemprop="name">Mahanarayan Oil</h3>
-        <p class="small muted" itemprop="description">A therapeutic oil for joint pain and muscle stiffness.</p>
-        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <meta itemprop="priceCurrency" content="INR" />
-          <meta itemprop="price" content="450" />
-          <strong>₹450</strong>
-        </div>
-        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
-      </article>
+      <% (products || []).forEach(function(p){ %>
+        <article class="card" itemscope itemtype="https://schema.org/Product">
+          <meta itemprop="brand" content="Bharadwaj Ayurveda" />
+          <meta itemprop="manufacturer" content="Bharadwaj Ayurveda Clinic" />
+          <% if (p.imageUrl) { %>
+            <img src="<%= p.imageUrl %>" alt="<%= p.name %>" loading="lazy" class="product-image" itemprop="image">
+          <% } %>
+          <h3 itemprop="name"><%= p.name %></h3>
+          <% if (p.description) { %><p class="small muted" itemprop="description"><%= p.description %></p><% } %>
+          <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="INR" />
+            <meta itemprop="price" content="<%= p.price %>" />
+            <strong>₹<%= p.price %></strong>
+          </div>
+          <div class="actions" role="group" aria-label="Product actions">
+            <button class="btn info-btn" type="button"
+              data-id="<%= p._id %>"
+              data-name="<%- p.name %>"
+              data-price="<%= p.price %>"
+              data-img="<%= p.imageUrl || '' %>"
+              data-desc="<%- (p.description || '').replace(/\"/g,'&quot;') %>">
+              Info
+            </button>
+            <button class="btn btn-secondary add-to-cart-btn" type="button" data-id="<%= p._id %>">Add to Cart</button>
+            <a class="btn btn-primary buy-btn" href="/checkout/<%= p._id %>">Buy Now</a>
+          </div>
+        </article>
+      <% }) %>
     </div>
   </div>
 </section>
+
+<!-- Product Info Modal -->
+<dialog id="product-modal" class="svc-modal" aria-label="Product details" style="display:none">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="product-modal-title" tabindex="0">
+    <header>
+      <h3 id="product-modal-title">Product</h3>
+      <button id="product-modal-close" class="icon-btn" aria-label="Close">✕</button>
+    </header>
+    <div id="product-modal-body" class="svc-modal-body">
+      <img id="product-modal-img" alt="" style="max-height:200px;object-fit:contain;border-radius:10px;display:none" />
+      <p id="product-modal-desc" class="mt-1"></p>
+      <p class="mt-1"><strong id="product-modal-price"></strong></p>
+    </div>
+    <div class="svc-modal-nav">
+      <a id="product-modal-buy" class="btn btn-primary" href="#">Buy Now</a>
+    </div>
+  </div>
+  <div id="product-scrim" class="modal-scrim" hidden></div>
+  </dialog>
 
 <!-- CONTACT -->
 <section id="contact" class="section" aria-labelledby="contact-title">
@@ -840,6 +836,102 @@
           submitBtn.disabled = false;
           submitBtn.removeAttribute('aria-busy');
         }
+      });
+    })();
+
+    /* =============== Product Info modal + Add to Cart =============== */
+    (function () {
+      const dlg = document.getElementById('product-modal');
+      if (!dlg) return;
+      const nativeDialog = typeof dlg.showModal === 'function';
+      const title = document.getElementById('product-modal-title');
+      const desc = document.getElementById('product-modal-desc');
+      const img  = document.getElementById('product-modal-img');
+      const price= document.getElementById('product-modal-price');
+      const buy  = document.getElementById('product-modal-buy');
+      const closeBtn = document.getElementById('product-modal-close');
+
+      function openModal() {
+        dlg.classList.remove('closing');
+        dlg.style.display = 'grid';
+        if (nativeDialog) {
+          if (dlg.hasAttribute('open')) { try { dlg.close(); } catch(_) {} }
+          dlg.showModal();
+        } else {
+          dlg.setAttribute('open', '');
+          const scrim = document.getElementById('product-scrim');
+          if (scrim) scrim.hidden = false;
+        }
+        dlg.focus();
+      }
+      function closeModal() {
+        dlg.classList.add('closing');
+        const finish = () => {
+          try { if (nativeDialog) dlg.close(); } catch(_) {}
+          dlg.removeAttribute('open');
+          dlg.style.display = 'none';
+          const scrim = document.getElementById('product-scrim');
+          if (scrim) scrim.hidden = true;
+          dlg.classList.remove('closing');
+          dlg.removeEventListener('animationend', finish);
+        };
+        dlg.addEventListener('animationend', finish);
+        if (getComputedStyle(dlg).animationName === 'none') finish();
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+      dlg.addEventListener('click', (e) => {
+        const panel = dlg.querySelector('.modal-card');
+        if (!panel) return;
+        const r = panel.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeModal();
+      });
+      dlg.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+      document.querySelectorAll('.catalog .info-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          title.textContent = btn.dataset.name || 'Product';
+          desc.textContent = btn.dataset.desc || '';
+          price.textContent = btn.dataset.price ? `₹${btn.dataset.price}` : '';
+          const src = btn.dataset.img || '';
+          if (src) {
+            img.src = src; img.style.display = 'block'; img.alt = title.textContent;
+          } else {
+            img.removeAttribute('src'); img.style.display = 'none';
+          }
+          buy.href = '/checkout/' + btn.dataset.id;
+          openModal();
+        });
+      });
+
+      async function updateCartCount(n) {
+        const el = document.getElementById('cart-count');
+        if (!el) return;
+        if (typeof n === 'number') el.textContent = n;
+        else {
+          try { const r = await fetch('/cart'); const t = await r.text(); const m = t.match(/data-cart-count="(\d+)"/); if (m) el.textContent = m[1]; } catch(_) {}
+        }
+      }
+
+      document.querySelectorAll('.catalog .add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.dataset.id;
+          btn.disabled = true;
+          const prev = btn.textContent;
+          btn.textContent = 'Adding...';
+          try {
+            const res = await fetch('/cart/add', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ productId: id, qty: 1 }) });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message || 'Failed');
+            btn.textContent = 'Added!';
+            await updateCartCount(data.count);
+            setTimeout(() => { btn.textContent = prev; btn.disabled = false; }, 800);
+          } catch (e) {
+            console.error(e);
+            btn.textContent = 'Try again';
+            setTimeout(() => { btn.textContent = prev; btn.disabled = false; }, 1200);
+          }
+        });
       });
     })();
   });

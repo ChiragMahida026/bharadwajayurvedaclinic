@@ -107,55 +107,8 @@
     onScroll();
   })();
 
-  /* ================= 5) Hero Slideshow (fade + gentle parallax) ================= */
-  (() => {
-    const slides = Array.from(document.querySelectorAll('.hero-slides img'));
-    if (!slides.length) return;
-
-    let i = 0;
-    let intervalId = null;
-    const show = (idx) => slides.forEach((img, n) => img.classList.toggle('active', n === idx));
-    show(0);
-
-    const startSlideshow = () => {
-      if (intervalId || slides.length <= 1) return;
-      intervalId = setInterval(() => {
-        i = (i + 1) % slides.length;
-        show(i);
-      }, 6000);
-    };
-
-    const stopSlideshow = () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
-      }
-    };
-
-    if (slides.length > 1) {
-      startSlideshow();
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          stopSlideshow();
-        } else {
-          startSlideshow();
-        }
-      });
-    }
-
-    const onScroll = () => {
-      const hero = document.querySelector('.hero');
-      if (!hero) return;
-      const rect = hero.getBoundingClientRect();
-      const vh = Math.max(window.innerHeight, 1);
-      const p = Math.max(-1, Math.min(1, (rect.top + rect.height * 0.4) / vh - 0.4));
-      const active = slides.find(s => s.classList.contains('active')) || slides[0];
-      const y = p * -12;
-      active.style.transform = `translate3d(0, ${y}px, 0) scale(1.04)`;
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('load', onScroll, { once: true });
-  })();
+  /* ================= 5) Hero Background ================= */
+  // Static hero image only; no slideshow/parallax to keep it calm
 
 
   /* ================= 6) Mobile Drawer ================= */
@@ -297,8 +250,7 @@
 (() => {
   // Preload critical images
   const criticalImages = [
-    '/assets/final_logo.png',
-    '/assets/1st.png'
+    '/assets/final_logo.png'
   ];
 
   criticalImages.forEach(src => {

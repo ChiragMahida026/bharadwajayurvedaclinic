@@ -1,0 +1,91 @@
+<section class="section" aria-labelledby="checkout-title">
+  <div class="container">
+    <h2 id="checkout-title" class="section-title">Checkout</h2>
+    <div class="card" style="max-width:880px">
+      <% if (typeof product !== 'undefined' && product) { %>
+        <h3><%= product.name %></h3>
+        <p class="small muted"><%= product.description || '' %></p>
+        <p><strong>Price: ₹<%= product.price %></strong></p>
+        <input type="hidden" id="productId" value="<%= product._id %>">
+      <% } else if (typeof cart !== 'undefined' && cart && cart.items && cart.items.length) { %>
+        <h3>Your Cart</h3>
+        <div class="cart-list" style="display:grid;gap:1rem;margin-bottom:1rem">
+          <% cart.items.forEach(function(it){ %>
+            <div class="cart-row" style="display:grid;grid-template-columns:64px 1fr auto auto;gap:.75rem;align-items:center">
+              <% if (it.imageUrl) { %>
+                <img src="<%= it.imageUrl %>" alt="<%= it.name %>" style="width:64px;height:64px;object-fit:cover;border-radius:8px" />
+              <% } else { %>
+                <div style="width:64px;height:64px;border-radius:8px;background:var(--sage-50)"></div>
+              <% } %>
+              <div>
+                <div><strong><%= it.name %></strong></div>
+                <div class="small muted">₹<%= it.price %></div>
+              </div>
+              <div>
+                <label class="sr-only" for="qty-<%= it.productId %>">Quantity</label>
+                <input type="number" min="0" id="qty-<%= it.productId %>" value="<%= it.qty %>" style="width:72px" data-id="<%= it.productId %>" />
+              </div>
+              <div>
+                <strong>₹<%= it.subtotal %></strong>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+        <p style="text-align:right">Total: <strong>₹<%= cart.total %></strong></p>
+      <% } else { %>
+        <p>Your cart is empty.</p>
+      <% } %>
+
+      <form id="checkout-form" style="display:grid;gap:1rem" onsubmit="return false;">
+        <label>Name <input id="cust-name" required></label>
+        <label>Email <input id="cust-email" type="email" required></label>
+        <label>Address <textarea id="cust-address" required></textarea></label>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <a class="btn btn-secondary" href="/">Continue Shopping</a>
+          <button class="btn btn-primary" id="pay-btn">Pay with Razorpay</button>
+        </div>
+      </form>
+      <div id="pay-status" class="small"></div>
+    </div>
+  </div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    async function updateQty(e){
+      const id = e.target.dataset.id;
+      const qty = Number(e.target.value);
+      try {
+        const res = await fetch('/cart/update', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ productId: id, qty }) });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Update failed');
+        const badge = document.getElementById('cart-count'); if (badge) badge.textContent = data.count;
+        location.reload();
+      } catch(err) { console.error(err); }
+    }
+    document.querySelectorAll('.cart-list input[type="number"]').forEach(inp => {
+      inp.addEventListener('change', updateQty);
+    });
+
+    document.getElementById('pay-btn')?.addEventListener('click', async () => {
+      const name = document.getElementById('cust-name').value.trim();
+      const email = document.getElementById('cust-email').value.trim();
+      const address = document.getElementById('cust-address').value.trim();
+      const pidEl = document.getElementById('productId');
+      const productId = pidEl ? pidEl.value : undefined;
+      const res = await fetch('/api/order', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ productId, name, email, address }) });
+      const data = await res.json();
+      if (!res.ok) return alert(data.message || 'Order failed');
+      const rzp = new Razorpay({
+        key: '<%= keyId %>',
+        amount: data.amount,
+        currency: data.currency,
+        order_id: data.orderId,
+        handler: async function (response) {
+          await fetch('/api/payment/verify', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ ...response, dbOrderId: data.dbOrderId }) });
+          document.getElementById('pay-status').textContent = 'Payment successful!';
+        }
+      });
+      rzp.open();
+    });
+  </script>
+</section>
