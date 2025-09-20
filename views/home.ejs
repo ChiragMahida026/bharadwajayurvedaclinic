@@ -1,5 +1,4 @@
 <section id="home" class="hero-split hero" aria-label="Bharadwaj Ayurveda — Hero">
-  <!-- Floating decorative elements -->
   <div class="hero-floating-elements" aria-hidden="true">
     <div class="floating-leaf leaf-1">🌿</div>
     <div class="floating-leaf leaf-2">🍃</div>
@@ -7,51 +6,59 @@
   </div>
 
   <div class="hero-left">
-    <div class="half-circle-slideshow">
+    <div class="half-circle-slideshow" aria-roledescription="carousel" aria-label="Image slideshow" data-autoplay="true" data-interval="4500" tabindex="0">
       <div class="half-circle-wrapper">
-        <div class="slide-track">
-          <div class="slide active">
-            <img src="/assets/1st.png" alt="Traditional Ayurvedic Herbs and Spices" class="slide-image">
+        <div class="slide-track" role="list">
+          <div class="slide active" role="listitem" aria-hidden="false">
+            <img src="/assets/1st.png" alt="Traditional Ayurvedic herbs and spices on banana leaf" class="slide-image" loading="lazy" width="1200" height="800">
           </div>
-          <div class="slide">
-            <img src="/assets/2nd.png" alt="Dr. Jayveersinh J. Mahida - Ayurvedic Consultation" class="slide-image">
+          <div class="slide" role="listitem" aria-hidden="true">
+            <img src="/assets/2nd.png" alt="Dr. Jayveersinh J. Mahida — Ayurvedic consultation" class="slide-image" loading="lazy" width="1200" height="800">
           </div>
-          <div class="slide">
-            <img src="/assets/3rd.png" alt="Natural Ayurvedic Treatment Methods" class="slide-image">
+          <div class="slide" role="listitem" aria-hidden="true">
+            <img src="/assets/3rd.png" alt="Natural ayurvedic treatment methods" class="slide-image" loading="lazy" width="1200" height="800">
           </div>
-          <div class="slide">
-            <img src="/assets/jayveer01.JPG" alt="Personalized Ayurvedic Care" class="slide-image">
+          <div class="slide" role="listitem" aria-hidden="true">
+            <img src="/assets/jayveer01.JPG" alt="Personalized Ayurvedic care with the practitioner" class="slide-image" loading="lazy" width="1200" height="800">
           </div>
         </div>
-        
-        <!-- Half-circle Border -->
-        <div class="half-circle-border"></div>
+        <div class="half-circle-border" aria-hidden="true"></div>
       </div>
-      
-      <!-- Navigation Dots -->
-      <div class="half-circle-navigation">
-        <button class="nav-dot active" data-slide="0" aria-label="View slide 1"></button>
-        <button class="nav-dot" data-slide="1" aria-label="View slide 2"></button>
-        <button class="nav-dot" data-slide="2" aria-label="View slide 3"></button>
-        <button class="nav-dot" data-slide="3" aria-label="View slide 4"></button>
+      <div class="half-circle-navigation" role="toolbar" aria-label="Slideshow navigation">
+        <button class="nav-dot active" data-slide="0" aria-label="View slide 1" aria-pressed="true">
+          <svg class="nav-dot-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="progress-bg" cx="12" cy="12" r="10"></circle>
+            <circle class="progress-fg" cx="12" cy="12" r="10"></circle>
+          </svg>
+        </button>
+        <button class="nav-dot" data-slide="1" aria-label="View slide 2" aria-pressed="false">
+          <svg class="nav-dot-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="progress-bg" cx="12" cy="12" r="10"></circle>
+            <circle class="progress-fg" cx="12" cy="12" r="10"></circle>
+          </svg>
+        </button>
+        <button class="nav-dot" data-slide="2" aria-label="View slide 3" aria-pressed="false">
+          <svg class="nav-dot-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="progress-bg" cx="12" cy="12" r="10"></circle>
+            <circle class="progress-fg" cx="12" cy="12" r="10"></circle>
+          </svg>
+        </button>
+        <button class="nav-dot" data-slide="3" aria-label="View slide 4" aria-pressed="false">
+          <svg class="nav-dot-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="progress-bg" cx="12" cy="12" r="10"></circle>
+            <circle class="progress-fg" cx="12" cy="12" r="10"></circle>
+          </svg>
+        </button>
       </div>
-      
-      <!-- Subtle Decorations -->
-      <div class="half-circle-decorations">
-        <div class="decoration-accent accent-1"></div>
-        <div class="decoration-accent accent-2"></div>
-      </div>
+      <div class="sr-only" aria-live="polite" id="slideshow-status">Slide 1 of 4</div>
     </div>
   </div>
 
   <div class="hero-right">
     <div class="hero-right-inner" style="position: relative; width: 100%; height: 100%; min-height: 400px; display:flex;align-items:center;justify-content:center;">
-      <!-- Background Decorations (z-index: 1) -->
       <div class="hero-right-decorations" aria-hidden="true"></div>
-
-      <!-- Card (z-index: 2) -->
-      <div class="hero-card compact-card reveal" role="region" aria-labelledby="hero-title" style="z-index:2;min-width:320px;min-height:320px;">
-        <div class="compact-badge">Authentic Ayurveda</div>
+      <article class="hero-card compact-card reveal" role="region" aria-labelledby="hero-title" data-reveal>
+        <span class="compact-badge" aria-hidden="true">Authentic Ayurveda</span>
         <h1 id="hero-title" class="hero-title-compact">
           <span class="title-main">Bharadwaj <span class="title-accent">Ayurveda</span></span>
           <span class="title-sub">Clinic</span>
@@ -62,10 +69,8 @@
           <a href="#contact" class="btn-compact btn-primary-compact">Book Appointment</a>
           <a href="#products" class="btn-compact btn-secondary-compact">View Products</a>
         </div>
-      </div>
-
-      <!-- Floating side actions (visually to the right of the card) -->
-      <div class="hero-side-actions" aria-hidden="false" style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.6rem;z-index:2;">
+      </article>
+      <div class="hero-side-actions" aria-hidden="true" style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.6rem;z-index:2;">
         <a href="#services" class="btn-compact btn-primary-compact" aria-label="Explore services">Explore Services <span aria-hidden="true">→</span></a>
         <a href="#contact" class="btn-compact btn-secondary-compact" aria-label="Book appointment">Book Appointment</a>
       </div>
@@ -76,11 +81,9 @@
 <section id="about" class="section about" data-title="About" aria-labelledby="about-title">
   <div class="container">
     <p class="section-kicker devanagari" aria-hidden="true">परिचय</p>
-
     <div class="about-wrap">
       <div class="about-copy">
         <h2 id="about-title" class="section-title">Our Approach to Healing</h2>
-
         <figure class="shloka-card">
           <blockquote class="devanagari" lang="sa">
             धर्मार्थकाममोक्षाणाम् आरोग्यं मूलमुत्तमम् ।<br>
@@ -95,13 +98,11 @@
             </span>
           </figcaption>
         </figure>
-
         <p class="lead">
           At Bharadwaj Ayurveda, we see good health as a calm, steady rhythm in the body and mind.
           We spend time listening, understanding your lifestyle, and then guiding you with clear,
           doable steps. Our focus is always gentle care and long-term results—not quick fixes.
         </p>
-
         <h3 style="margin:1.1rem 0 .5rem;">Meet Dr. Jayveersinh J. Mahida</h3>
         <p>
           <strong>Dr. Jayveersinh J. Mahida</strong> founded Bharadwaj Ayurveda in Surat with a simple intention:
@@ -110,22 +111,18 @@
           his consultations are unhurried and compassionate. He looks for root causes rather than
           chasing symptoms, and builds care plans that fit real life.
         </p>
-
         <ul class="about-checklist">
           <li>Thoughtful assessment of <em>doṣa</em> balance and root causes</li>
           <li>Personalized Panchakarma &amp; home-care protocols</li>
           <li>Custom herbal formulations and nutrition guidance</li>
           <li>Daily &amp; seasonal routines (<em>dinacharya</em>, <em>ṛtucharya</em>) for lasting results</li>
         </ul>
-
         <p>
           Our clinic is designed to feel calm, clean, and caring—so you feel supported at every step of
           your healing journey.
         </p>
-
         <div class="about-sign">Dr. Jayveersinh J. Mahida</div>
       </div>
-
       <div class="about-gallery" aria-label="Photo gallery">
         <button type="button" class="about-thumb a" data-full="/assets/jayveer01.jpg" aria-label="Open photo 1">
           <img src="/assets/jayveer01.jpg" alt="Dr. Jayveersinh J. Mahida outdoors">
@@ -142,7 +139,6 @@
       </div>
     </div>
   </div>
-
   <dialog id="about-lightbox" class="about-lightbox" aria-label="Photo viewer" style="display:none">
     <button class="lightbox-close icon-btn" aria-label="Close viewer">✕</button>
     <img class="lightbox-img" alt="" />
@@ -156,7 +152,6 @@
     <p class="lead" style="max-width:65ch;margin-inline:auto;text-align:center;margin-bottom:2rem;">
       We offer comprehensive Ayurvedic treatments tailored to your unique constitution and health needs.
     </p>
-
     <div class="service-grid" role="list">
       <article class="svc-card" role="listitem" data-title="Panchakarma" data-teaser="Detox &amp; rejuvenation tailored to your prakṛti for deep, lasting wellness.">
         <div class="svc-icon" aria-hidden="true">🌿</div>
@@ -332,7 +327,6 @@
     <p class="lead" style="max-width:65ch;margin-inline:auto;text-align:center;margin-bottom:2rem;">
       Hear from those who have experienced healing through our Ayurvedic treatments.
     </p>
-
     <div class="testimonials-grid">
       <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
         <meta itemprop="itemReviewed" content="Bharadwaj Ayurveda Clinic" />
@@ -352,7 +346,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
         <meta itemprop="itemReviewed" content="Bharadwaj Ayurveda Clinic" />
         <div class="testimonial-content">
@@ -371,7 +365,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
         <meta itemprop="itemReviewed" content="Bharadwaj Ayurveda Clinic" />
         <div class="testimonial-content">
@@ -401,7 +395,6 @@
     <p class="lead section-description">
       We offer a carefully selected range of authentic Ayurvedic products—prepared according to classical methods—to support your daily routine.
     </p>
-
     <div class="grid catalog">
       <% (products || []).forEach(function(p){ %>
         <article class="card" itemscope itemtype="https://schema.org/Product">
@@ -451,13 +444,12 @@
     </div>
   </div>
   <div id="product-scrim" class="modal-scrim" hidden></div>
-  </dialog>
+</dialog>
 
 <section id="contact" class="section" aria-labelledby="contact-title">
   <div class="container">
     <p class="section-kicker devanagari" aria-hidden="true">सम्पर्क</p>
     <h2 id="contact-title" class="section-title">Contact Us</h2>
-
     <div class="contact-wrap">
       <div class="contact-card" itemscope itemtype="https://schema.org/LocalBusiness">
         <meta itemprop="name" content="Bharadwaj Ayurveda Clinic" />
@@ -473,7 +465,6 @@
         </div>
         <div itemprop="openingHours" content="Mo-Sa 09:00-13:00,16:00-20:00"></div>
         <meta itemprop="priceRange" content="₹₹" />
-
         <h3>Get In Touch</h3>
         <ul class="contact-list">
           <li><strong>Phone:</strong> <a href="tel:+917990625845" itemprop="telephone">079906 25845</a></li>
@@ -481,34 +472,28 @@
           <li><strong>Location:</strong> <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="streetAddress">106, Raghuvir Symphony Shoppers, Althan Canal Road, Althan</span>, <span itemprop="addressLocality">Surat</span>, <span itemprop="addressRegion">Gujarat</span> – <span itemprop="postalCode">395007</span></span></li>
           <li><strong>Hours:</strong> <time itemprop="openingHours" datetime="Mo-Sa 09:00-13:00,16:00-20:00">Mon–Sat 09:00–13:00 &amp; 16:00–20:00</time> · Sun Closed</li>
         </ul>
-
         <hr class="section-divider">
-
         <form id="contact-form" class="contact-form" novalidate role="form" aria-labelledby="contact-heading">
           <div class="form-group">
             <label for="cname">Full Name</label>
             <input id="cname" type="text" name="name" required minlength="2" aria-describedby="name-error" aria-required="true" />
             <span id="name-error" class="error-message" role="alert" aria-live="polite"></span>
           </div>
-
           <div class="form-group">
             <label for="cemail">Email</label>
             <input id="cemail" type="email" name="email" required aria-describedby="email-error" aria-required="true" />
             <span id="email-error" class="error-message" role="alert" aria-live="polite"></span>
           </div>
-
           <div class="form-group">
             <label for="cphone">Phone</label>
             <input id="cphone" type="tel" name="phone" aria-describedby="phone-error" />
             <span id="phone-error" class="error-message" role="alert" aria-live="polite"></span>
           </div>
-
           <div class="form-group">
             <label for="cmsg">Message</label>
             <textarea id="cmsg" name="message" rows="4" required minlength="10" aria-describedby="message-error" aria-required="true"></textarea>
             <span id="message-error" class="error-message" role="alert" aria-live="polite"></span>
           </div>
-
           <div class="form-actions">
             <button class="btn btn-primary" type="submit" aria-describedby="contact-feedback">Send Message</button>
             <span id="contact-feedback" class="small" role="status" aria-live="polite"></span>
@@ -568,7 +553,6 @@
       const dlg = document.getElementById('about-lightbox');
       if (!dlg) return;
       const img = dlg.querySelector('.lightbox-img');
-
       const openDlg = (src) => {
         img.src = src || '';
         dlg.style.display = 'grid';
@@ -587,7 +571,6 @@
         dlg.addEventListener('animationend', finish);
         if (getComputedStyle(dlg).animationName === 'none') finish();
       };
-
       document.querySelectorAll('.about-thumb').forEach(btn => {
         btn.addEventListener('click', () => openDlg(btn.dataset.full || btn.querySelector('img').src));
       });
@@ -610,12 +593,9 @@
       const btnPrev = document.getElementById('svc-prev');
       const btnNext = document.getElementById('svc-next');
       const btnClose= document.getElementById('svc-modal-close');
-
       if (!cards.length || !modal) return;
-
       const nativeDialog = typeof modal.showModal === 'function';
       let index = 0;
-
       function render(i) {
         index = (i + cards.length) % cards.length;
         const card = cards[index];
@@ -625,7 +605,6 @@
         if (tpl && tpl.content) bodyEl.appendChild(tpl.content.cloneNode(true));
         else bodyEl.innerHTML = `<p>${card.dataset.teaser || ''}</p>`;
       }
-
       function openModal() {
         modal.classList.remove('closing');
         modal.style.display = 'grid';
@@ -638,7 +617,6 @@
         }
         modal.focus();
       }
-
       function closeModal() {
         modal.classList.add('closing');
         const finish = () => {
@@ -652,7 +630,6 @@
         modal.addEventListener('animationend', finish);
         if (getComputedStyle(modal).animationName === 'none') finish();
       }
-
       cards.forEach((card, i) => {
         card.querySelectorAll('.svc-read').forEach(btn => {
           btn.addEventListener('click', (e) => {
@@ -668,21 +645,18 @@
           openModal();
         });
       });
-
       if (btnPrev) btnPrev.addEventListener('click', () => render(index - 1));
       if (btnNext) btnNext.addEventListener('click', () => render(index + 1));
       if (btnClose) btnClose.addEventListener('click', closeModal);
       const closeButtons = modal.querySelectorAll('#svc-modal-close-2');
       closeButtons.forEach(b => b.addEventListener('click', closeModal));
       if (scrim) scrim.addEventListener('click', closeModal);
-
       modal.addEventListener('click', (e) => {
         const panel = modal.querySelector('.modal-card');
         if (!panel) return;
         const r = panel.getBoundingClientRect();
         if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeModal();
       });
-
       modal.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeModal();
         if (e.key === 'ArrowRight') render(index + 1);
@@ -694,9 +668,7 @@
       const loadMapBtn = document.getElementById('load-map-btn');
       const mapContainer = document.getElementById('map-container');
       const googleMap = document.getElementById('google-map');
-
       if (!loadMapBtn || !googleMap) return;
-
       loadMapBtn.addEventListener('click', () => {
         googleMap.style.display = 'block';
         mapContainer.style.display = 'none';
@@ -707,31 +679,25 @@
 
     (function () {
       const form = document.getElementById('contact-form');
+      if (!form) return;
       const submitBtn = form.querySelector('button[type="submit"]');
       const feedback = document.getElementById('contact-feedback');
       const inputs = form.querySelectorAll('input, textarea');
-
-      if (!form) return;
-
       inputs.forEach(input => {
         input.addEventListener('blur', validateField);
         input.addEventListener('input', clearFieldError);
       });
-
       function validateField(e) {
         const field = e.target;
         const errorSpan = document.getElementById(field.id + '-error');
         const value = field.value.trim();
-
         errorSpan.textContent = '';
         field.setAttribute('aria-invalid', 'false');
-
         if (field.hasAttribute('required') && !value) {
           errorSpan.textContent = `${field.labels[0].textContent} is required`;
           field.setAttribute('aria-invalid', 'true');
           return false;
         }
-
         if (field.type === 'email' && value) {
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!emailRegex.test(value)) {
@@ -740,16 +706,13 @@
             return false;
           }
         }
-
         if (field.minLength && value.length < field.minLength) {
           errorSpan.textContent = `Minimum ${field.minLength} characters required`;
           field.setAttribute('aria-invalid', 'true');
           return false;
         }
-
         return true;
       }
-
       function clearFieldError(e) {
         const field = e.target;
         const errorSpan = document.getElementById(field.id + '-error');
@@ -758,38 +721,31 @@
           field.setAttribute('aria-invalid', 'false');
         }
       }
-
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-
         let isValid = true;
         inputs.forEach(input => {
           if (!validateField({ target: input })) {
             isValid = false;
           }
         });
-
         if (!isValid) {
           feedback.textContent = 'Please correct the errors above';
           feedback.className = 'small error';
           return;
         }
-
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
         submitBtn.setAttribute('aria-busy', 'true');
-
         feedback.textContent = '';
         feedback.className = 'small';
-
         try {
           const formData = new FormData(form);
           const response = await fetch('/api/contact', {
             method: 'POST',
             body: formData
           });
-
           if (response.ok) {
             feedback.textContent = 'Message sent successfully! We\'ll get back to you soon.';
             feedback.className = 'small success';
@@ -824,7 +780,6 @@
       const price= document.getElementById('product-modal-price');
       const buy  = document.getElementById('product-modal-buy');
       const closeBtn = document.getElementById('product-modal-close');
-
       function openModal() {
         dlg.classList.remove('closing');
         dlg.style.display = 'grid';
@@ -852,7 +807,6 @@
         dlg.addEventListener('animationend', finish);
         if (getComputedStyle(dlg).animationName === 'none') finish();
       }
-
       closeBtn.addEventListener('click', closeModal);
       dlg.addEventListener('click', (e) => {
         const panel = dlg.querySelector('.modal-card');
@@ -861,7 +815,6 @@
         if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeModal();
       });
       dlg.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
       document.querySelectorAll('.catalog .info-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           title.textContent = btn.dataset.name || 'Product';
@@ -877,7 +830,6 @@
           openModal();
         });
       });
-
       async function updateCartCount(n) {
         const el = document.getElementById('cart-count');
         if (!el) return;
@@ -886,7 +838,6 @@
           try { const r = await fetch('/cart'); const t = await r.text(); const m = t.match(/data-cart-count="(\d+)"/); if (m) el.textContent = m[1]; } catch(_) {}
         }
       }
-
       document.querySelectorAll('.catalog .add-to-cart-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
           const id = btn.dataset.id;
@@ -908,5 +859,120 @@
         });
       });
     })();
+
+    // ===== UPDATED SLIDESHOW SCRIPT =====
+    (function() {
+      const carousel = document.querySelector('.half-circle-slideshow');
+      if (!carousel) return;
+
+      const track = carousel.querySelector('.slide-track');
+      const slides = Array.from(track.querySelectorAll('.slide'));
+      const dots = Array.from(carousel.querySelectorAll('.nav-dot'));
+      const status = document.getElementById('slideshow-status');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let index = 0;
+      let timer = null;
+      const interval = parseInt(carousel.dataset.interval, 10) || 4500;
+      const autoplay = carousel.dataset.autoplay === 'true' && !prefersReduced;
+      const progressAnimationClass = 'is-animating';
+
+      function setSlide(i, fromAutoplay = false) {
+        if (!fromAutoplay) clearInterval(timer);
+        
+        index = (i + slides.length) % slides.length;
+
+        slides.forEach((s, idx) => {
+          const active = idx === index;
+          s.classList.toggle('active', active);
+          s.setAttribute('aria-hidden', !active);
+        });
+        
+        dots.forEach((d, idx) => {
+          const active = idx === index;
+          d.classList.toggle('active', active);
+          d.setAttribute('aria-pressed', active);
+          
+          const progressCircle = d.querySelector('.progress-fg');
+          if (progressCircle) {
+              if (active && autoplay) {
+                  progressCircle.classList.remove(progressAnimationClass);
+                  void progressCircle.offsetWidth;
+                  progressCircle.classList.add(progressAnimationClass);
+              } else {
+                  progressCircle.classList.remove(progressAnimationClass);
+              }
+          }
+        });
+
+        if (status) status.textContent = `Slide ${index + 1} of ${slides.length}`;
+        
+        if (autoplay && !fromAutoplay) restartTimer();
+      }
+
+      function next() { setSlide(index + 1, true); }
+      
+      function restartTimer() {
+        if (!autoplay) return;
+        clearInterval(timer);
+        timer = setInterval(next, interval);
+        const activeDotProgress = dots[index].querySelector('.progress-fg');
+        if (activeDotProgress) {
+            activeDotProgress.classList.remove(progressAnimationClass);
+            void activeDotProgress.offsetWidth;
+            activeDotProgress.classList.add(progressAnimationClass);
+        }
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => setSlide(i, false));
+        dot.addEventListener('keydown', (e) => { 
+          if (e.key === 'Enter' || e.key === ' ') { 
+            e.preventDefault(); 
+            setSlide(i, false); 
+          } 
+        });
+      });
+
+      if (autoplay) restartTimer();
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          clearInterval(timer);
+        } else if (autoplay) {
+          restartTimer();
+        }
+      });
+
+      carousel.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            clearInterval(timer);
+            setSlide(index + 1);
+        }
+        if (e.key === 'ArrowLeft') {
+            clearInterval(timer);
+            setSlide(index - 1);
+        }
+      });
+    }());
+
+    (function() {
+      const toReveal = document.querySelectorAll('[data-reveal]');
+      if (!toReveal.length) return;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        toReveal.forEach(el => el.classList.add('in'));
+        return;
+      }
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            o.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
+      toReveal.forEach(el => obs.observe(el));
+    }());
   });
 </script>
