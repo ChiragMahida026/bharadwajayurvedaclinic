@@ -5,9 +5,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Bharadwaj Ayurveda</title>
-  <link rel="stylesheet" href="/styles/hero.css">
+  <!-- Corrected hero stylesheet path (served from public/css/components) -->
+  <link rel="stylesheet" href="/css/components/hero.css">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/node_modules/animate.css/animate.min.css">
+  <!-- Use CDN for animate.css to avoid /node_modules 404 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-b7nG6VnEOD9oTiFqouBZhOiabuX41sJLdnOjFkWDXLI4YAlnXrhIRbkIuWGHNirMRHrvRkNvMZ1HfC0R1QmT1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Basic favicon placeholders to suppress 404s (replace with real icons later) -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 </head>
 <body>
 
@@ -389,7 +394,11 @@
       We offer a carefully selected range of authentic Ayurvedic products—prepared according to classical methods—to support your daily routine.
     </p>
     <div class="grid catalog">
-      <% (products || []).forEach(function(p){ %>
+      <% const __products = (typeof products !== 'undefined' && Array.isArray(products)) ? products : []; %>
+      <% if(!__products.length){ %>
+        <p class="muted small" style="grid-column:1/-1;margin:.5rem 0 1.25rem;">Products will appear here once added.</p>
+      <% } %>
+      <% __products.forEach(function(p){ %>
         <article class="card" itemscope itemtype="https://schema.org/Product">
           <meta itemprop="brand" content="Bharadwaj Ayurveda" />
           <meta itemprop="manufacturer" content="Bharadwaj Ayurveda Clinic" />
