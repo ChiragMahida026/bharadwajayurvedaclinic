@@ -7,6 +7,7 @@
   <title>Bharadwaj Ayurveda</title>
   <link rel="stylesheet" href="/styles/hero.css">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/node_modules/animate.css/animate.min.css">
 </head>
 <body>
 
@@ -37,33 +38,6 @@
         <div class="half-circle-border" aria-hidden="true"></div>
       </div>
 
-      <div class="half-circle-navigation" role="toolbar" aria-label="Slideshow navigation">
-        <button class="nav-dot active" data-slide="0" aria-label="View slide 1" aria-pressed="true">
-          <svg class="nav-dot-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <circle class="progress-bg" cx="12" cy="12" r="10"></circle>
-            <circle class="progress-fg" cx="12" cy="12" r="10"></circle>
-          </svg>
-        </button>
-        <button class="nav-dot" data-slide="1" aria-label="View slide 2" aria-pressed="false">
-          <svg class="nav-dot-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <circle class="progress-bg" cx="12" cy="12" r="10"></circle>
-            <circle class="progress-fg" cx="12" cy="12" r="10"></circle>
-          </svg>
-        </button>
-        <button class="nav-dot" data-slide="2" aria-label="View slide 3" aria-pressed="false">
-          <svg class="nav-dot-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <circle class="progress-bg" cx="12" cy="12" r="10"></circle>
-            <circle class="progress-fg" cx="12" cy="12" r="10"></circle>
-          </svg>
-        </button>
-        <button class="nav-dot" data-slide="3" aria-label="View slide 4" aria-pressed="false">
-          <svg class="nav-dot-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <circle class="progress-bg" cx="12" cy="12" r="10"></circle>
-            <circle class="progress-fg" cx="12" cy="12" r="10"></circle>
-          </svg>
-        </button>
-      </div>
-
       <div class="sr-only" aria-live="polite" id="slideshow-status">Slide 1 of 4</div>
     </div>
   </div>
@@ -89,11 +63,7 @@
           <a href="#products" class="btn-compact btn-secondary-compact">View Products</a>
         </div>
 
-        <div class="modern-divider" aria-hidden="true">
-          <div class="divider-line"></div>
-        </div>
-
-        <p class="small muted" style="margin:0">Call / WhatsApp: <a href="tel:+917990625845">07990 625845</a></p>
+        <p class="small muted" style="margin:0.5rem 0 0">Call / WhatsApp: <a href="tel:+917990625845">07990 625845</a></p>
       </article>
 
     </div>
@@ -540,7 +510,7 @@
           title="Bharadwaj Ayurveda Clinic — location"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Bharadwaj+Ayurveda+clinic,+Surat&hl=en&z=17&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.852308560548!2d72.85574831505074!3d21.198006585908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f1b1b1b1b1b%3A0x1b1b1b1b1b1b1b1b!2sBharadwaj%20Ayurveda!5e0!3m2!1sen!2sin!4v1695281234567!5m2!1sen!2sin"
           width="100%"
           height="100%"
           class="map-iframe hidden"
@@ -659,23 +629,20 @@ document.addEventListener('DOMContentLoaded', () => {
   (function(){
     const carousel = document.querySelector('.half-circle-slideshow');
     if(!carousel) return;
-    const track = carousel.querySelector('.slide-track');
-    const slides = Array.from(track.querySelectorAll('.slide'));
-    const dots = Array.from(carousel.querySelectorAll('.nav-dot'));
+  const track = carousel.querySelector('.slide-track');
+  const slides = Array.from(track.querySelectorAll('.slide'));
     const status = document.getElementById('slideshow-status');
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce').matches;
     let index = 0;
     let timer = null;
     const interval = parseInt(carousel.dataset.interval,10) || 4500;
     const autoplay = carousel.dataset.autoplay === 'true' && !prefersReduced;
-    const progressAnimationClass = 'is-animating';
 
     function applyActive(i){
-      index = (i + slides.length) % slides.length;
-      slides.forEach((s,idx)=>{ const active = idx===index; s.classList.toggle('active',active); s.setAttribute('aria-hidden',!active); });
-      dots.forEach((d,idx)=>{ const active = idx===index; d.classList.toggle('active',active); d.setAttribute('aria-pressed',active); const pf = d.querySelector('.progress-fg'); if(pf){ if(active && autoplay){ pf.classList.remove(progressAnimationClass); void pf.offsetWidth; pf.classList.add(progressAnimationClass); } else pf.classList.remove(progressAnimationClass); } });
-      if(status) status.textContent = `Slide ${index+1} of ${slides.length}`;
-    }
+        index = (i + slides.length) % slides.length;
+        slides.forEach((s,idx)=>{ const active = idx===index; s.classList.toggle('active',active); s.setAttribute('aria-hidden',!active); });
+        if(status) status.textContent = `Slide ${index+1} of ${slides.length}`;
+      }
 
     function setSlide(i, fromUser=false){
       if(!fromUser) clearInterval(timer);
@@ -684,14 +651,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function next(){ setSlide(index+1,true); }
     function restartTimer(){
-      if(!autoplay) return;
-      clearInterval(timer);
-      timer = setInterval(()=>{ setSlide(index+1,true); }, interval);
-      const cur = dots[index];
-      if(cur){ const pf = cur.querySelector('.progress-fg'); if(pf){ pf.classList.remove(progressAnimationClass); void pf.offsetWidth; pf.classList.add(progressAnimationClass); } }
-    }
-
-    dots.forEach((dot,i)=>{ dot.addEventListener('click',()=>setSlide(i,false)); dot.addEventListener('keydown',(e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); setSlide(i,false); } }); });
+        if(!autoplay) return;
+        clearInterval(timer);
+        timer = setInterval(()=>{ setSlide(index+1,true); }, interval);
+      }
 
     carousel.addEventListener('keydown',(e)=>{ if(e.key==='ArrowRight'){ clearInterval(timer); setSlide(index+1); } if(e.key==='ArrowLeft'){ clearInterval(timer); setSlide(index-1); } });
 
