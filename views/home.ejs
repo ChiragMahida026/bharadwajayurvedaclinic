@@ -16,13 +16,20 @@
 </head>
 <body>
 
+<!--
+  Full updated hero section (card-focused).
+  Replace the existing <section id="home" ...> with this block.
+  Comments explain the changes and accessibility improvements.
+-->
 <section id="home" class="hero-split hero" aria-label="Bharadwaj Ayurveda — Hero">
+  <!-- Floating decorative elements remain (same as before) -->
   <div class="hero-floating-elements" aria-hidden="true">
     <div class="floating-leaf leaf-1">🌿</div>
     <div class="floating-leaf leaf-2">🍃</div>
     <div class="floating-leaf leaf-3">🌿</div>
   </div>
 
+  <!-- LEFT: slideshow column (unchanged structure, kept for context) -->
   <div class="hero-left">
     <div class="half-circle-slideshow" aria-roledescription="carousel" aria-label="Image slideshow" data-autoplay="true" data-interval="4500" tabindex="0">
       <div class="half-circle-wrapper">
@@ -40,40 +47,64 @@
             <img src="/assets/jayveer01.JPG" alt="Personalized Ayurvedic care with the practitioner" class="slide-image" loading="lazy" width="1200" height="800">
           </div>
         </div>
+
+        <!-- decorative border layer inside slideshow wrapper -->
         <div class="half-circle-border" aria-hidden="true"></div>
       </div>
 
+      <!-- announcement region for screen readers -->
       <div class="sr-only" aria-live="polite" id="slideshow-status">Slide 1 of 4</div>
     </div>
   </div>
 
+  <!-- RIGHT: improved card column (this is the part we updated heavily) -->
   <div class="hero-right">
+    <!-- hero-right-inner now provides layered decoration behind the card -->
     <div class="hero-right-inner" style="position:relative;width:100%;height:100%;min-height:400px;display:flex;align-items:center;justify-content:center;">
-      <div class="hero-right-decorations" aria-hidden="true"></div>
 
-      <article class="hero-card compact-card reveal" role="region" aria-labelledby="hero-title" data-reveal>
+      <!-- keyboard / screen-reader friendly hero card:
+           - role=region with aria-labelledby and aria-describedby for clarity
+           - reveal class kept for your reveal JS (if you use it)
+           - badge remains aria-hidden because it's decorative
+      -->
+      <article
+        class="hero-card compact-card reveal"
+        role="region"
+        aria-labelledby="hero-title"
+        aria-describedby="hero-desc"
+        tabindex="0"
+      >
+        <!-- decorative badge — visually prominent but aria-hidden -->
         <span class="compact-badge" aria-hidden="true">Authentic Ayurveda</span>
 
+        <!-- title block -->
         <h1 id="hero-title" class="hero-title-compact">
           <span class="title-main">Bharadwaj <span class="title-accent">Ayurveda</span></span>
           <span class="title-sub">Clinic</span>
         </h1>
 
-        <p class="sanskrit-compact devanagari" lang="sa">आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्</p>
+        <!-- Sanskrit phrase with light pill styling -->
+        <p class="sanskrit-compact devanagari" lang="sa" aria-hidden="false">आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्</p>
 
-        <p class="description-compact">Led by <strong class="doctor-highlight">Dr. Jayveersinh J. Mahida</strong>, we offer personalised treatments that blend classical wisdom with modern guidance.</p>
+        <!-- description with explicit id referenced by aria-describedby above -->
+        <p id="hero-desc" class="description-compact">
+          Led by <strong class="doctor-highlight">Dr. Jayveersinh J. Mahida</strong>, we offer personalised treatments that blend classical wisdom with modern guidance.
+        </p>
 
+        <!-- CTA buttons group -->
         <div class="cta-compact" role="group" aria-label="Primary actions">
           <a href="#contact" class="btn-compact btn-primary-compact">Book Appointment</a>
           <a href="#products" class="btn-compact btn-secondary-compact">View Products</a>
         </div>
 
+        <!-- contact line -->
         <p class="small muted" style="margin:0.5rem 0 0">Call / WhatsApp: <a href="tel:+917990625845">07990 625845</a></p>
       </article>
 
     </div>
   </div>
 </section>
+
 
 <section id="about" class="section about" data-title="About" aria-labelledby="about-title">
   <div class="container">

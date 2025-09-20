@@ -1,0 +1,314 @@
+/* =========================================================================
+   hero-card-updates.css
+   Card-side refinements (drop-in override). Comments explain each change.
+   Include this file AFTER your main hero.css so it overrides earlier rules.
+   ========================================================================= */
+
+/* -- container for right column: keep center alignment and space -- */
+.hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 440px;
+    /* enough height to match slideshow */
+    padding: 2rem;
+    position: relative;
+    z-index: 3;
+    overflow: visible;
+}
+
+/* -- layered decorative panels behind the card for depth -- */
+/* This provides the soft glowing/gradient layers visible behind the card */
+.hero-right-inner {
+    position: relative;
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Two pseudo-elements produce the blurred layered panels */
+.hero-right-inner::before,
+.hero-right-inner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Warm gold-toned soft glow (shifted to create depth) */
+.hero-right-inner::before {
+    transform: translate(22px, -10px);
+    background: linear-gradient(180deg, rgba(212, 165, 116, 0.06), rgba(255, 255, 255, 0.02));
+    filter: blur(10px);
+    opacity: 0.65;
+}
+
+/* Subtle cool-green overlay, larger blur to push farther back */
+.hero-right-inner::after {
+    transform: translate(46px, -18px) scale(.98);
+    background: linear-gradient(180deg, rgba(45, 74, 45, 0.03), rgba(255, 255, 255, 0.01));
+    filter: blur(22px);
+    opacity: 0.5;
+}
+
+/* -- main card: refined glass + shadow, rounded radius -- */
+/* Replaces earlier card look with cleaner gradients and a stronger lift */
+.hero-card.compact-card {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(175deg, rgba(255, 255, 255, 0.97) 0%, rgba(253, 252, 249, 0.96) 65%, rgba(249, 245, 239, 0.94) 100%);
+    border-radius: 26px;
+    padding: 2.4rem 2.35rem 2.15rem;
+    width: 100%;
+    max-width: 560px;
+    box-shadow:
+        0 2px 4px -1px rgba(45, 74, 45, 0.05),
+        0 8px 22px -4px rgba(45, 74, 45, 0.10),
+        0 26px 60px -10px rgba(45, 74, 45, 0.14);
+    border: 1px solid rgba(45, 74, 45, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    transition: transform 240ms cubic-bezier(.22, 1, .36, 1), box-shadow 240ms ease;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+/* Hover & focus state for card — subtle lift for emphasis (keyboard-accessible with :focus-within) */
+.hero-card.compact-card:hover,
+.hero-card.compact-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow:
+        0 4px 8px -2px rgba(45, 74, 45, 0.06),
+        0 18px 40px -8px rgba(45, 74, 45, 0.14),
+        0 52px 120px -18px rgba(45, 74, 45, 0.18);
+}
+
+/* Small decorative emblem in the corner with very low opacity */
+.hero-card.compact-card::after {
+    content: "🕉️";
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 1.25rem;
+    opacity: 0.07;
+    pointer-events: none;
+}
+
+/* Stacked shadow layers (behind the main card) */
+.hero-card.compact-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(140deg, rgba(212, 165, 116, 0.08), rgba(255, 255, 255, 0) 60%);
+    z-index: -1;
+    filter: blur(12px) saturate(140%);
+    opacity: .55;
+}
+
+/* -- badge: pill-shaped, stronger weight, float-left alignment -- */
+.compact-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.12), rgba(212, 165, 116, 0.06));
+    color: var(--forest);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    /* pill */
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid rgba(212, 165, 116, 0.12);
+    box-shadow: 0 2px 6px rgba(45, 74, 45, 0.05);
+    align-self: flex-start;
+    /* keep left aligned inside the card */
+    z-index: 12;
+    /* OPTIONAL: slight vertical overlap if you want badge to poke out:
+     transform: translateY(-10px);
+     margin-bottom: -10px;
+  */
+}
+
+/* -- title: stronger weight, tightened line height for impact -- */
+.hero-title-compact {
+    margin: 0;
+    line-height: 1.04;
+    z-index: 12;
+    padding-top: 0.2rem;
+}
+
+.title-main {
+    display: block;
+    font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+    font-weight: 800;
+    color: #142d19;
+    /* deep green */
+    letter-spacing: -0.6px;
+    margin: 0;
+}
+
+.title-accent {
+    color: var(--gold);
+    font-weight: 600;
+    margin-left: 0.35rem;
+}
+
+/* Subtitle smaller and lighter */
+.title-sub {
+    display: block;
+    font-size: 1.02rem;
+    font-weight: 300;
+    color: #6f776f;
+    margin-top: 0.28rem;
+}
+
+/* -- Sanskrit pill: comfortable padding & accent border on left -- */
+.sanskrit-compact {
+    font-size: 0.96rem;
+    color: #506552;
+    margin: 0.7rem 0 0.35rem;
+    padding: 0.68rem 0.85rem;
+    border-radius: 10px;
+    background: rgba(109, 138, 111, 0.04);
+    border-left: 4px solid var(--gold);
+    font-style: italic;
+    z-index: 12;
+}
+
+/* -- description: increased line-height for easy reading -- */
+.description-compact {
+    font-size: 1.03rem;
+    color: #374c39;
+    margin: 0.5rem 0 0.35rem;
+    line-height: 1.68;
+    z-index: 12;
+}
+
+/* doctor highlight stronger (bolder green) */
+.doctor-highlight {
+    color: var(--forest);
+    font-weight: 800;
+}
+
+/* -- CTA layout improvements: spacing and alignment -- */
+.cta-compact {
+    display: flex;
+    gap: 0.9rem;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+    z-index: 12;
+}
+
+/* -- button base for consistent pill styling -- */
+.btn-compact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.78rem 1.2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1rem;
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    border: 0;
+    line-height: 1;
+    min-height: 48px;
+}
+
+/* focus-visible for accessible keyboard outlines */
+.btn-compact:focus-visible {
+    outline: 3px solid rgba(212, 165, 116, 0.18);
+    outline-offset: 3px;
+}
+
+/* primary CTA: strong forest green with shadow */
+.btn-primary-compact {
+    background: var(--forest);
+    color: #fff;
+    box-shadow: 0 6px 16px -4px rgba(45, 74, 45, 0.18);
+}
+
+.btn-primary-compact:hover {
+    background: #2f5e2f;
+    transform: translateY(-3px);
+}
+
+/* secondary CTA: white with subtle border and arrow cue */
+.btn-secondary-compact {
+    background: #fff;
+    color: var(--forest);
+    border: 1px solid rgba(45, 74, 45, 0.08);
+    box-shadow: 0 4px 12px rgba(45, 74, 45, 0.06);
+}
+
+.btn-secondary-compact::after {
+    content: "→";
+    margin-left: 0.45rem;
+    opacity: 0.9;
+    font-weight: 700;
+}
+
+/* contact line smaller, muted color */
+.small.muted {
+    color: #6b6b6b;
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    z-index: 12;
+}
+
+.small.muted a {
+    color: var(--forest);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* -- responsive adjustments to ensure the card stacks nicely on smaller screens -- */
+@media (max-width: 1024px) {
+
+    .hero-right-inner::before,
+    .hero-right-inner::after {
+        display: none;
+    }
+
+    /* hide decorative layers to simplify mobile visuals */
+    .hero-card.compact-card {
+        margin: 0 auto;
+        text-align: center;
+        align-items: center;
+        padding: 1.8rem;
+        min-height: 260px;
+    }
+
+    .compact-badge {
+        margin: 0 auto;
+    }
+
+    .cta-compact {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .btn-compact {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+}
+
+/* extra small screens */
+@media (max-width: 480px) {
+    .title-main {
+        font-size: 1.6rem;
+    }
+
+    .description-compact {
+        font-size: 0.98rem;
+        line-height: 1.6;
+    }
+}
