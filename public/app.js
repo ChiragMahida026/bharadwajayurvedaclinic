@@ -30,7 +30,7 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 });
     els.forEach(el => io.observe(el));
   })();
 
@@ -388,4 +388,169 @@
       }
     }, { passive: true });
   }
+})();
+
+/* ================= Hero Slideshow ================= */
+(() => {
+  const slideTrack = document.querySelector('.slide-track');
+  const slides = document.querySelectorAll('.slide');
+  const navDots = document.querySelectorAll('.nav-dot');
+  const progressRing = document.querySelector('.progress-ring-progress');
+
+  if (!slides.length || !navDots.length) return;
+
+  let currentSlide = 0;
+  let isAutoPlaying = true;
+  let autoPlayInterval;
+  let progressInterval;
+
+  // Calculate progress ring values
+  const circumference = 2 * Math.PI * 56; // radius = 56
+  if (progressRing) {
+    progressRing.style.strokeDasharray = circumference;
+    progressRing.style.strokeDashoffset = circumference;
+  }
+
+  // Update slide and progress
+  const updateSlide = (index, animate = true) => {
+    // Remove active from all slides and dots
+    slides.forEach(slide => slide.classList.remove('active'));
+    navDots.forEach(dot => dot.classList.remove('active'));
+
+    // Add active to current slide and dot
+    slides[index].classList.add('active');
+    navDots[index].classList.add('active');
+
+    currentSlide = index;
+
+    // Reset progress ring animation
+    if (progressRing && animate) {
+      progressRing.style.transition = 'none';
+      progressRing.style.strokeDashoffset = circumference;
+
+      // Restart progress animation
+      setTimeout(() => {
+        progressRing.style.transition = 'stroke-dashoffset 5s linear';
+        progressRing.style.strokeDashoffset = 0;
+      }, 50);
+    }
+  };
+
+  // Auto advance slides
+  const startAutoPlay = () => {
+    if (autoPlayInterval) clearInterval(autoPlayInterval);
+
+    autoPlayInterval = setInterval(() => {
+      if (!isAutoPlaying) return;
+
+      const nextSlide = (currentSlide + 1) % slides.length;
+      updateSlide(nextSlide);
+    }, 5000);
+  };
+
+  // Pause auto play
+  const pauseAutoPlay = () => {
+    isAutoPlaying = false;
+    if (progressRing) {
+      progressRing.style.animationPlayState = 'paused';
+    }
+  };
+
+  // Resume auto play
+  const resumeAutoPlay = () => {
+    isAutoPlaying = true;
+    if (progressRing) {
+      progressRing.style.animationPlayState = 'running';
+    }
+  };
+
+  // Navigation dot click handlers
+  navDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      if (index !== currentSlide) {
+        updateSlide(index);
+        // Restart auto play from new position
+        if (isAutoPlaying) {
+          startAutoPlay();
+        }
+      }
+    });
+  });
+
+  // Pause on hover
+  const slideshowContainer = document.querySelector('.hero-slideshow-container');
+  if (slideshowContainer) {
+    slideshowContainer.addEventListener('mouseenter', pauseAutoPlay);
+    slideshowContainer.addEventListener('mouseleave', resumeAutoPlay);
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!slideshowContainer) return;
+
+    const containerRect = slideshowContainer.getBoundingClientRect();
+    const isVisible = containerRect.top < window.innerHeight && containerRect.bottom > 0;
+
+    if (!isVisible) return;
+
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const prevSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+      updateSlide(prevSlide);
+      if (isAutoPlaying) startAutoPlay();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      const nextSlide = (currentSlide + 1) % slides.length;
+      updateSlide(nextSlide);
+      if (isAutoPlaying) startAutoPlay();
+    }
+  });
+
+  // Touch/swipe support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (slideshowContainer) {
+    slideshowContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slideshowContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+  }
+
+  const handleSwipe = () => {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Swipe left - next slide
+        const nextSlide = (currentSlide + 1) % slides.length;
+        updateSlide(nextSlide);
+      } else {
+        // Swipe right - previous slide
+        const prevSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+        updateSlide(prevSlide);
+      }
+
+      if (isAutoPlaying) startAutoPlay();
+    }
+  };
+
+  // Initialize slideshow
+  updateSlide(0, false);
+  startAutoPlay();
+
+  // Pause when page becomes hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      pauseAutoPlay();
+    } else {
+      resumeAutoPlay();
+      if (isAutoPlaying) startAutoPlay();
+    }
+  });
 })();

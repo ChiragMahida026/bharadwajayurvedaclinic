@@ -1,57 +1,92 @@
-<!-- HERO -->
-<section id="home" class="hero" aria-label="Bharadwaj Ayurveda — Hero">
-  <!-- Decorative background slides -->
-  <div class="hero-media" aria-hidden="true">
-    <div class="hero-slides" aria-hidden="true">
-      <img src="/assets/1st.png" alt="Ayurveda herbs and utensils" class="active" decoding="async" fetchpriority="high" />
+<section id="home" class="hero-split hero" aria-label="Bharadwaj Ayurveda — Hero">
+  <!-- Floating decorative elements -->
+  <div class="hero-floating-elements" aria-hidden="true">
+    <div class="floating-leaf leaf-1">🌿</div>
+    <div class="floating-leaf leaf-2">🍃</div>
+    <div class="floating-leaf leaf-3">🌿</div>
+  </div>
+
+  <div class="hero-left">
+    <div class="half-circle-slideshow">
+      <div class="half-circle-wrapper">
+        <div class="slide-track">
+          <div class="slide active">
+            <img src="/assets/1st.png" alt="Traditional Ayurvedic Herbs and Spices" class="slide-image">
+          </div>
+          <div class="slide">
+            <img src="/assets/2nd.png" alt="Dr. Jayveersinh J. Mahida - Ayurvedic Consultation" class="slide-image">
+          </div>
+          <div class="slide">
+            <img src="/assets/3rd.png" alt="Natural Ayurvedic Treatment Methods" class="slide-image">
+          </div>
+          <div class="slide">
+            <img src="/assets/jayveer01.JPG" alt="Personalized Ayurvedic Care" class="slide-image">
+          </div>
+        </div>
+        
+        <!-- Half-circle Border -->
+        <div class="half-circle-border"></div>
+      </div>
+      
+      <!-- Navigation Dots -->
+      <div class="half-circle-navigation">
+        <button class="nav-dot active" data-slide="0" aria-label="View slide 1"></button>
+        <button class="nav-dot" data-slide="1" aria-label="View slide 2"></button>
+        <button class="nav-dot" data-slide="2" aria-label="View slide 3"></button>
+        <button class="nav-dot" data-slide="3" aria-label="View slide 4"></button>
+      </div>
+      
+      <!-- Subtle Decorations -->
+      <div class="half-circle-decorations">
+        <div class="decoration-accent accent-1"></div>
+        <div class="decoration-accent accent-2"></div>
+      </div>
     </div>
   </div>
 
-  
-
-  <div class="container">
-    <div class="hero-content plant-card" role="region" aria-labelledby="hero-title">
-      <h1 id="hero-title">Bharadwaj Ayurveda Clinic</h1>
-
-      <p class="lead guru-mantra devanagari" lang="sa" aria-hidden="false">
-        आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्
-      </p>
-
-      <p class="lead">
-        Led by <strong>Dr. Jayveersinh J. Mahida</strong>, we offer thoughtful, personalised treatments
-        that blend classical wisdom with practical, modern guidance—so you can restore
-        balance gently and sustainably.
-      </p>
-
-      <div class="cta-row" role="group" aria-label="Primary actions">
-        <a href="#services" class="btn btn-primary" aria-label="Explore our Ayurvedic services">
-          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" class="icon" focusable="false">
+  <div class="hero-right">
+    <div style="position: relative; width: 100%; height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+      <!-- Background Decorations (z-index: 1) -->
+      <div class="hero-right-decorations" style="position: absolute; inset: 0; z-index: 1;"></div>
+      <!-- Card (z-index: 2) -->
+      <div class="hero-card compact-card reveal" role="region" aria-labelledby="hero-title" style="z-index: 2; min-width: 320px; min-height: 320px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;">
+        <div class="compact-badge">Authentic Ayurveda</div>
+        <h1 id="hero-title" class="hero-title-compact">
+          <span class="title-main">Bharadwaj <span class="title-accent">Ayurveda</span></span>
+          <span class="title-sub">Clinic</span>
+        </h1>
+        <p class="sanskrit-compact devanagari" lang="sa">
+          आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्
+        </p>
+        <p class="description-compact">
+          Led by <strong class="doctor-highlight">Dr. Jayveersinh J. Mahida</strong>, we offer personalised treatments
+          that blend classical wisdom with modern guidance.
+        </p>
+        <div class="cta-compact" role="group" aria-label="Primary actions">
+          <a href="#contact" class="btn-compact btn-primary-compact">Book Appointment</a>
+          <a href="#products" class="btn-compact btn-secondary-compact">View Products</a>
+        </div>
+      </div>
+    </div>
+        <a href="#services" class="btn-compact btn-primary-compact" aria-label="Explore services">
+          Explore Services
+          <svg width="16" height="16" viewBox="0 0 24 24">
             <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <span>Explore Services</span>
         </a>
-
-        <a href="#contact" class="btn btn-ghost" aria-label="Book an appointment">
-          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" class="icon" focusable="false">
-            <path d="M8 7V3m8 4V3M4 11h16M6 21h12a2 2 0 0 0 2-2v-8H4v8a2 2 0 0 0 2 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span>Book Appointment</span>
+        <a href="#contact" class="btn-compact btn-secondary-compact" aria-label="Book appointment">
+          Book Appointment
         </a>
       </div>
-
-      <p class="microcopy">🌿 Root-cause approach • ✨ Gentle, sustainable care</p>
     </div>
   </div>
 </section>
 
-
-<!-- ABOUT -->
 <section id="about" class="section about" data-title="About" aria-labelledby="about-title">
   <div class="container">
     <p class="section-kicker devanagari" aria-hidden="true">परिचय</p>
 
     <div class="about-wrap">
-      <!-- Left: Copy -->
       <div class="about-copy">
         <h2 id="about-title" class="section-title">Our Approach to Healing</h2>
 
@@ -100,7 +135,6 @@
         <div class="about-sign">Dr. Jayveersinh J. Mahida</div>
       </div>
 
-      <!-- Right: Collage Gallery -->
       <div class="about-gallery" aria-label="Photo gallery">
         <button type="button" class="about-thumb a" data-full="/assets/jayveer01.jpg" aria-label="Open photo 1">
           <img src="/assets/jayveer01.jpg" alt="Dr. Jayveersinh J. Mahida outdoors">
@@ -118,14 +152,12 @@
     </div>
   </div>
 
-  <!-- Lightbox -->
   <dialog id="about-lightbox" class="about-lightbox" aria-label="Photo viewer" style="display:none">
     <button class="lightbox-close icon-btn" aria-label="Close viewer">✕</button>
     <img class="lightbox-img" alt="" />
   </dialog>
 </section>
 
-<!-- SERVICES -->
 <section id="services" class="section alt" aria-labelledby="services-title">
   <div class="container">
     <p class="section-kicker devanagari" aria-hidden="true">सेवा</p>
@@ -135,7 +167,6 @@
     </p>
 
     <div class="service-grid" role="list">
-      <!-- 1) Panchakarma -->
       <article class="svc-card" role="listitem" data-title="Panchakarma" data-teaser="Detox &amp; rejuvenation tailored to your prakṛti for deep, lasting wellness.">
         <div class="svc-icon" aria-hidden="true">🌿</div>
         <h3 class="svc-title">Panchakarma</h3>
@@ -160,7 +191,6 @@
         </template>
       </article>
 
-      <!-- 2) Herbal Medicine -->
       <article class="svc-card" role="listitem" data-title="Herbal Medicine" data-teaser="Custom formulations rooted in classical texts to correct root-cause imbalances.">
         <div class="svc-icon" aria-hidden="true">🍃</div>
         <h3 class="svc-title">Herbal Medicine</h3>
@@ -181,7 +211,6 @@
         </template>
       </article>
 
-      <!-- 3) Diet Consultation -->
       <article class="svc-card" role="listitem" data-title="Diet Consultation" data-teaser="Dinacharya &amp; ṛtucharya guidance to balance digestion, immunity &amp; energy.">
         <div class="svc-icon" aria-hidden="true">🥗</div>
         <h3 class="svc-title">Diet Consultation</h3>
@@ -202,7 +231,6 @@
         </template>
       </article>
 
-      <!-- 4) Chronic Conditions -->
       <article class="svc-card" role="listitem" data-title="Chronic Conditions" data-teaser="IBS, joint pain, stress, metabolic &amp; lifestyle disorders with holistic protocols.">
         <div class="svc-icon" aria-hidden="true">🧘</div>
         <h3 class="svc-title">Chronic Conditions</h3>
@@ -223,7 +251,6 @@
         </template>
       </article>
 
-      <!-- 5) Abhyanga & Shirodhara -->
       <article class="svc-card" role="listitem" data-title="Abhyanga &amp; Shirodhara" data-teaser="Warm therapeutic oils and calming therapies for mind–body balance.">
         <div class="svc-icon" aria-hidden="true">💆</div>
         <h3 class="svc-title">Abhyanga & Shirodhara</h3>
@@ -244,7 +271,6 @@
         </template>
       </article>
 
-      <!-- 6) Trusted Reviews -->
       <article class="svc-card" role="listitem" data-title="Trusted Reviews" data-teaser="Patients rate us 5-stars for genuine care, hygiene and real-world results.">
         <div class="svc-icon" aria-hidden="true">⭐</div>
         <h3 class="svc-title">Trusted Reviews</h3>
@@ -265,7 +291,6 @@
         </template>
       </article>
 
-      <!-- 7) Women's Health -->
       <article class="svc-card" role="listitem" data-title="Women's Health" data-teaser="Ayurvedic care for PCOS, cycle balance, fertility &amp; post-partum recovery.">
         <div class="svc-icon" aria-hidden="true">🌸</div>
         <h3 class="svc-title">Women's Health</h3>
@@ -286,7 +311,6 @@
         </template>
       </article>
 
-      <!-- 8) Skin & Hair Care -->
       <article class="svc-card" role="listitem" data-title="Skin &amp; Hair Care" data-teaser="Holistic plans for acne, eczema, hair fall &amp; scalp health from the root.">
         <div class="svc-icon" aria-hidden="true">🌼</div>
         <h3 class="svc-title">Skin & Hair Care</h3>
@@ -308,29 +332,8 @@
       </article>
     </div>
   </div>
-
-  <!-- Service modal (used by JS) -->
-  <dialog id="svc-modal" class="svc-modal" aria-label="Service details" style="display:none">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="svc-modal-title" tabindex="0">
-      <header>
-        <h3 id="svc-modal-title">Service</h3>
-        <div>
-          <button id="svc-prev" class="icon-btn" aria-label="Previous service">◀</button>
-          <button id="svc-next" class="icon-btn" aria-label="Next service">▶</button>
-          <button id="svc-modal-close" class="icon-btn" aria-label="Close">✕</button>
-        </div>
-      </header>
-      <div id="svc-modal-body" class="svc-modal-body"></div>
-      <div class="svc-modal-nav">
-        <button id="svc-modal-close-2" class="btn btn-ghost" aria-label="Close">Close</button>
-        <a href="#contact" class="btn btn-primary" aria-label="Book appointment">Book Appointment</a>
-      </div>
-    </div>
-  </dialog>
-  <div id="svc-scrim" class="modal-scrim" hidden></div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section id="testimonials" class="section" aria-labelledby="testimonials-title">
   <div class="container">
     <p class="section-kicker devanagari" aria-hidden="true">समीक्षा</p>
@@ -400,7 +403,6 @@
   </div>
 </section>
 
-<!-- PRODUCTS -->
 <section id="products" class="section alt" aria-labelledby="products-title">
   <div class="container">
     <p class="section-kicker devanagari" aria-hidden="true">उत्पाद</p>
@@ -442,7 +444,6 @@
   </div>
 </section>
 
-<!-- Product Info Modal -->
 <dialog id="product-modal" class="svc-modal" aria-label="Product details" style="display:none">
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="product-modal-title" tabindex="0">
     <header>
@@ -461,7 +462,6 @@
   <div id="product-scrim" class="modal-scrim" hidden></div>
   </dialog>
 
-<!-- CONTACT -->
 <section id="contact" class="section" aria-labelledby="contact-title">
   <div class="container">
     <p class="section-kicker devanagari" aria-hidden="true">सम्पर्क</p>
@@ -553,10 +553,8 @@
   </div>
 </section>
 
-<!-- JS: lightbox, service modal & behaviour (keeps all original logic) -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    /* ================== Close any overlays on entry ================== */
     function closeAllOverlays() {
       document.querySelectorAll('dialog').forEach(dlg => {
         try { if (typeof dlg.close === 'function') dlg.close(); } catch(_) {}
@@ -575,7 +573,6 @@
     closeAllOverlays();
     window.addEventListener('pageshow', closeAllOverlays, { once: true });
 
-    /* =============== About lightbox =============== */
     (function () {
       const dlg = document.getElementById('about-lightbox');
       if (!dlg) return;
@@ -613,11 +610,10 @@
       dlg.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDlg(); });
     }());
 
-    /* =============== Service modal + fallback scrim =============== */
     (function () {
       const cards   = Array.from(document.querySelectorAll('.svc-card'));
       const modal   = document.getElementById('svc-modal');
-      const scrim   = document.getElementById('svc-scrim'); // fallback only
+      const scrim   = document.getElementById('svc-scrim');
       const titleEl = document.getElementById('svc-modal-title');
       const bodyEl  = document.getElementById('svc-modal-body');
       const btnPrev = document.getElementById('svc-prev');
@@ -666,7 +662,6 @@
         if (getComputedStyle(modal).animationName === 'none') finish();
       }
 
-      // Bind click for each card's "Read more" & hover overlay
       cards.forEach((card, i) => {
         card.querySelectorAll('.svc-read').forEach(btn => {
           btn.addEventListener('click', (e) => {
@@ -683,7 +678,6 @@
         });
       });
 
-      // Modal controls
       if (btnPrev) btnPrev.addEventListener('click', () => render(index - 1));
       if (btnNext) btnNext.addEventListener('click', () => render(index + 1));
       if (btnClose) btnClose.addEventListener('click', closeModal);
@@ -691,7 +685,6 @@
       closeButtons.forEach(b => b.addEventListener('click', closeModal));
       if (scrim) scrim.addEventListener('click', closeModal);
 
-      // Click outside the panel closes
       modal.addEventListener('click', (e) => {
         const panel = modal.querySelector('.modal-card');
         if (!panel) return;
@@ -706,7 +699,6 @@
       });
     }());
 
-    /* =============== Lazy load Google Maps =============== */
     (function () {
       const loadMapBtn = document.getElementById('load-map-btn');
       const mapContainer = document.getElementById('map-container');
@@ -718,12 +710,10 @@
         googleMap.style.display = 'block';
         mapContainer.style.display = 'none';
         googleMap.setAttribute('aria-hidden', 'false');
-        // Focus management for accessibility
         googleMap.focus();
       });
     }());
 
-    /* =============== Enhanced Contact Form =============== */
     (function () {
       const form = document.getElementById('contact-form');
       const submitBtn = form.querySelector('button[type="submit"]');
@@ -732,7 +722,6 @@
 
       if (!form) return;
 
-      // Real-time validation
       inputs.forEach(input => {
         input.addEventListener('blur', validateField);
         input.addEventListener('input', clearFieldError);
@@ -782,7 +771,6 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Validate all fields
         let isValid = true;
         inputs.forEach(input => {
           if (!validateField({ target: input })) {
@@ -796,7 +784,6 @@
           return;
         }
 
-        // Show loading state
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
@@ -806,7 +793,6 @@
         feedback.className = 'small';
 
         try {
-          // Simulate form submission (replace with actual endpoint)
           const formData = new FormData(form);
           const response = await fetch('/api/contact', {
             method: 'POST',
@@ -817,7 +803,6 @@
             feedback.textContent = 'Message sent successfully! We\'ll get back to you soon.';
             feedback.className = 'small success';
             form.reset();
-            // Reset validation states
             inputs.forEach(input => {
               input.setAttribute('aria-invalid', 'false');
               const errorSpan = document.getElementById(input.id + '-error');
@@ -831,7 +816,6 @@
           feedback.textContent = 'Failed to send message. Please try again or contact us directly.';
           feedback.className = 'small error';
         } finally {
-          // Reset button state
           submitBtn.textContent = originalText;
           submitBtn.disabled = false;
           submitBtn.removeAttribute('aria-busy');
@@ -839,7 +823,6 @@
       });
     })();
 
-    /* =============== Product Info modal + Add to Cart =============== */
     (function () {
       const dlg = document.getElementById('product-modal');
       if (!dlg) return;
@@ -936,4 +919,3 @@
     })();
   });
 </script>
-
