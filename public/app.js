@@ -16,21 +16,26 @@
     setTimeout(hide, 2500);
   })();
 
-  /* ================= 2) Scroll Reveal ================= */
+  /* ================= 2) Scroll Reveal (respect reduced-motion) ================= */
   (() => {
-    const els = document.querySelectorAll('.reveal');
-    if (!els.length || !('IntersectionObserver' in window)) {
+    const els = Array.from(document.querySelectorAll('.reveal'));
+    if (!els.length) return;
+
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
       els.forEach(el => el.classList.add('in'));
       return;
     }
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
+
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.2 });
+
     els.forEach(el => io.observe(el));
   })();
 

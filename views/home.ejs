@@ -45,38 +45,29 @@
   </div>
 
   <div class="hero-right">
-    <div style="position: relative; width: 100%; height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-right-inner" style="position: relative; width: 100%; height: 100%; min-height: 400px; display:flex;align-items:center;justify-content:center;">
       <!-- Background Decorations (z-index: 1) -->
-      <div class="hero-right-decorations" style="position: absolute; inset: 0; z-index: 1;"></div>
+      <div class="hero-right-decorations" aria-hidden="true"></div>
+
       <!-- Card (z-index: 2) -->
-      <div class="hero-card compact-card reveal" role="region" aria-labelledby="hero-title" style="z-index: 2; min-width: 320px; min-height: 320px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;">
+      <div class="hero-card compact-card reveal" role="region" aria-labelledby="hero-title" style="z-index:2;min-width:320px;min-height:320px;">
         <div class="compact-badge">Authentic Ayurveda</div>
         <h1 id="hero-title" class="hero-title-compact">
           <span class="title-main">Bharadwaj <span class="title-accent">Ayurveda</span></span>
           <span class="title-sub">Clinic</span>
         </h1>
-        <p class="sanskrit-compact devanagari" lang="sa">
-          आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्
-        </p>
-        <p class="description-compact">
-          Led by <strong class="doctor-highlight">Dr. Jayveersinh J. Mahida</strong>, we offer personalised treatments
-          that blend classical wisdom with modern guidance.
-        </p>
+        <p class="sanskrit-compact devanagari" lang="sa">आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्</p>
+        <p class="description-compact">Led by <strong class="doctor-highlight">Dr. Jayveersinh J. Mahida</strong>, we offer personalised treatments that blend classical wisdom with modern guidance.</p>
         <div class="cta-compact" role="group" aria-label="Primary actions">
           <a href="#contact" class="btn-compact btn-primary-compact">Book Appointment</a>
           <a href="#products" class="btn-compact btn-secondary-compact">View Products</a>
         </div>
       </div>
-    </div>
-        <a href="#services" class="btn-compact btn-primary-compact" aria-label="Explore services">
-          Explore Services
-          <svg width="16" height="16" viewBox="0 0 24 24">
-            <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </a>
-        <a href="#contact" class="btn-compact btn-secondary-compact" aria-label="Book appointment">
-          Book Appointment
-        </a>
+
+      <!-- Floating side actions (visually to the right of the card) -->
+      <div class="hero-side-actions" aria-hidden="false" style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.6rem;z-index:2;">
+        <a href="#services" class="btn-compact btn-primary-compact" aria-label="Explore services">Explore Services <span aria-hidden="true">→</span></a>
+        <a href="#contact" class="btn-compact btn-secondary-compact" aria-label="Book appointment">Book Appointment</a>
       </div>
     </div>
   </div>
