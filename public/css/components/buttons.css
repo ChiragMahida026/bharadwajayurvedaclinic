@@ -1,0 +1,215 @@
+/* ===========================================================
+   BUTTONS COMPONENT
+   All button styles and animations
+   =========================================================== */
+
+/* Enhanced Button System */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius);
+    border: 2px solid var(--forest);
+    background: var(--paper);
+    color: var(--forest);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.4;
+    transition:
+        transform var(--duration-normal) var(--ease-out),
+        box-shadow var(--duration-normal) var(--ease-out),
+        background-color var(--duration-normal) var(--ease-out),
+        border-color var(--duration-normal) var(--ease-out),
+        color var(--duration-normal) var(--ease-out);
+    will-change: transform;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(45, 74, 45, 0.15),
+        0 3px 10px rgba(45, 74, 45, 0.1);
+    background: var(--cream);
+    border-color: var(--forest-deep);
+    color: var(--forest-deep);
+    text-decoration: none;
+}
+
+.btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow:
+        0 2px 8px rgba(45, 74, 45, 0.2);
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow:
+        0 0 0 3px rgba(212, 165, 116, 0.4),
+        0 8px 25px rgba(45, 74, 45, 0.15);
+}
+
+/* Primary Button - Ayurveda Green & Gold */
+.btn-primary {
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+    border-color: var(--forest);
+    color: var(--paper);
+    box-shadow:
+        0 6px 20px rgba(45, 74, 45, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--forest-deep) 0%, var(--forest) 100%);
+    transform: translateY(-3px);
+    box-shadow:
+        0 10px 30px rgba(45, 74, 45, 0.3),
+        0 4px 15px rgba(45, 74, 45, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: var(--paper);
+}
+
+/* Enhanced shine animation for primary buttons */
+.btn-primary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            rgba(212, 165, 116, 0.2),
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-120%);
+        opacity: 0
+    }
+
+    30% {
+        opacity: .45
+    }
+
+    100% {
+        transform: translateX(120%);
+        opacity: 0
+    }
+}
+
+.btn-primary:hover::after {
+    left: 120%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(42, 74, 46, 0.35), 0 0 12px rgba(199, 154, 74, 0.4);
+}
+
+/* Ghost/Outline Button */
+.btn-ghost {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-ghost:hover {
+    background: var(--gold);
+    color: var(--paper);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(212, 165, 116, 0.3),
+        0 3px 10px rgba(212, 165, 116, 0.2);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--paper);
+}
+
+.btn-secondary:hover {
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
+    color: var(--paper);
+}
+
+.btn.wide {
+    justify-content: center;
+    width: 100%
+}
+
+.btn .icon {
+    margin-right: .4rem;
+    display: inline-block;
+    vertical-align: middle
+}
+
+/* CTA sizing improvements */
+.btn {
+    padding: .85rem 1.15rem
+}
+
+/* WhatsApp button */
+.whatsapp-btn {
+    background-color: #25D366;
+    color: white;
+    border: none;
+    padding: .7rem 1rem;
+    border-radius: .6rem
+}
+
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px)
+}
+
+/* WhatsApp button specific styles */
+.wa-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.wa-ic {
+    flex-shrink: 0;
+}
+
+/* Enhanced button focus states */
+.btn:focus-visible {
+    outline: 3px solid var(--accent-2);
+    outline-offset: 2px;
+}
+
+/* Better mobile button sizing */
+@media (max-width: 720px) {
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .wa-pill {
+        gap: 0.4rem;
+    }
+
+    .wa-ic {
+        width: 14px;
+        height: 14px;
+    }
+}

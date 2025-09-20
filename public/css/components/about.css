@@ -1,0 +1,159 @@
+/* ===========================================================
+   ABOUT COMPONENT
+   About section and gallery styles
+   =========================================================== */
+
+.about-wrap {
+    display: grid;
+    gap: 2rem;
+    align-items: start
+}
+
+@media (min-width:900px) {
+    .about-wrap {
+        grid-template-columns: 1.15fr .95fr
+    }
+}
+
+.about-copy p+p {
+    margin-top: .75rem
+}
+
+.about-sign {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: .4rem .8rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--edge);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .06);
+    font-weight: 600;
+    color: var(--accent)
+}
+
+.about-gallery {
+    --r: 16px;
+    display: grid;
+    gap: .8rem;
+    align-self: start;
+    grid-template-areas: "a a b" "a a c" "d d c";
+    grid-template-columns: 1.2fr .8fr .9fr
+}
+
+.about-thumb {
+    position: relative;
+    border: 0;
+    padding: 0;
+    cursor: zoom-in;
+    border-radius: var(--r);
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
+    background: #000;
+    line-height: 0
+}
+
+.about-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: transform .5s cubic-bezier(.2, .8, .2, 1), filter .35s ease, opacity .35s ease;
+    filter: saturate(1.02) contrast(1.02)
+}
+
+.about-thumb:hover img {
+    transform: scale(1.06)
+}
+
+.about-thumb.a {
+    grid-area: a;
+    min-height: 460px
+}
+
+.about-thumb.b {
+    grid-area: b;
+    min-height: 220px
+}
+
+.about-thumb.c {
+    grid-area: c;
+    min-height: 320px
+}
+
+.about-thumb.d {
+    grid-area: d;
+    min-height: 220px
+}
+
+@media (max-width:640px) {
+    .about-gallery {
+        grid-template-areas: "a" "b" "c" "d";
+        grid-template-columns: 1fr
+    }
+
+    .about-thumb.a,
+    .about-thumb.b,
+    .about-thumb.c,
+    .about-thumb.d {
+        min-height: 240px
+    }
+}
+
+/* Lightbox */
+.about-lightbox {
+    border: 0;
+    background: rgba(0, 0, 0, .85);
+    padding: 0;
+    width: min(96vw, 1400px);
+    height: min(92vh, 900px);
+    display: grid;
+    place-items: center;
+    z-index: 1600
+}
+
+.about-lightbox::backdrop {
+    background: rgba(0, 0, 0, .65);
+    backdrop-filter: blur(2px)
+}
+
+.about-lightbox .lightbox-img {
+    max-width: 96%;
+    max-height: 86vh;
+    border-radius: 14px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, .4)
+}
+
+.about-lightbox .lightbox-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1;
+    background: rgba(0, 0, 0, .45);
+    border-radius: 10px;
+    padding: .4rem .6rem;
+    border: 1px solid rgba(255, 255, 255, .25)
+}
+
+/* Shloka card */
+.shloka-card {
+    margin: 0 0 1rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--edge);
+    border-left: 4px solid var(--accent-2);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .06)
+}
+
+.shloka-card blockquote {
+    margin: 0 0 .4rem;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--ink)
+}
+
+.shloka-card figcaption {
+    font-size: .98rem
+}

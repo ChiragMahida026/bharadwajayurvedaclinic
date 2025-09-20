@@ -1,0 +1,131 @@
+/* ===========================================================
+   UTILITIES
+   Helper classes, animations, and accessibility styles
+   =========================================================== */
+
+/* Section titles */
+.section .section-title {
+    font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+    margin: 0 0 1rem;
+    letter-spacing: .2px
+}
+
+.section .section-kicker {
+    color: var(--accent-2);
+    letter-spacing: .4px;
+    margin-bottom: .25rem;
+    font-weight: 600
+}
+
+/* Products grid */
+.grid.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem
+}
+
+.card {
+    border: 1px solid var(--edge);
+    border-radius: 12px;
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .06);
+    transition: transform .3s ease, box-shadow .3s ease
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow)
+}
+
+.card img {
+    transition: transform .3s ease
+}
+
+.card:hover img {
+    transform: scale(1.05)
+}
+
+/* Additional small components */
+.accent-underline {
+    position: relative;
+    display: inline-block
+}
+
+.accent-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    border-radius: 3px
+}
+
+/* Small helper classes */
+.mb-1 {
+    margin-bottom: .5rem
+}
+
+.small-muted {
+    font-size: .95rem;
+    color: var(--muted)
+}
+
+/* Microcopy */
+.microcopy {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+/* Ensure images never overflow cards */
+img,
+picture,
+svg,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Reduce heavy box-shadows for small screens for performance */
+@media (max-width: 720px) {
+
+    .box-shadow,
+    .card,
+    .svc-card,
+    .testimonial-card,
+    .contact-card,
+    .map-card {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+}
+
+/* final safety: ensure elements that used fixed heights can grow */
+.hero-slides img,
+.about-thumb img {
+    min-height: 120px;
+    max-height: none;
+    object-fit: cover;
+}
+
+/* small utility: ensure buttons inside .about-thumb don't receive focus ring weirdness */
+.about-thumb:focus {
+    outline: 3px solid rgba(199, 154, 74, 0.18);
+    outline-offset: 4px;
+}
+
+/* Fix dialog fallback: ensure modal is scrollable on very small screens */
+.svc-modal .modal-card {
+    max-height: calc(100vh - 48px);
+    overflow: auto;
+}
+
+/* Avoid hero images causing layout reflow when they are loading */
+.hero-slides img,
+.hero-slides picture img {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}

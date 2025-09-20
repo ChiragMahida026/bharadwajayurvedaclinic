@@ -1,0 +1,23 @@
+/* ===========================================================
+   MAIN CSS FILE
+   Imports all modular CSS files in correct order
+   =========================================================== */
+
+/* Base styles - variables, typography, and base elements */
+@import url('base.css');
+
+/* Component styles - individual UI components */
+@import url('components/buttons.css');
+@import url('components/header.css');
+@import url('components/hero.css');
+@import url('components/about.css');
+@import url('components/services.css');
+@import url('components/products.css');
+@import url('components/contact.css');
+@import url('components/footer.css');
+
+/* Utilities - helper classes and additional styles */
+@import url('utilities.css');
+
+/* Responsive styles - media queries and breakpoints */
+@import url('responsive.css');
