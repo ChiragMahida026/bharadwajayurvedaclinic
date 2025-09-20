@@ -33,6 +33,12 @@
 
     <!-- Actions -->
     <div class="header-cta">
+      <button class="btn btn-ghost" type="button" id="admin-btn" aria-label="Open admin panel" title="Admin Panel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+        </svg>
+        Admin
+      </button>
       <a class="btn btn-secondary" href="/cart" aria-label="View cart" data-cart-count="<%= typeof cartCount !== 'undefined' ? cartCount : 0 %>">
         Cart <span id="cart-count" class="badge"><%= typeof cartCount !== 'undefined' ? cartCount : 0 %></span>
       </a>
