@@ -554,3 +554,275 @@
     }
   });
 })();
+
+/* ================= Admin Panel Functionality ================= */
+(() => {
+  const adminBtn = document.getElementById('admin-btn');
+  const adminModal = document.getElementById('admin-modal');
+  const loginSection = document.getElementById('admin-login-section');
+  const dashboardSection = document.getElementById('admin-dashboard');
+  const loginForm = document.getElementById('admin-login-form');
+  const productForm = document.getElementById('product-form');
+  const productsList = document.getElementById('admin-products');
+  const loginFeedback = document.getElementById('admin-login-feedback');
+  const logoutBtn = document.getElementById('logout-btn');
+  const cancelEditBtn = document.getElementById('cancel-edit-btn');
+  const saveBtnText = document.getElementById('save-btn-text');
+
+  if (!adminBtn || !adminModal) return;
+
+  let isLoggedIn = false;
+  let editingProductId = null;
+  let products = [];
+
+  // Open admin modal
+  adminBtn.addEventListener('click', () => {
+    adminModal.showModal();
+    if (isLoggedIn) {
+      showDashboard();
+    } else {
+      showLogin();
+    }
+  });
+
+  // Close modal on backdrop click
+  adminModal.addEventListener('click', (e) => {
+    if (e.target === adminModal) {
+      adminModal.close();
+    }
+  });
+
+  // Show login section
+  function showLogin() {
+    loginSection.hidden = false;
+    dashboardSection.hidden = true;
+    loginForm.reset();
+    loginFeedback.textContent = '';
+    setTimeout(() => document.getElementById('admin-username')?.focus(), 100);
+  }
+
+  // Show dashboard section
+  function showDashboard() {
+    loginSection.hidden = true;
+    dashboardSection.hidden = false;
+    loadProducts();
+  }
+
+  // Handle login
+  loginForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(loginForm);
+    const username = formData.get('username');
+    const password = formData.get('password');
+
+    if (!username || !password) {
+      showFeedback('Please enter both username and password', 'error');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await fetch('/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ username, password })
+      });
+
+      if (response.ok) {
+        isLoggedIn = true;
+        showFeedback('Login successful!', 'success');
+        setTimeout(() => showDashboard(), 1000);
+      } else {
+        showFeedback('Invalid credentials. Please try again.', 'error');
+      }
+    } catch (error) {
+      showFeedback('Login failed. Please check your connection.', 'error');
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  // Handle product form submission
+  productForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(productForm);
+    
+    const productData = {
+      name: formData.get('name'),
+      price: formData.get('price'),
+      imageUrl: formData.get('imageUrl'),
+      description: formData.get('description')
+    };
+
+    if (!productData.name || !productData.price || !productData.description) {
+      showFeedback('Please fill in all required fields', 'error');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await fetch('/admin/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(productData)
+      });
+
+      if (response.ok) {
+        showFeedback(editingProductId ? 'Product updated!' : 'Product added!', 'success');
+        resetProductForm();
+        loadProducts();
+      } else {
+        showFeedback('Failed to save product. Please try again.', 'error');
+      }
+    } catch (error) {
+      showFeedback('Failed to save product. Please check your connection.', 'error');
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  // Cancel edit
+  cancelEditBtn?.addEventListener('click', resetProductForm);
+
+  // Handle logout
+  logoutBtn?.addEventListener('click', async () => {
+    try {
+      await fetch('/admin/logout', { method: 'POST' });
+      isLoggedIn = false;
+      showLogin();
+      showFeedback('Logged out successfully', 'success');
+    } catch (error) {
+      showFeedback('Logout failed', 'error');
+    }
+  });
+
+  // Load products
+  async function loadProducts() {
+    try {
+      productsList.innerHTML = '<p class="loading-text">Loading products...</p>';
+      
+      // Since we can't fetch directly from /admin, we'll simulate the product management
+      // In a real implementation, you'd fetch from an API endpoint
+      displayProducts([]);
+    } catch (error) {
+      productsList.innerHTML = '<p class="loading-text">Failed to load products</p>';
+    }
+  }
+
+  // Display products
+  function displayProducts(productList) {
+    if (productList.length === 0) {
+      productsList.innerHTML = '<p class="loading-text">No products found. Add your first product above.</p>';
+      return;
+    }
+
+    productsList.innerHTML = productList.map(product => `
+      <div class="product-item" data-id="${product._id}">
+        <div class="product-info">
+          <div class="product-name">${escapeHtml(product.name)}</div>
+          <div class="product-meta">
+            ₹${product.price} • 
+            <span class="status-badge ${product.active ? 'status-active' : 'status-inactive'}">
+              ${product.active ? 'Active' : 'Hidden'}
+            </span>
+          </div>
+          <div class="product-description">${escapeHtml(product.description || '')}</div>
+        </div>
+        <div class="product-actions">
+          <button class="btn btn-ghost" onclick="editProduct('${product._id}')">Edit</button>
+          <button class="btn btn-ghost" onclick="toggleProduct('${product._id}', ${!product.active})">
+            ${product.active ? 'Hide' : 'Show'}
+          </button>
+          <button class="btn btn-primary" onclick="deleteProduct('${product._id}')">Delete</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Reset product form
+  function resetProductForm() {
+    productForm?.reset();
+    editingProductId = null;
+    saveBtnText.textContent = 'Add Product';
+    cancelEditBtn.hidden = true;
+  }
+
+  // Show feedback messages
+  function showFeedback(message, type = 'info') {
+    if (loginFeedback) {
+      loginFeedback.textContent = message;
+      loginFeedback.className = `small ${type === 'error' ? 'error' : type === 'success' ? 'success' : ''}`;
+      setTimeout(() => {
+        loginFeedback.textContent = '';
+        loginFeedback.className = 'small';
+      }, 5000);
+    }
+  }
+
+  // Set loading state
+  function setLoading(loading) {
+    const submitBtn = loginForm?.querySelector('button[type="submit"]');
+    const saveBtn = productForm?.querySelector('button[type="submit"]');
+    
+    if (submitBtn) {
+      submitBtn.disabled = loading;
+      submitBtn.textContent = loading ? 'Logging in...' : 'Login';
+    }
+    
+    if (saveBtn) {
+      saveBtn.disabled = loading;
+      saveBtnText.textContent = loading ? 'Saving...' : (editingProductId ? 'Update Product' : 'Add Product');
+    }
+  }
+
+  // Utility function to escape HTML
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Global functions for product actions (called from HTML)
+  window.editProduct = function(id) {
+    const product = products.find(p => p._id === id);
+    if (product) {
+      document.getElementById('product-name').value = product.name;
+      document.getElementById('product-price').value = product.price;
+      document.getElementById('product-image').value = product.imageUrl || '';
+      document.getElementById('product-description').value = product.description;
+      editingProductId = id;
+      saveBtnText.textContent = 'Update Product';
+      cancelEditBtn.hidden = false;
+    }
+  };
+
+  window.toggleProduct = async function(id, active) {
+    try {
+      const response = await fetch(`/admin/products/${id}/toggle`, {
+        method: 'POST'
+      });
+      if (response.ok) {
+        loadProducts();
+        showFeedback(`Product ${active ? 'shown' : 'hidden'}`, 'success');
+      }
+    } catch (error) {
+      showFeedback('Failed to update product', 'error');
+    }
+  };
+
+  window.deleteProduct = async function(id) {
+    if (confirm('Are you sure you want to delete this product?')) {
+      try {
+        const response = await fetch(`/admin/products/${id}/delete`, {
+          method: 'POST'
+        });
+        if (response.ok) {
+          loadProducts();
+          showFeedback('Product deleted', 'success');
+        }
+      } catch (error) {
+        showFeedback('Failed to delete product', 'error');
+      }
+    }
+  };
+})();

@@ -17,10 +17,10 @@
 
 <!-- ADMIN -->
 <dialog id="admin-modal" aria-labelledby="admin-title" aria-modal="true">
-  <div class="modal-card" role="document">
+  <form method="dialog" class="modal-card" role="document">
     <header class="modal-head">
       <h3 id="admin-title">Admin Panel</h3>
-      <button aria-label="Close admin" class="icon-btn close-btn">✕</button>
+      <button aria-label="Close admin" value="close" class="icon-btn" type="submit">✕</button>
     </header>
 
     <section id="admin-login-section" class="modal-body" aria-describedby="admin-login-help">
@@ -29,39 +29,64 @@
         Enter your admin credentials to access the panel.
       </p>
 
-      <div id="admin-login" class="stack gap-2" role="form" aria-labelledby="admin-login-title">
-        <h5 id="admin-login-title" class="sr-only">Admin Login Form</h5>
-        <label>Username <input name="username" autocomplete="username" required aria-describedby="username-help" /></label>
+      <form id="admin-login-form" class="stack gap-2" novalidate>
+        <label>Username 
+          <input id="admin-username" name="username" autocomplete="username" required aria-describedby="username-help" />
+        </label>
         <span id="username-help" class="sr-only">Enter your admin username</span>
-        <label>Password <input name="password" type="password" autocomplete="current-password" required aria-describedby="password-help" /></label>
+        
+        <label>Password 
+          <input id="admin-password" name="password" type="password" autocomplete="current-password" required aria-describedby="password-help" />
+        </label>
         <span id="password-help" class="sr-only">Enter your admin password</span>
-        <button class="btn btn-primary" type="button" id="admin-login-btn" aria-describedby="login-feedback">Login</button>
+        
+        <button class="btn btn-primary" type="submit" id="admin-login-btn" aria-describedby="login-feedback">
+          Login
+        </button>
         <p id="admin-login-feedback" class="small" role="status" aria-live="polite"></p>
-      </div>
+      </form>
     </section>
 
     <section id="admin-dashboard" hidden class="modal-body">
-      <h4 class="mb-1">Products</h4>
+      <h4 class="mb-1">Product Management</h4>
 
-      <div id="product-form" class="grid two gap-2" role="form" aria-labelledby="product-form-title">
-        <h5 id="product-form-title" class="sr-only">Add/Edit Product Form</h5>
-        <input type="hidden" name="id" />
-        <label>Name <input name="name" required minlength="2" aria-describedby="name-help" /></label>
-        <span id="name-help" class="sr-only">Enter product name (minimum 2 characters)</span>
-        <label>Price (₹) <input name="price" type="number" min="1" step="1" required aria-describedby="price-help" /></label>
-        <span id="price-help" class="sr-only">Enter product price in rupees (minimum 1)</span>
-        <label class="col-span">Image URL <input name="imageUrl" type="url" inputmode="url" required aria-describedby="image-help" /></label>
-        <span id="image-help" class="sr-only">Enter valid image URL for the product</span>
-        <label class="col-span">Description <textarea name="description" rows="3" required aria-describedby="desc-help"></textarea></label>
-        <span id="desc-help" class="sr-only">Enter product description</span>
-
-        <div class="col-span flex gap-1">
-          <button class="btn btn-primary" type="button" id="save-product-btn">Save Product</button>
-          <button class="btn btn-ghost" type="button" id="reset-product-form">Reset</button>
+      <form id="product-form" class="admin-form" novalidate>
+        <input type="hidden" id="product-id" name="id" />
+        
+        <div class="form-grid">
+          <label>Name 
+            <input id="product-name" name="name" required minlength="2" placeholder="Enter product name" />
+          </label>
+          
+          <label>Price (₹) 
+            <input id="product-price" name="price" type="number" min="1" step="1" required placeholder="Enter price" />
+          </label>
         </div>
-      </div>
+        
+        <label>Image URL 
+          <input id="product-image" name="imageUrl" type="url" placeholder="Enter image URL (optional)" />
+        </label>
+        
+        <label>Description 
+          <textarea id="product-description" name="description" rows="3" required placeholder="Enter product description"></textarea>
+        </label>
 
-      <div id="admin-products" class="grid three gap-2" role="list"></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="save-product-btn">
+            <span id="save-btn-text">Add Product</span>
+          </button>
+          <button class="btn btn-ghost" type="button" id="cancel-edit-btn" hidden>
+            Cancel Edit
+          </button>
+          <button class="btn btn-ghost" type="button" id="logout-btn">
+            Logout
+          </button>
+        </div>
+      </form>
+
+      <div id="admin-products" class="admin-products-list" role="list">
+        <p class="loading-text">Loading products...</p>
+      </div>
     </section>
-  </div>
+  </form>
 </dialog>
