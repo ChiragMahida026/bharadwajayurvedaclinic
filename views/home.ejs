@@ -80,7 +80,15 @@
           <span class="title-main">Bharadwaj <span class="title-accent">Ayurveda</span></span>
           <span class="title-sub">Clinic</span>
         </h1>
-        <p class="sanskrit-compact devanagari" lang="sa">आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्</p>
+        <div class="shloka-wrap" style="position:relative;display:flex;flex-direction:column;gap:.4rem;">
+          <p class="sanskrit-compact devanagari" lang="sa" id="hero-shloka" tabindex="0" aria-describedby="shloka-meaning">धनं मूलं इदं सर्वं स्वास्थ्यं मूलं ततः परम्।<br>
+स्वास्थ्ये सति धनं सर्वं स्वास्थ्ये नास्ति किम् धनम्॥</p>
+          <div id="shloka-meaning" role="tooltip" aria-labelledby="shloka-meaning-title" class="shloka-meaning" aria-hidden="true">
+            <h3 id="shloka-meaning-title" class="sr-only">Shloka Meaning</h3>
+            <p><strong>Meaning:</strong> Wealth comes from many sources, but health is the supreme foundation. When health is present, all prosperity exists; without health, what value is wealth?</p>
+            <p style="margin-top:.5rem;font-size:.75rem;opacity:.7;">Tap outside or press Esc to close.</p>
+          </div>
+        </div>
         <p id="hero-desc" class="description-compact">Led by <strong class="doctor-highlight">Dr. Jayveersinh J. Mahida</strong>, we offer personalised treatments that blend classical wisdom with modern guidance.</p>
         <div class="cta-compact" role="group" aria-label="Primary actions">
           <a href="#contact" class="btn-compact btn-primary-compact">Book Appointment</a>
@@ -647,11 +655,109 @@ document.addEventListener('DOMContentLoaded', () => {
           const data = await res.json();
           if(!res.ok) throw new Error(data.message||'Failed');
           btn.textContent = 'Added!';
+          // Emit global event so floating cart (and anything else) updates consistently
+          const count = typeof data.count !== 'undefined' ? data.count : (data.cart && data.cart.count) || data.totalItems || null;
+          const detail = { id, qty:1 };
+          if(count !== null) detail.count = count;
+          document.dispatchEvent(new CustomEvent('cart:add', { detail }));
           setTimeout(()=>{ btn.textContent = prev; btn.disabled = false; },800);
         }catch(e){ console.error(e); btn.textContent = 'Try again'; setTimeout(()=>{ btn.textContent = prev; btn.disabled = false; },1200); }
       });
     });
   }());
+
+  // Shloka meaning hover/focus (no info button) with viewport-aware positioning
+  (function(){
+    const shloka = document.getElementById('hero-shloka');
+    const panel = document.getElementById('shloka-meaning');
+    const wrap = shloka && shloka.closest('.shloka-wrap');
+    if(!shloka || !panel || !wrap) return;
+
+    function isMobile(){ return window.innerWidth <= 680; }
+
+    function positionPanel(){
+      panel.classList.remove('below','left');
+      if(isMobile()) {
+        panel.style.left = '';
+        panel.style.top = '';
+        return;
+      }
+      const wrapRect = wrap.getBoundingClientRect();
+      // Try right first
+      panel.style.left = (wrapRect.width + 8) + 'px';
+      panel.style.top = '0px';
+      let pr = panel.getBoundingClientRect();
+      const spaceRight = window.innerWidth - (wrapRect.left + wrapRect.width);
+      if(spaceRight < pr.width + 16){
+        // Try left side
+        const spaceLeft = wrapRect.left;
+        if(spaceLeft >= pr.width + 16){
+          panel.classList.add('left');
+          panel.style.left = -(pr.width + 8) + 'px';
+          panel.style.top = '0px';
+        } else {
+          // Place below
+          panel.classList.add('below');
+          panel.style.left = '0px';
+          panel.style.top = (wrapRect.height + 8) + 'px';
+        }
+      }
+      pr = panel.getBoundingClientRect();
+      // Horizontal clamp if still overflowing
+      if(pr.right > window.innerWidth - 8){
+        const shift = pr.right - (window.innerWidth - 8);
+        panel.style.left = (parseFloat(panel.style.left)||0) - shift + 'px';
+      }
+      if(pr.left < 8){
+        panel.style.left = (parseFloat(panel.style.left)||0) + (8 - pr.left) + 'px';
+      }
+      // Vertical clamping (for tall tooltips)
+      pr = panel.getBoundingClientRect();
+      let top = parseFloat(panel.style.top)||0;
+      const maxVisible = window.innerHeight - 12; // bottom margin
+      if(pr.bottom > maxVisible){
+        const delta = pr.bottom - maxVisible;
+        panel.style.top = (top - delta) + 'px';
+      }
+      pr = panel.getBoundingClientRect();
+      if(pr.top < 8){
+        panel.style.top = ( (parseFloat(panel.style.top)||0) + (8 - pr.top) ) + 'px';
+      }
+    }
+
+    function openPanel(){
+      if(panel.getAttribute('aria-hidden')==='false') return;
+      panel.setAttribute('aria-hidden','false');
+      positionPanel();
+      document.addEventListener('keydown', escHandler);
+    }
+    function closePanel(){
+      if(panel.getAttribute('aria-hidden')==='true') return;
+      panel.setAttribute('aria-hidden','true');
+      document.removeEventListener('keydown', escHandler);
+    }
+    function escHandler(e){ if(e.key === 'Escape'){ closePanel(); shloka.focus(); } }
+
+    // Hover interactions
+    wrap.addEventListener('mouseenter', ()=>{ openPanel(); });
+    wrap.addEventListener('mouseleave', ()=>{ closePanel(); });
+
+    // Focus (keyboard) accessibility
+    shloka.addEventListener('focus', ()=>{ openPanel(); });
+    shloka.addEventListener('blur', ()=>{ // delay so focus moving into panel can be detected if panel focusable later
+      setTimeout(()=>{ if(!wrap.contains(document.activeElement)) closePanel(); }, 120);
+    });
+
+    // Touch: single tap to toggle on mobile
+    shloka.addEventListener('click', ()=>{
+      if(!isMobile()) return; // mobile only
+      if(panel.getAttribute('aria-hidden')==='true') openPanel(); else closePanel();
+    });
+
+    // Reposition on resize / scroll if open
+    window.addEventListener('resize', ()=>{ if(panel.getAttribute('aria-hidden')==='false') positionPanel(); });
+    window.addEventListener('scroll', ()=>{ if(panel.getAttribute('aria-hidden')==='false') positionPanel(); }, { passive:true });
+  })();
 
   (function(){
     const carousel = document.querySelector('.half-circle-slideshow');

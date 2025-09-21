@@ -1,19 +1,43 @@
 :root {
+    /* Core brand palette */
     --gold: #d4a574;
+    /* primary warm accent */
+    --gold-soft: #e2b98f;
+    --gold-deep: #b88345;
     --forest: #2d4a2d;
+    /* primary deep green */
+    --forest-alt: #254024;
+    --forest-soft: #3c5d3c;
+    --leaf: #4e7c55;
+    --leaf-soft: #6d8f6e;
+    --rose: #c9826a;
+    --sand: #f4ede4;
     --cream: #fbf8f5;
+    --linen: #f9f4ef;
+    --paper: #fdfcf9;
     --muted: #6d8a6f;
+    --ink: #142a18;
+    /* Surfaces & shadows */
     --panel-border: rgba(45, 74, 45, 0.06);
     --panel-bg: rgba(255, 255, 255, 0.55);
-    --panel-bg-strong: rgba(255, 255, 255, 0.86);
-    --shadow-strong: rgba(45, 74, 45, 0.24);
-    --shadow-soft: rgba(0, 0, 0, 0.12);
-    --hero-ring: rgba(212, 165, 116, 0.45);
-    --hero-ring-soft: rgba(212, 165, 116, 0.12);
+    --panel-bg-strong: rgba(255, 255, 255, 0.9);
+    --shadow-strong: rgba(34, 52, 34, 0.28);
+    --shadow-soft: rgba(0, 0, 0, 0.10);
+    /* Halo / rings */
+    --hero-ring: rgba(212, 165, 116, 0.42);
+    --hero-ring-soft: rgba(212, 165, 116, 0.10);
     --hero-halo-green: rgba(72, 110, 80, 0.30);
-    --hero-halo-gold: rgba(212, 165, 116, 0.30);
+    --hero-halo-gold: rgba(212, 165, 116, 0.28);
+    /* Motion scales */
     --hero-motion-scale: 1.08;
     --hero-motion-scale-hover: 1.12;
+    /* Gradients tokens */
+    --grad-warm: linear-gradient(145deg, var(--paper) 0%, var(--linen) 52%, var(--sand) 100%);
+    --grad-card: linear-gradient(160deg, rgba(255, 255, 255, .96) 0%, #fff 55%, var(--linen) 100%);
+    --grad-btn-primary: linear-gradient(180deg, var(--forest) 0%, var(--forest-alt) 90%);
+    --grad-btn-primary-hover: linear-gradient(175deg, var(--forest-alt) 0%, var(--leaf) 95%);
+    --grad-btn-secondary: linear-gradient(180deg, #ffffff 0%, #faf8f4 92%);
+    --focus-ring: 0 0 0 3px rgba(212, 165, 116, .45), 0 0 0 6px rgba(212, 165, 116, .15);
     /* Slideshow sizing vars */
     --slideshow-min-w: 380px;
     --slideshow-ideal-w: 42vw;
@@ -363,9 +387,9 @@ body {
     padding: 2.8rem 3rem 3.2rem 2.6rem;
     position: relative;
     background:
-        radial-gradient(circle at 60% 38%, rgba(212, 165, 116, 0.12), transparent 58%),
-        radial-gradient(circle at 32% 70%, rgba(45, 74, 45, 0.06), transparent 64%),
-        linear-gradient(155deg, #fbf8f5 0%, #fdfcf9 58%, #f9f5ef 100%);
+        radial-gradient(circle at 62% 40%, rgba(212, 165, 116, 0.10) 0%, rgba(212, 165, 116, 0) 60%),
+        radial-gradient(circle at 28% 74%, rgba(72, 110, 80, 0.08) 0%, rgba(72, 110, 80, 0) 66%),
+        linear-gradient(140deg, var(--paper) 0%, var(--linen) 52%, var(--sand) 100%);
     overflow: hidden;
 }
 
@@ -1092,22 +1116,27 @@ body {
 }
 
 .btn-primary-compact {
-    background: var(--forest);
-    color: #fff
+    background: var(--grad-btn-primary);
+    color: #fff;
+    box-shadow: 0 4px 10px -2px rgba(34, 52, 34, .35), 0 8px 18px -6px rgba(34, 52, 34, .25);
+    border: 1px solid rgba(255, 255, 255, .08);
 }
 
 .btn-primary-compact:hover {
-    background: #356033
+    background: var(--grad-btn-primary-hover);
+    box-shadow: 0 6px 16px -3px rgba(34, 52, 34, .38), 0 14px 30px -10px rgba(34, 52, 34, .28);
 }
 
 .btn-secondary-compact {
-    background: #fff;
+    background: var(--grad-btn-secondary);
     color: var(--forest);
-    border: 1px solid rgba(45, 74, 45, .1)
+    border: 1px solid rgba(45, 74, 45, .12);
+    box-shadow: 0 2px 6px rgba(45, 74, 45, .08);
 }
 
 .btn-secondary-compact:hover {
-    background: rgba(45, 74, 45, .05)
+    background: linear-gradient(180deg, #fff 0%, #f4f1ec 95%);
+    box-shadow: 0 4px 12px rgba(45, 74, 45, .12);
 }
 
 /* Animations */
