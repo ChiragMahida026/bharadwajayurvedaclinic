@@ -474,85 +474,57 @@
   <div id="product-scrim" class="modal-scrim" hidden></div>
 </dialog>
 
-<section id="contact" class="section" aria-labelledby="contact-title">
+<section id="contact" class="section contact-slim-wrapper" aria-labelledby="contact-title">
   <div class="container">
     <p class="section-kicker devanagari" aria-hidden="true">सम्पर्क</p>
     <h2 id="contact-title" class="section-title">Contact Us</h2>
-    <div class="contact-wrap">
-      <div class="contact-card" itemscope itemtype="https://schema.org/LocalBusiness">
-        <meta itemprop="name" content="Bharadwaj Ayurveda Clinic" />
-        <meta itemprop="description" content="Traditional Ayurvedic healthcare clinic specializing in Panchakarma therapy, herbal medicines, and holistic wellness treatments" />
-        <meta itemprop="url" content="https://bharadwajayurveda.com" />
-        <meta itemprop="telephone" content="+91-7990625845" />
-        <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-          <meta itemprop="streetAddress" content="106, Raghuvir Symphony Shoppers, Althan Canal Road, Althan" />
-          <meta itemprop="addressLocality" content="Surat" />
-          <meta itemprop="addressRegion" content="Gujarat" />
-          <meta itemprop="postalCode" content="395007" />
-          <meta itemprop="addressCountry" content="IN" />
-        </div>
-        <div itemprop="openingHours" content="Mo-Sa 09:00-13:00,16:00-20:00"></div>
-        <meta itemprop="priceRange" content="₹₹" />
+  <div class="contact-slim-card" itemscope itemtype="https://schema.org/LocalBusiness">
+      <meta itemprop="name" content="Bharadwaj Ayurveda Clinic" />
+      <meta itemprop="description" content="Traditional Ayurvedic healthcare clinic specializing in Panchakarma therapy, herbal medicines, and holistic wellness treatments" />
+      <meta itemprop="url" content="https://bharadwajayurveda.com" />
+      <meta itemprop="telephone" content="+91-7990625845" />
+      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" class="sr-only">
+        <meta itemprop="streetAddress" content="106, Raghuvir Symphony Shoppers, Althan Canal Road, Althan" />
+        <meta itemprop="addressLocality" content="Surat" />
+        <meta itemprop="addressRegion" content="Gujarat" />
+        <meta itemprop="postalCode" content="395007" />
+        <meta itemprop="addressCountry" content="IN" />
+      </div>
+      <div itemprop="openingHours" content="Mo-Sa 09:00-13:00,16:00-20:00" class="sr-only"></div>
+      <meta itemprop="priceRange" content="₹₹" />
+      <div class="contact-slim-info" aria-label="Contact information">
         <h3>Get In Touch</h3>
-        <ul class="contact-list">
-          <li><strong>Phone:</strong> <a href="tel:+917990625845" itemprop="telephone">079906 25845</a></li>
-          <li><strong>WhatsApp:</strong> <a href="https://wa.me/7990625845" target="_blank" rel="noopener">wa.me/7990625845</a></li>
-          <li><strong>Location:</strong> <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="streetAddress">106, Raghuvir Symphony Shoppers, Althan Canal Road, Althan</span>, <span itemprop="addressLocality">Surat</span>, <span itemprop="addressRegion">Gujarat</span> – <span itemprop="postalCode">395007</span></span></li>
-          <li><strong>Hours:</strong> <time itemprop="openingHours" datetime="Mo-Sa 09:00-13:00,16:00-20:00">Mon–Sat 09:00–13:00 &amp; 16:00–20:00</time> · Sun Closed</li>
-        </ul>
-        <hr class="section-divider">
-        <form id="contact-form" class="contact-form" novalidate role="form" aria-labelledby="contact-heading">
-          <div class="form-group">
+        <div class="info-item"><span class="info-icon" aria-hidden="true">📞</span><div><strong>Phone</strong><br><a href="tel:+917990625845">079906 25845</a></div></div>
+        <div class="info-item"><span class="info-icon" aria-hidden="true">💬</span><div><strong>WhatsApp</strong><br><a href="https://wa.me/7990625845" target="_blank" rel="noopener">Chat instantly</a></div></div>
+        <div class="info-item"><span class="info-icon" aria-hidden="true">📍</span><div><strong>Location</strong><br>106, Raghuvir Symphony Shoppers, Althan Canal Road, Althan, Surat</div></div>
+        <div class="info-item"><span class="info-icon" aria-hidden="true">⏰</span><div><strong>Hours</strong><br>Mon–Sat 09:00–13:00 &amp; 16:00–20:00 · Sun Closed</div></div>
+        <div class="slim-map" aria-label="Clinic map">
+          <iframe title="Bharadwaj Ayurveda Clinic map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.852308560548!2d72.85595!3d21.19800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e85d720271f09%3A0xe2666e904d89f7c3!2sBharadwaj%20Ayurveda%20Clinic!5e0!3m2!1sen!2sin!4v1700001111111!5m2!1sen!2sin" allowfullscreen></iframe>
+        </div>
+      </div>
+  <form id="contact-form" class="contact-slim-form aligned" novalidate role="form" aria-labelledby="contact-title">
+        <div class="inline-two">
+          <div class="form-group name-group">
             <label for="cname">Full Name</label>
             <input id="cname" type="text" name="name" required minlength="2" aria-describedby="name-error" aria-required="true" />
             <span id="name-error" class="error-message" role="alert" aria-live="polite"></span>
           </div>
-          <div class="form-group">
+          <div class="form-group email-group">
             <label for="cemail">Email</label>
             <input id="cemail" type="email" name="email" required aria-describedby="email-error" aria-required="true" />
             <span id="email-error" class="error-message" role="alert" aria-live="polite"></span>
           </div>
-          <div class="form-group">
-            <label for="cphone">Phone</label>
-            <input id="cphone" type="tel" name="phone" aria-describedby="phone-error" />
-            <span id="phone-error" class="error-message" role="alert" aria-live="polite"></span>
-          </div>
-          <div class="form-group">
-            <label for="cmsg">Message</label>
-            <textarea id="cmsg" name="message" rows="4" required minlength="10" aria-describedby="message-error" aria-required="true"></textarea>
-            <span id="message-error" class="error-message" role="alert" aria-live="polite"></span>
-          </div>
-          <div class="form-actions">
-            <button class="btn btn-primary" type="submit" aria-describedby="contact-feedback">Send Message</button>
-            <span id="contact-feedback" class="small" role="status" aria-live="polite"></span>
-          </div>
-        </form>
-      </div>
-
-     <div class="map-card">
-        <div id="map-container" class="map-placeholder" role="img" aria-label="Interactive map showing Bharadwaj Ayurveda Clinic location in Surat, Gujarat">
-          <div class="map-placeholder-content">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            <p>Click to load map</p>
-            <button id="load-map-btn" class="btn btn-secondary" type="button">Load Interactive Map</button>
-          </div>
         </div>
-        <iframe
-          id="google-map"
-          title="Bharadwaj Ayurveda Clinic — location"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.852308560548!2d72.85574831505074!3d21.198006585908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f1b1b1b1b1b%3A0x1b1b1b1b1b1b1b1b!2sBharadwaj%20Ayurveda!5e0!3m2!1sen!2sin!4v1695281234567!5m2!1sen!2sin"
-          width="100%"
-          height="100%"
-          class="map-iframe hidden"
-          allowfullscreen=""
-          aria-hidden="true"
-        ></iframe>
-      </div>
+        <div class="form-group message-group">
+          <label for="cmsg">Message</label>
+          <textarea id="cmsg" name="message" rows="5" required minlength="10" aria-describedby="message-error" aria-required="true"></textarea>
+          <span id="message-error" class="error-message" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" aria-describedby="contact-feedback">Send Message</button>
+          <span id="contact-feedback" class="small" role="status" aria-live="polite"></span>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -580,18 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dlg.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeDlg(); });
   }());
 
-  (function(){
-    const loadMapBtn=document.getElementById('load-map-btn');
-    const mapContainer=document.getElementById('map-container');
-    const googleMap=document.getElementById('google-map');
-    if(!loadMapBtn||!googleMap) return;
-    loadMapBtn.addEventListener('click',()=>{
-      googleMap.style.display='block';
-      mapContainer.style.display='none';
-      googleMap.setAttribute('aria-hidden','false');
-      try{ googleMap.focus(); }catch(_){}
-    });
-  }());
+  // Map now auto-loads; lazy-load handler removed.
 
   (function(){
     const form=document.getElementById('contact-form'); if(!form) return;
