@@ -5,14 +5,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Bharadwaj Ayurveda</title>
-  <!-- Corrected hero stylesheet path (served from public/css/components) -->
   <link rel="stylesheet" href="/css/components/hero.css">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Use CDN for animate.css to avoid /node_modules 404 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-b7nG6VnEOD9oTiFqouBZhOiabuX41sJLdnOjFkWDXLI4YAlnXrhIRbkIuWGHNirMRHrvRkNvMZ1HfC0R1QmT1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Basic favicon placeholders to suppress 404s (replace with real icons later) -->
   <link rel="icon" type="image/png" href="/assets/favicon.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <style>
+    /* sr-only helper */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
 </head>
 <body>
 
@@ -22,85 +23,55 @@
   Comments explain the changes and accessibility improvements.
 -->
 <section id="home" class="hero-split hero" aria-label="Bharadwaj Ayurveda — Hero">
-  <!-- Floating decorative elements remain (same as before) -->
   <div class="hero-floating-elements" aria-hidden="true">
     <div class="floating-leaf leaf-1">🌿</div>
     <div class="floating-leaf leaf-2">🍃</div>
     <div class="floating-leaf leaf-3">🌿</div>
   </div>
 
-  <!-- LEFT: slideshow column (unchanged structure, kept for context) -->
   <div class="hero-left">
-    <div class="half-circle-slideshow" aria-roledescription="carousel" aria-label="Image slideshow" data-autoplay="true" data-interval="4500" tabindex="0">
+    <div class="half-circle-slideshow freeform-enabled" aria-roledescription="carousel" aria-label="Image slideshow" data-autoplay="true" data-interval="4500" tabindex="0">
       <div class="half-circle-wrapper">
-        <div class="slide-track" role="list">
-          <div class="slide active" role="listitem" aria-hidden="false">
-            <img src="/assets/1st.png" alt="Traditional Ayurvedic herbs and spices on banana leaf" class="slide-image" loading="lazy" width="1200" height="800">
-          </div>
-          <div class="slide" role="listitem" aria-hidden="true">
-            <img src="/assets/2nd.png" alt="Dr. Jayveersinh J. Mahida — Ayurvedic consultation" class="slide-image" loading="lazy" width="1200" height="800">
-          </div>
-          <div class="slide" role="listitem" aria-hidden="true">
-            <img src="/assets/3rd.png" alt="Natural ayurvedic treatment methods" class="slide-image" loading="lazy" width="1200" height="800">
-          </div>
-          <div class="slide" role="listitem" aria-hidden="true">
-            <img src="/assets/jayveer01.JPG" alt="Personalized Ayurvedic care with the practitioner" class="slide-image" loading="lazy" width="1200" height="800">
+        <div class="freeform-clip" role="presentation" aria-hidden="false">
+          <div class="slide-track" role="list">
+            <div class="slide active" role="listitem" aria-hidden="false">
+              <img src="/assets/1st.png" alt="Traditional Ayurvedic herbs and spices" class="slide-image" loading="lazy" width="1200" height="800">
+            </div>
+            <div class="slide" role="listitem" aria-hidden="true">
+              <img src="/assets/2nd.png" alt="Consultation" class="slide-image" loading="lazy" width="1200" height="800">
+            </div>
+            <div class="slide" role="listitem" aria-hidden="true">
+              <img src="/assets/3rd.png" alt="Treatment methods" class="slide-image" loading="lazy" width="1200" height="800">
+            </div>
+            <div class="slide" role="listitem" aria-hidden="true">
+              <img src="/assets/jayveer01.JPG" alt="Practitioner" class="slide-image" loading="lazy" width="1200" height="800">
+            </div>
           </div>
         </div>
 
-        <!-- decorative border layer inside slideshow wrapper -->
-        <div class="half-circle-border" aria-hidden="true"></div>
+        <img src="/assets/freeform-border-clean.png" alt="" aria-hidden="true" class="freeform-border">
       </div>
 
-      <!-- announcement region for screen readers -->
       <div class="sr-only" aria-live="polite" id="slideshow-status">Slide 1 of 4</div>
     </div>
   </div>
 
-  <!-- RIGHT: improved card column (this is the part we updated heavily) -->
   <div class="hero-right">
-    <!-- hero-right-inner now provides layered decoration behind the card -->
     <div class="hero-right-inner" style="position:relative;width:100%;height:100%;min-height:400px;display:flex;align-items:center;justify-content:center;">
-
-      <!-- keyboard / screen-reader friendly hero card:
-           - role=region with aria-labelledby and aria-describedby for clarity
-           - reveal class kept for your reveal JS (if you use it)
-           - badge remains aria-hidden because it's decorative
-      -->
-      <article
-        class="hero-card compact-card reveal"
-        role="region"
-        aria-labelledby="hero-title"
-        aria-describedby="hero-desc"
-        tabindex="0"
-      >
-        <!-- decorative badge — visually prominent but aria-hidden -->
+      <article class="hero-card compact-card reveal" role="region" aria-labelledby="hero-title" aria-describedby="hero-desc" tabindex="0">
         <span class="compact-badge" aria-hidden="true">Authentic Ayurveda</span>
-
-        <!-- title block -->
         <h1 id="hero-title" class="hero-title-compact">
           <span class="title-main">Bharadwaj <span class="title-accent">Ayurveda</span></span>
           <span class="title-sub">Clinic</span>
         </h1>
-
-        <!-- Sanskrit phrase with light pill styling -->
-        <p class="sanskrit-compact devanagari" lang="sa" aria-hidden="false">आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्</p>
-
-        <!-- description with explicit id referenced by aria-describedby above -->
-        <p id="hero-desc" class="description-compact">
-          Led by <strong class="doctor-highlight">Dr. Jayveersinh J. Mahida</strong>, we offer personalised treatments that blend classical wisdom with modern guidance.
-        </p>
-
-        <!-- CTA buttons group -->
+        <p class="sanskrit-compact devanagari" lang="sa">आरोग्यं परमं भाग्यं स्वास्थ्यं सर्वार्थसाधनम्</p>
+        <p id="hero-desc" class="description-compact">Led by <strong class="doctor-highlight">Dr. Jayveersinh J. Mahida</strong>, we offer personalised treatments that blend classical wisdom with modern guidance.</p>
         <div class="cta-compact" role="group" aria-label="Primary actions">
           <a href="#contact" class="btn-compact btn-primary-compact">Book Appointment</a>
           <a href="#products" class="btn-compact btn-secondary-compact">View Products</a>
         </div>
-
-        <!-- contact line -->
         <p class="small muted" style="margin:0.5rem 0 0">Call / WhatsApp: <a href="tel:+917990625845">07990 625845</a></p>
       </article>
-
     </div>
   </div>
 </section>
@@ -669,38 +640,48 @@ document.addEventListener('DOMContentLoaded', () => {
   (function(){
     const carousel = document.querySelector('.half-circle-slideshow');
     if(!carousel) return;
-  const track = carousel.querySelector('.slide-track');
-  const slides = Array.from(track.querySelectorAll('.slide'));
+    const track = carousel.querySelector('.slide-track');
+    const slides = Array.from(track.querySelectorAll('.slide'));
     const status = document.getElementById('slideshow-status');
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce').matches;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let index = 0;
     let timer = null;
     const interval = parseInt(carousel.dataset.interval,10) || 4500;
     const autoplay = carousel.dataset.autoplay === 'true' && !prefersReduced;
 
     function applyActive(i){
-        index = (i + slides.length) % slides.length;
-        slides.forEach((s,idx)=>{ const active = idx===index; s.classList.toggle('active',active); s.setAttribute('aria-hidden',!active); });
-        if(status) status.textContent = `Slide ${index+1} of ${slides.length}`;
-      }
+      index = (i + slides.length) % slides.length;
+      slides.forEach((s,idx)=>{
+        const active = idx === index;
+        s.classList.toggle('active', active);
+        s.setAttribute('aria-hidden', !active);
+      });
+      if(status) status.textContent = `Slide ${index+1} of ${slides.length}`;
+    }
 
     function setSlide(i, fromUser=false){
       if(!fromUser) clearInterval(timer);
       applyActive(i);
       if(autoplay && !fromUser) restartTimer();
     }
-    function next(){ setSlide(index+1,true); }
+
     function restartTimer(){
-        if(!autoplay) return;
-        clearInterval(timer);
-        timer = setInterval(()=>{ setSlide(index+1,true); }, interval);
-      }
+      if(!autoplay) return;
+      clearInterval(timer);
+      timer = setInterval(()=> setSlide(index+1), interval);
+    }
 
-    carousel.addEventListener('keydown',(e)=>{ if(e.key==='ArrowRight'){ clearInterval(timer); setSlide(index+1); } if(e.key==='ArrowLeft'){ clearInterval(timer); setSlide(index-1); } });
+    carousel.addEventListener('keydown', (e)=>{
+      if(e.key === 'ArrowRight'){ setSlide(index+1, true); }
+      if(e.key === 'ArrowLeft'){ setSlide(index-1, true); }
+    });
 
-    document.addEventListener('visibilitychange',()=>{ if(document.hidden) clearInterval(timer); else if(autoplay) restartTimer(); });
+    document.addEventListener('visibilitychange', ()=>{
+      if(document.hidden) clearInterval(timer); else if(autoplay) restartTimer();
+    });
 
-    applyActive(0); if(autoplay) restartTimer();
+    applyActive(0);
+    if(autoplay) restartTimer();
   }());
 
   (function(){
