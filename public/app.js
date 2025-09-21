@@ -404,7 +404,7 @@
   const progressBar = document.querySelector('.slideshow-progress-bar');
   const progressBarContainer = progressBar ? progressBar.parentElement : null;
 
-  if (!slides.length || !navDots.length) return;
+  if (!slides.length) return; // allow running without nav dots
 
   let currentSlide = 0;
   let isAutoPlaying = true;
@@ -422,15 +422,22 @@
   // Update slide and progress
   const updateSlide = (index, animate = true) => {
     // Remove active from all slides and dots
-    slides.forEach(slide => slide.classList.remove('active'));
-    navDots.forEach(dot => dot.classList.remove('active'));
+    slides.forEach(slide => {
+      if (slide.classList.contains('active')) {
+        slide.classList.remove('active');
+        slide.classList.add('leaving');
+        // remove leaving after transition ends
+        setTimeout(() => slide.classList.remove('leaving'), 900);
+      }
+    });
+    if (navDots.length) navDots.forEach(dot => dot.classList.remove('active'));
 
     // Add active to current slide and dot
     const target = slides[index];
     // force reflow to restart CSS transitions if slide reused
     void target.offsetWidth;
     target.classList.add('active');
-    navDots[index].classList.add('active');
+    if (navDots.length) navDots[index].classList.add('active');
 
     currentSlide = index;
 
@@ -489,17 +496,16 @@
   };
 
   // Navigation dot click handlers
-  navDots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      if (index !== currentSlide) {
-        updateSlide(index);
-        // Restart auto play from new position
-        if (isAutoPlaying) {
-          startAutoPlay();
+  if (navDots.length) {
+    navDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        if (index !== currentSlide) {
+          updateSlide(index);
+          if (isAutoPlaying) startAutoPlay();
         }
-      }
+      });
     });
-  });
+  }
 
   // Pause on hover
   const slideshowContainer = document.querySelector('.half-circle-slideshow');

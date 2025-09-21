@@ -75,9 +75,9 @@
         radial-gradient(ellipse at 80% 10%, rgba(212, 165, 116, 0.08), transparent 60%),
         linear-gradient(175deg, var(--card-bg-1) 0%, var(--card-bg-2) 65%, var(--card-bg-3) 100%);
     border-radius: var(--card-radius);
-    padding: 2.2rem 2.15rem 2rem;
+    padding: 2rem 2rem 1.85rem;
     width: 100%;
-    max-width: 520px;
+    max-width: 500px;
     box-shadow: var(--card-shadow-a), var(--card-shadow-b), var(--card-shadow-c);
     border: 1px solid var(--card-border);
     display: flex;
