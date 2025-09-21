@@ -423,7 +423,10 @@
     navDots.forEach(dot => dot.classList.remove('active'));
 
     // Add active to current slide and dot
-    slides[index].classList.add('active');
+    const target = slides[index];
+    // force reflow to restart CSS transitions if slide reused
+    void target.offsetWidth;
+    target.classList.add('active');
     navDots[index].classList.add('active');
 
     currentSlide = index;

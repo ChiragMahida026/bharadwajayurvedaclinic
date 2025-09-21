@@ -34,6 +34,77 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+/* Emoji decorative layer */
+.hero-emoji-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.hero-emoji {
+    position: absolute;
+    font-size: 1.35rem;
+    opacity: 0;
+    animation: emojiFloat 12s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .18));
+}
+
+.hero-emoji.e1 {
+    top: 14%;
+    left: 58%;
+    animation-delay: .4s;
+}
+
+.hero-emoji.e2 {
+    top: 54%;
+    left: 16%;
+    animation-delay: 1.2s;
+}
+
+.hero-emoji.e3 {
+    top: 72%;
+    left: 68%;
+    animation-delay: 2.1s;
+}
+
+.hero-emoji.e4 {
+    top: 32%;
+    left: 82%;
+    animation-delay: 3s;
+    font-size: 1.15rem;
+}
+
+@keyframes emojiFloat {
+    0% {
+        transform: translateY(12px) scale(.85) rotate(-8deg);
+        opacity: 0;
+    }
+
+    8% {
+        opacity: .55;
+    }
+
+    40% {
+        transform: translateY(-18px) scale(1) rotate(6deg);
+        opacity: .8;
+    }
+
+    70% {
+        transform: translateY(-8px) scale(.95) rotate(-4deg);
+        opacity: .6;
+    }
+
+    92% {
+        opacity: .05;
+    }
+
+    100% {
+        transform: translateY(14px) scale(.85) rotate(-8deg);
+        opacity: 0;
+    }
+}
+
 /* Floating decorative elements */
 .hero-floating-elements {
     position: absolute;
@@ -295,11 +366,13 @@ body {
 
 .freeform-clip .slide {
     opacity: 0;
-    transition: opacity .6s ease;
+    transform: scale(1.035) translateY(10px);
+    transition: opacity .7s ease, transform 1.2s cubic-bezier(.22, 1, .36, 1);
 }
 
 .freeform-clip .slide.active {
     opacity: 1;
+    transform: scale(1) translateY(0);
 }
 
 .freeform-clip .slide-image {
@@ -356,36 +429,56 @@ body {
 .hero-card.compact-card {
     position: relative;
     z-index: 20;
-    backdrop-filter: blur(14px) saturate(180%);
-    -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
-    border-radius: 12px;
-    border: 1px solid rgba(209, 213, 219, 0.3);
-    box-shadow: 0 8px 32px var(--shadow-strong), 0 22px 48px var(--shadow-soft);
-    opacity: .92;
-    padding: 2.4rem;
+    backdrop-filter: blur(16px) saturate(190%);
+    -webkit-backdrop-filter: blur(16px) saturate(190%);
+    background: linear-gradient(145deg, rgba(255, 255, 255, .94) 0%, #fff 60%, #fdfaf6 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(209, 213, 219, .38);
+    box-shadow: 0 10px 38px var(--shadow-strong), 0 22px 50px var(--shadow-soft);
+    opacity: .98;
+    padding: 2.6rem 2.5rem 2.4rem;
     width: 100%;
-    max-width: 580px;
-    min-height: 340px;
+    max-width: 600px;
+    min-height: 360px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    transition: transform .3s, box-shadow .3s;
+    transition: transform .45s cubic-bezier(.22, 1, .36, 1), box-shadow .45s, background .6s;
+    overflow: hidden;
 }
 
-.hero-card.compact-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 40px var(--shadow-strong), 0 24px 52px var(--shadow-soft)
+.hero-card.compact-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 28% 22%, rgba(212, 165, 116, .18), transparent 72%);
+    opacity: 0;
+    transition: opacity .6s;
+    pointer-events: none;
 }
 
 .hero-card.compact-card::after {
-    content: "🕉️";
+    content: "";
     position: absolute;
-    top: 16px;
-    right: 20px;
-    font-size: 1.3rem;
-    opacity: .08;
-    pointer-events: none
+    inset: 0;
+    background: linear-gradient(160deg, rgba(255, 255, 255, .0) 0%, rgba(255, 255, 255, .42) 100%);
+    mix-blend-mode: overlay;
+    opacity: .26;
+    pointer-events: none;
+}
+
+.hero-card.compact-card:hover {
+    transform: translateY(-8px) scale(1.018);
+    box-shadow: 0 16px 54px -6px rgba(45, 74, 45, .32), 0 30px 70px -14px rgba(0, 0, 0, .22);
+}
+
+.hero-card.compact-card:hover::before {
+    opacity: .55;
+}
+
+.hero-card.compact-card .btn-compact:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
 }
 
 /* Typography */
@@ -648,6 +741,11 @@ body {
     }
 
     .hero-right-inner::before {
+        display: none;
+    }
+
+    .hero-emoji {
+        animation: none !important;
         display: none;
     }
 }
