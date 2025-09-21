@@ -401,16 +401,13 @@
   const slides = document.querySelectorAll('.slide');
   const navDots = document.querySelectorAll('.nav-dot');
   const progressRing = document.querySelector('.progress-ring-progress');
-  const progressBar = document.querySelector('.slideshow-progress-bar');
-  const progressBarContainer = progressBar ? progressBar.parentElement : null;
 
   if (!slides.length) return; // allow running without nav dots
 
   let currentSlide = 0;
   let isAutoPlaying = true;
   let autoPlayInterval;
-  let progressTimer;
-  const SLIDE_DURATION = 5000; // ms sync with CSS shimmer speed
+  const SLIDE_DURATION = 5000; // ms per slide
 
   // Calculate progress ring values
   const circumference = 2 * Math.PI * 56; // radius = 56
@@ -452,21 +449,6 @@
         });
       });
     }
-    if (progressBar && animate) {
-      if (progressBarContainer) progressBarContainer.classList.add('is-active');
-      progressBar.style.transition = 'none';
-      progressBar.style.width = '0%';
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
-          progressBar.style.width = '100%';
-        });
-      });
-      clearTimeout(progressTimer);
-      progressTimer = setTimeout(() => {
-        if (progressBarContainer) progressBarContainer.classList.remove('is-active');
-      }, SLIDE_DURATION + 150);
-    }
   };
 
   // Auto advance slides
@@ -485,14 +467,12 @@
   const pauseAutoPlay = () => {
     isAutoPlaying = false;
     if (progressRing) progressRing.style.animationPlayState = 'paused';
-    if (progressBar) progressBar.style.animationPlayState = 'paused';
   };
 
   // Resume auto play
   const resumeAutoPlay = () => {
     isAutoPlaying = true;
     if (progressRing) progressRing.style.animationPlayState = 'running';
-    if (progressBar) progressBar.style.animationPlayState = 'running';
   };
 
   // Navigation dot click handlers
