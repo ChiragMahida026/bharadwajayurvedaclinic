@@ -14,6 +14,13 @@
     --hero-halo-gold: rgba(212, 165, 116, 0.30);
     --hero-motion-scale: 1.08;
     --hero-motion-scale-hover: 1.12;
+    /* Slideshow sizing vars */
+    --slideshow-min-w: 380px;
+    --slideshow-ideal-w: 42vw;
+    --slideshow-max-w: 560px;
+    --slideshow-min-h: 320px;
+    --slideshow-ideal-h: 44vh;
+    --slideshow-max-h: 480px;
 }
 
 * {
@@ -175,15 +182,23 @@ body {
     overflow: hidden;
 }
 
+.hero-split {
+    display: grid;
+    grid-template-columns: minmax(430px, 48%) 1fr;
+    gap: 1.9rem;
+    align-items: center;
+    min-height: 60vh;
+    padding: 2.2rem 2.4rem 2.5rem 2.4rem;
+    margin: 0;
+    /* remove negative margin to stop clipping */
+}
+
 .hero-left {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    /* push image closer to card */
-    z-index: 2;
-    margin-left: -10px;
-    padding-right: 1rem;
+    padding: 0 1.6rem 0 1.2rem;
+    overflow: visible;
 }
 
 .hero-right {
@@ -247,7 +262,7 @@ body {
     justify-content: center
 }
 
-/* RESTORED Slideshow container sizing */
+
 .half-circle-slideshow {
     width: clamp(420px, 48vw, 620px);
     height: clamp(340px, 46vh, 520px);
@@ -255,7 +270,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    margin: 0;
+    padding-left: 2.4rem;
+    box-sizing: content-box;
 }
 
 .half-circle-wrapper {
@@ -316,7 +333,7 @@ body {
 .freeform-clip {
     position: absolute;
     inset: 0;
-    overflow: hidden;
+    overflow: visible;
     -webkit-mask-image: url('/assets/freeform-mask-crisp.png');
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
@@ -372,8 +389,15 @@ body {
 
 .freeform-clip .slide {
     opacity: 0;
-    transform: scale(1.035) translateY(10px);
-    transition: opacity .7s ease, transform 1.2s cubic-bezier(.22, 1, .36, 1);
+    transform: scale(1.035) translateY(14px);
+    filter: saturate(90%) brightness(.94);
+    transition: opacity .75s ease, transform 1.05s cubic-bezier(.22, 1, .36, 1), filter 1.05s;
+}
+
+.freeform-clip .slide.leaving {
+    opacity: 0;
+    transform: scale(.985) translateY(-4px);
+    filter: saturate(80%) brightness(.9);
 }
 
 .freeform-clip .slide.active {
@@ -753,6 +777,16 @@ body {
     .hero-emoji {
         animation: none !important;
         display: none;
+    }
+
+    .freeform-clip .slide {
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+    }
+
+    .freeform-clip .slide.leaving {
+        display: none !important;
     }
 }
 
