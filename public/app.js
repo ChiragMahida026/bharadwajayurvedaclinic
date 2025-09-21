@@ -401,13 +401,16 @@
   const slides = document.querySelectorAll('.slide');
   const navDots = document.querySelectorAll('.nav-dot');
   const progressRing = document.querySelector('.progress-ring-progress');
+  const progressBar = document.querySelector('.slideshow-progress-bar');
+  const progressBarContainer = progressBar ? progressBar.parentElement : null;
 
   if (!slides.length || !navDots.length) return;
 
   let currentSlide = 0;
   let isAutoPlaying = true;
   let autoPlayInterval;
-  let progressInterval;
+  let progressTimer;
+  const SLIDE_DURATION = 5000; // ms sync with CSS shimmer speed
 
   // Calculate progress ring values
   const circumference = 2 * Math.PI * 56; // radius = 56
@@ -435,12 +438,27 @@
     if (progressRing && animate) {
       progressRing.style.transition = 'none';
       progressRing.style.strokeDashoffset = circumference;
-
-      // Restart progress animation
-      setTimeout(() => {
-        progressRing.style.transition = 'stroke-dashoffset 5s linear';
-        progressRing.style.strokeDashoffset = 0;
-      }, 50);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          progressRing.style.transition = `stroke-dashoffset ${SLIDE_DURATION}ms linear`;
+          progressRing.style.strokeDashoffset = 0;
+        });
+      });
+    }
+    if (progressBar && animate) {
+      if (progressBarContainer) progressBarContainer.classList.add('is-active');
+      progressBar.style.transition = 'none';
+      progressBar.style.width = '0%';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
+          progressBar.style.width = '100%';
+        });
+      });
+      clearTimeout(progressTimer);
+      progressTimer = setTimeout(() => {
+        if (progressBarContainer) progressBarContainer.classList.remove('is-active');
+      }, SLIDE_DURATION + 150);
     }
   };
 
@@ -453,23 +471,21 @@
 
       const nextSlide = (currentSlide + 1) % slides.length;
       updateSlide(nextSlide);
-    }, 5000);
+    }, SLIDE_DURATION);
   };
 
   // Pause auto play
   const pauseAutoPlay = () => {
     isAutoPlaying = false;
-    if (progressRing) {
-      progressRing.style.animationPlayState = 'paused';
-    }
+    if (progressRing) progressRing.style.animationPlayState = 'paused';
+    if (progressBar) progressBar.style.animationPlayState = 'paused';
   };
 
   // Resume auto play
   const resumeAutoPlay = () => {
     isAutoPlaying = true;
-    if (progressRing) {
-      progressRing.style.animationPlayState = 'running';
-    }
+    if (progressRing) progressRing.style.animationPlayState = 'running';
+    if (progressBar) progressBar.style.animationPlayState = 'running';
   };
 
   // Navigation dot click handlers
@@ -560,5 +576,26 @@
       resumeAutoPlay();
       if (isAutoPlaying) startAutoPlay();
     }
+  });
+})();
+
+/* ================= Ripple Effect ================= */
+(() => {
+  const supportsReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (supportsReduced) return; // respect reduced motion
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('.btn-compact');
+    if (!target) return;
+    const rect = target.getBoundingClientRect();
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = `${size}px`;
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    target.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove());
   });
 })();

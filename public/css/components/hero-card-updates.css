@@ -60,45 +60,48 @@
 /* -- main card: refined glass + shadow, rounded radius -- */
 /* Replaces earlier card look with cleaner gradients and a stronger lift */
 .hero-card.compact-card {
+    --card-radius: 26px;
+    --card-bg-1: rgba(255, 255, 255, 0.97);
+    --card-bg-2: rgba(253, 252, 249, 0.96);
+    --card-bg-3: rgba(249, 245, 239, 0.94);
+    --card-accent: var(--gold);
+    --card-border: rgba(45, 74, 45, 0.06);
+    --card-shadow-a: 0 2px 4px -1px rgba(45, 74, 45, 0.05);
+    --card-shadow-b: 0 8px 22px -4px rgba(45, 74, 45, 0.10);
+    --card-shadow-c: 0 26px 60px -10px rgba(45, 74, 45, 0.14);
     position: relative;
     z-index: 10;
-    background: linear-gradient(175deg, rgba(255, 255, 255, 0.97) 0%, rgba(253, 252, 249, 0.96) 65%, rgba(249, 245, 239, 0.94) 100%);
-    border-radius: 26px;
-    padding: 2.4rem 2.35rem 2.15rem;
+    background:
+        radial-gradient(ellipse at 80% 10%, rgba(212, 165, 116, 0.08), transparent 60%),
+        linear-gradient(175deg, var(--card-bg-1) 0%, var(--card-bg-2) 65%, var(--card-bg-3) 100%);
+    border-radius: var(--card-radius);
+    padding: 2.2rem 2.15rem 2rem;
     width: 100%;
-    max-width: 560px;
-    box-shadow:
-        0 2px 4px -1px rgba(45, 74, 45, 0.05),
-        0 8px 22px -4px rgba(45, 74, 45, 0.10),
-        0 26px 60px -10px rgba(45, 74, 45, 0.14);
-    border: 1px solid rgba(45, 74, 45, 0.05);
+    max-width: 520px;
+    box-shadow: var(--card-shadow-a), var(--card-shadow-b), var(--card-shadow-c);
+    border: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
-    transition: transform 240ms cubic-bezier(.22, 1, .36, 1), box-shadow 240ms ease;
+    transition: transform 260ms cubic-bezier(.22, 1, .36, 1), box-shadow 260ms ease, background 600ms ease;
     overflow: visible;
     box-sizing: border-box;
+    backdrop-filter: blur(6px) saturate(160%);
+    -webkit-backdrop-filter: blur(6px) saturate(160%);
 }
 
 /* Hover & focus state for card — subtle lift for emphasis (keyboard-accessible with :focus-within) */
 .hero-card.compact-card:hover,
 .hero-card.compact-card:focus-within {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     box-shadow:
-        0 4px 8px -2px rgba(45, 74, 45, 0.06),
-        0 18px 40px -8px rgba(45, 74, 45, 0.14),
-        0 52px 120px -18px rgba(45, 74, 45, 0.18);
+        0 4px 10px -2px rgba(45, 74, 45, 0.06),
+        0 20px 40px -10px rgba(45, 74, 45, 0.16);
 }
 
 /* Small decorative emblem in the corner with very low opacity */
 .hero-card.compact-card::after {
-    content: "🕉️";
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    font-size: 1.25rem;
-    opacity: 0.07;
-    pointer-events: none;
+    content: none;
 }
 
 /* Stacked shadow layers (behind the main card) */
@@ -107,10 +110,11 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: linear-gradient(140deg, rgba(212, 165, 116, 0.08), rgba(255, 255, 255, 0) 60%);
+    background: linear-gradient(140deg, rgba(212, 165, 116, 0.10), rgba(255, 255, 255, 0) 70%);
     z-index: -1;
-    filter: blur(12px) saturate(140%);
-    opacity: .55;
+    filter: blur(10px) saturate(140%);
+    opacity: .45;
+    pointer-events: none;
 }
 
 /* -- badge: pill-shaped, stronger weight, float-left alignment -- */
@@ -153,7 +157,6 @@
 }
 
 .title-accent {
-    color: var(--gold);
     font-weight: 600;
     margin-left: 0.35rem;
 }
@@ -236,7 +239,7 @@
 
 .btn-primary-compact:hover {
     background: #2f5e2f;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 /* secondary CTA: white with subtle border and arrow cue */
@@ -252,6 +255,30 @@
     margin-left: 0.45rem;
     opacity: 0.9;
     font-weight: 700;
+}
+
+.btn-secondary-compact:hover {
+    background: linear-gradient(180deg, #fff, #f8f7f4 95%);
+    transform: translateY(-1px);
+}
+
+.btn-compact:active {
+    transform: translateY(0);
+}
+
+/* Focus ring inside card for accessibility */
+.hero-card.compact-card:focus-within {
+    outline: 2px solid rgba(212, 165, 116, 0.35);
+    outline-offset: 4px;
+}
+
+/* Reduced motion: minimal difference now, keep structure */
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-card.compact-card:hover,
+    .hero-card.compact-card:focus-within {
+        transform: none;
+    }
 }
 
 /* contact line smaller, muted color */
