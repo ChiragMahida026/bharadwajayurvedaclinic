@@ -483,7 +483,7 @@
   });
 
   // Pause on hover
-  const slideshowContainer = document.querySelector('.hero-slideshow-container');
+  const slideshowContainer = document.querySelector('.half-circle-slideshow');
   if (slideshowContainer) {
     slideshowContainer.addEventListener('mouseenter', pauseAutoPlay);
     slideshowContainer.addEventListener('mouseleave', resumeAutoPlay);
