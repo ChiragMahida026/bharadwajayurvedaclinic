@@ -49,57 +49,176 @@ body {
     z-index: 4;
 }
 
+/* =====================================================
+   Enhanced Emoji Animations (calm, layered, non-distracting)
+   ===================================================== */
 .hero-emoji {
     position: absolute;
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     opacity: 0;
-    animation: emojiFloat 12s ease-in-out infinite;
+    animation: emojiFloat 14s ease-in-out infinite;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .18));
+    will-change: transform, opacity;
+    transform-origin: center center;
+    pointer-events: none;
 }
 
+/* Base positions tuned to avoid covering core content */
 .hero-emoji.e1 {
-    top: 14%;
-    left: 58%;
+    top: 12%;
+    left: 56%;
     animation-delay: .4s;
 }
 
 .hero-emoji.e2 {
-    top: 54%;
-    left: 16%;
+    top: 56%;
+    left: 18%;
     animation-delay: 1.2s;
 }
 
 .hero-emoji.e3 {
     top: 72%;
-    left: 68%;
+    left: 66%;
     animation-delay: 2.1s;
 }
 
 .hero-emoji.e4 {
-    top: 32%;
-    left: 82%;
+    top: 30%;
+    left: 80%;
     animation-delay: 3s;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
 }
 
-@keyframes emojiFloat {
+/* New flower / herbal cluster (heavier on left side) */
+.hero-emoji.flower {
+    font-size: 1.05rem;
+    animation: flowerDrift 18s ease-in-out infinite;
+    opacity: 0;
+}
+
+.hero-emoji.f1 {
+    top: 38%;
+    left: 6%;
+    animation-delay: .8s;
+}
+
+.hero-emoji.f2 {
+    top: 20%;
+    left: 12%;
+    animation-delay: 1.6s;
+}
+
+.hero-emoji.f3 {
+    top: 62%;
+    left: 10%;
+    animation-delay: 2.4s;
+}
+
+.hero-emoji.f4 {
+    top: 48%;
+    left: 4%;
+    animation-delay: 3.2s;
+}
+
+.hero-emoji.f5 {
+    top: 28%;
+    left: 16%;
+    animation-delay: 4s;
+    font-size: 1.2rem;
+}
+
+/* Specialized subtle motion variants */
+.hero-emoji.orbit {
+    animation: emojiOrbit 22s linear infinite;
+}
+
+.hero-emoji.leaf {
+    animation: emojiFloat 15s ease-in-out infinite;
+}
+
+.hero-emoji.heart {
+    animation: pulseFloat 17s ease-in-out infinite;
+}
+
+.hero-emoji.sparkle {
+    animation: sparkleDrift 12s ease-in-out infinite;
+}
+
+@keyframes emojiOrbit {
     0% {
-        transform: translateY(12px) scale(.85) rotate(-8deg);
+        transform: translate(-6px, 4px) rotate(0deg) scale(.8);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .6;
+    }
+
+    40% {
+        transform: translate(6px, -10px) rotate(140deg) scale(1);
+        opacity: .85;
+    }
+
+    70% {
+        transform: translate(-4px, -4px) rotate(260deg) scale(.92);
+        opacity: .55;
+    }
+
+    90% {
+        opacity: .1;
+    }
+
+    100% {
+        transform: translate(-6px, 4px) rotate(360deg) scale(.8);
+        opacity: 0;
+    }
+}
+
+@keyframes pulseFloat {
+
+    0%,
+    100% {
+        transform: translateY(10px) scale(.85);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: .65;
+    }
+
+    40% {
+        transform: translateY(-10px) scale(1);
+        opacity: .9;
+    }
+
+    68% {
+        transform: translateY(-3px) scale(.95);
+        opacity: .55;
+    }
+
+    85% {
+        opacity: .15;
+    }
+}
+
+@keyframes sparkleDrift {
+    0% {
+        transform: translate(0, 6px) scale(.6) rotate(-20deg);
         opacity: 0;
     }
 
     8% {
-        opacity: .55;
-    }
-
-    40% {
-        transform: translateY(-18px) scale(1) rotate(6deg);
         opacity: .8;
     }
 
-    70% {
-        transform: translateY(-8px) scale(.95) rotate(-4deg);
-        opacity: .6;
+    40% {
+        transform: translate(6px, -12px) scale(.95) rotate(12deg);
+        opacity: .9;
+    }
+
+    72% {
+        transform: translate(-4px, -4px) scale(.75) rotate(-8deg);
+        opacity: .4;
     }
 
     92% {
@@ -107,8 +226,76 @@ body {
     }
 
     100% {
-        transform: translateY(14px) scale(.85) rotate(-8deg);
+        transform: translate(0, 6px) scale(.6) rotate(-20deg);
         opacity: 0;
+    }
+}
+
+@keyframes flowerDrift {
+    0% {
+        transform: translateY(14px) scale(.7) rotate(-12deg);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: .55;
+    }
+
+    42% {
+        transform: translateY(-12px) scale(.95) rotate(6deg);
+        opacity: .85;
+    }
+
+    68% {
+        transform: translateY(-4px) scale(.88) rotate(-4deg);
+        opacity: .5;
+    }
+
+    88% {
+        opacity: .1;
+    }
+
+    100% {
+        transform: translateY(14px) scale(.7) rotate(-12deg);
+        opacity: 0;
+    }
+}
+
+@keyframes emojiFloat {
+    0% {
+        transform: translateY(14px) scale(.8) rotate(-8deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .55;
+    }
+
+    38% {
+        transform: translateY(-16px) scale(1) rotate(8deg);
+        opacity: .85;
+    }
+
+    66% {
+        transform: translateY(-6px) scale(.95) rotate(-6deg);
+        opacity: .55;
+    }
+
+    90% {
+        opacity: .08;
+    }
+
+    100% {
+        transform: translateY(14px) scale(.8) rotate(-8deg);
+        opacity: 0;
+    }
+}
+
+/* Reduced motion: hide decorative emojis entirely if user prefers less motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-emoji-layer .hero-emoji {
+        display: none !important;
+        animation: none !important;
     }
 }
 
@@ -330,6 +517,289 @@ body {
     opacity: .32;
     animation: slowSpinReverse 90s linear infinite;
     mix-blend-mode: soft-light;
+}
+
+/* Orbit emoji system (revised to keep translation during scaling) */
+.emoji-orbits {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    /* Radii tuned to keep ALL emojis fully inside organic frame */
+    --orbit-r1: clamp(140px, 20vw, 270px);
+    --orbit-r2: clamp(128px, 18.5vw, 250px);
+    --orbit-r3: clamp(116px, 17.2vw, 234px);
+    --orbit-r4: clamp(104px, 16vw, 218px);
+    --orbit-r5: clamp(152px, 21vw, 282px);
+    /* outer but still safe */
+    --orbit-r6: clamp(132px, 19.2vw, 258px);
+    --orbit-r7: clamp(122px, 18vw, 242px);
+    --orbit-r8: clamp(112px, 16.8vw, 226px);
+    --orbit-r9: clamp(100px, 15.5vw, 210px);
+    --orbit-r10: clamp(146px, 20.5vw, 274px);
+    /* Slightly larger fade zone; harder edge removed to avoid flicker */
+    mask-image: radial-gradient(circle at 50% 50%, #000 78%, rgba(0, 0, 0, 0) 90%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 78%, rgba(0, 0, 0, 0) 90%);
+}
+
+.emoji-orbits .orbit-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+}
+
+.emoji-orbits .orbit-item .g {
+    display: inline-block;
+    font-size: 1.05rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .18));
+    opacity: 0;
+}
+
+.emoji-orbits .o1 {
+    animation: orbitA 20s linear infinite;
+    --tx: var(--orbit-r1);
+    --ty: -4px;
+}
+
+.emoji-orbits .o2 {
+    animation: orbitB 28s linear infinite;
+    --tx: var(--orbit-r2);
+    --ty: 12px;
+    animation-delay: -6s;
+}
+
+.emoji-orbits .o3 {
+    animation: orbitC 34s linear infinite;
+    --tx: var(--orbit-r3);
+    --ty: -16px;
+    animation-delay: -11s;
+}
+
+.emoji-orbits .o4 {
+    animation: orbitD 40s linear infinite;
+    --tx: var(--orbit-r4);
+    --ty: 22px;
+    animation-delay: -16s;
+}
+
+.emoji-orbits .o5 {
+    animation: orbitE 46s linear infinite;
+    --tx: var(--orbit-r5);
+    --ty: -6px;
+    animation-delay: -21s;
+}
+
+/* New additional orbiters (slightly desynchronised for natural spacing) */
+.emoji-orbits .o6 {
+    animation: orbitB 30s linear infinite reverse;
+    --tx: var(--orbit-r6);
+    --ty: 10px;
+    animation-delay: -9s;
+}
+
+.emoji-orbits .o7 {
+    animation: orbitC 36s linear infinite reverse;
+    --tx: var(--orbit-r7);
+    --ty: -14px;
+    animation-delay: -14s;
+}
+
+.emoji-orbits .o8 {
+    animation: orbitD 42s linear infinite reverse;
+    --tx: var(--orbit-r8);
+    --ty: 18px;
+    animation-delay: -19s;
+}
+
+.emoji-orbits .o9 {
+    animation: orbitA 50s linear infinite;
+    --tx: var(--orbit-r9);
+    --ty: -10px;
+    animation-delay: -24s;
+}
+
+.emoji-orbits .o10 {
+    animation: orbitE 56s linear infinite;
+    --tx: var(--orbit-r10);
+    --ty: 6px;
+    animation-delay: -29s;
+}
+
+.emoji-orbits .o1 .g {
+    animation: fadePulse 18s ease-in-out infinite;
+}
+
+.emoji-orbits .o2 .g {
+    animation: fadePulse 22s ease-in-out infinite .6s;
+}
+
+.emoji-orbits .o3 .g {
+    animation: fadePulse 26s ease-in-out infinite 1.2s;
+}
+
+.emoji-orbits .o4 .g {
+    animation: fadePulse 30s ease-in-out infinite 1.8s;
+}
+
+.emoji-orbits .o5 .g {
+    animation: fadePulse 34s ease-in-out infinite 2.4s;
+}
+
+/* New ones use steadier pulse (always visible) */
+.emoji-orbits .o6 .g {
+    animation: steadyPulse 28s ease-in-out infinite 0.3s;
+}
+
+.emoji-orbits .o7 .g {
+    animation: steadyPulse 32s ease-in-out infinite 0.9s;
+}
+
+.emoji-orbits .o8 .g {
+    animation: steadyPulse 36s ease-in-out infinite 1.5s;
+}
+
+.emoji-orbits .o9 .g {
+    animation: steadyPulse 40s ease-in-out infinite 2.1s;
+}
+
+.emoji-orbits .o10 .g {
+    animation: steadyPulse 44s ease-in-out infinite 2.7s;
+}
+
+@keyframes fadePulse {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(.55);
+    }
+
+    10% {
+        opacity: .6;
+        transform: translate(var(--tx), var(--ty)) scale(.85);
+    }
+
+    50% {
+        opacity: .85;
+        transform: translate(var(--tx), var(--ty)) scale(1);
+    }
+
+    70% {
+        opacity: .5;
+        transform: translate(var(--tx), var(--ty)) scale(.88);
+    }
+
+    90% {
+        opacity: .2;
+        transform: translate(var(--tx), var(--ty)) scale(.65);
+    }
+}
+
+@keyframes steadyPulse {
+
+    0%,
+    100% {
+        opacity: .55;
+        transform: translate(var(--tx), var(--ty)) scale(.82);
+    }
+
+    40% {
+        opacity: .92;
+        transform: translate(var(--tx), var(--ty)) scale(.96);
+    }
+
+    70% {
+        opacity: .75;
+        transform: translate(var(--tx), var(--ty)) scale(.9);
+    }
+}
+
+/* Responsive fine-tuning: shrink radii on narrower screens */
+@media (max-width:1200px) {
+    .emoji-orbits {
+        --orbit-r1: clamp(128px, 24vw, 238px);
+        --orbit-r2: clamp(118px, 22.5vw, 222px);
+        --orbit-r3: clamp(108px, 21vw, 208px);
+        --orbit-r5: clamp(138px, 26vw, 248px);
+        --orbit-r10: clamp(132px, 25vw, 242px);
+    }
+}
+
+@media (max-width:900px) {
+    .emoji-orbits {
+        --orbit-r1: clamp(112px, 36vw, 210px);
+        --orbit-r2: clamp(104px, 34vw, 196px);
+        --orbit-r3: clamp(96px, 32vw, 184px);
+        --orbit-r4: clamp(88px, 30vw, 172px);
+        --orbit-r5: clamp(120px, 38vw, 214px);
+        --orbit-r6: clamp(108px, 35vw, 198px);
+        --orbit-r10: clamp(116px, 37vw, 206px);
+    }
+}
+
+@media (max-width:600px) {
+    .emoji-orbits {
+        display: none;
+    }
+}
+
+@keyframes orbitA {
+    0% {
+        transform: translate(-50%, -50%)
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg)
+    }
+}
+
+@keyframes orbitB {
+    0% {
+        transform: translate(-50%, -50%) rotate(40deg)
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(400deg)
+    }
+}
+
+@keyframes orbitC {
+    0% {
+        transform: translate(-50%, -50%) rotate(90deg)
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(450deg)
+    }
+}
+
+@keyframes orbitD {
+    0% {
+        transform: translate(-50%, -50%) rotate(140deg)
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(500deg)
+    }
+}
+
+@keyframes orbitE {
+    0% {
+        transform: translate(-50%, -50%) rotate(200deg)
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(560deg)
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .emoji-orbits {
+        display: none !important;
+    }
 }
 
 /* Freeform mask */

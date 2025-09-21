@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Bharadwaj Ayurveda</title>
   <link rel="stylesheet" href="/css/components/hero.css">
+  <!-- Card refinements override placed after base hero styles -->
+  <link rel="stylesheet" href="/css/components/hero-card-updates.css">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-b7nG6VnEOD9oTiFqouBZhOiabuX41sJLdnOjFkWDXLI4YAlnXrhIRbkIuWGHNirMRHrvRkNvMZ1HfC0R1QmT1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -29,10 +31,7 @@
     <div class="floating-leaf leaf-3">🌿</div>
   </div>
   <div class="hero-emoji-layer" aria-hidden="true">
-    <span class="hero-emoji e1">🕉️</span>
-    <span class="hero-emoji e2">🌿</span>
-    <span class="hero-emoji e3">💚</span>
-    <span class="hero-emoji e4">✨</span>
+    <!-- Replaced scattered emojis with orbit ring (markup moved near slideshow) -->
   </div>
 
   <div class="hero-left">
@@ -51,8 +50,21 @@
             </div>
           </div>
         </div>
+        <!-- Orbiting emoji ring -->
+        <div class="emoji-orbits" aria-hidden="true">
+          <span class="orbit-item o1"><span class="g">🌸</span></span>
+          <span class="orbit-item o2"><span class="g">🌿</span></span>
+          <span class="orbit-item o3"><span class="g">✨</span></span>
+          <span class="orbit-item o4"><span class="g">🍃</span></span>
+          <span class="orbit-item o5"><span class="g">🌺</span></span>
+          <span class="orbit-item o6"><span class="g">🌼</span></span>
+          <span class="orbit-item o7"><span class="g">🍀</span></span>
+          <span class="orbit-item o8"><span class="g">🪷</span></span>
+          <span class="orbit-item o9"><span class="g">🌿</span></span>
+          <span class="orbit-item o10"><span class="g">🍂</span></span>
+        </div>
 
-        <img src="/assets/freeform-border-clean.png" alt="" aria-hidden="true" class="freeform-border">
+        <!-- <img src="/assets/freeform-border-clean.png" alt="" aria-hidden="true" class="freeform-border"> -->
       </div>
 
       <div class="sr-only" aria-live="polite" id="slideshow-status">Slide 1 of 4</div>
@@ -63,6 +75,7 @@
     <div class="hero-right-inner" style="position:relative;width:100%;height:100%;min-height:400px;display:flex;align-items:center;justify-content:center;">
       <article class="hero-card compact-card reveal" role="region" aria-labelledby="hero-title" aria-describedby="hero-desc" tabindex="0">
         <span class="compact-badge" aria-hidden="true">Authentic Ayurveda</span>
+  <span class="floating-om" aria-hidden="true">🕉️</span>
         <h1 id="hero-title" class="hero-title-compact">
           <span class="title-main">Bharadwaj <span class="title-accent">Ayurveda</span></span>
           <span class="title-sub">Clinic</span>

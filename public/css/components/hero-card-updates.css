@@ -59,6 +59,9 @@
 
 /* -- main card: refined glass + shadow, rounded radius -- */
 /* Replaces earlier card look with cleaner gradients and a stronger lift */
+/* =====================================================
+    CARD BASE (refined, calmer, fewer flashy effects)
+    ===================================================== */
 .hero-card.compact-card {
     --card-radius: 26px;
     --card-bg-1: rgba(255, 255, 255, 0.97);
@@ -72,31 +75,43 @@
     position: relative;
     z-index: 10;
     background:
-        radial-gradient(ellipse at 80% 10%, rgba(212, 165, 116, 0.08), transparent 60%),
-        linear-gradient(175deg, var(--card-bg-1) 0%, var(--card-bg-2) 65%, var(--card-bg-3) 100%);
+        linear-gradient(155deg, var(--card-bg-1) 0%, var(--card-bg-2) 58%, var(--card-bg-3) 100%),
+        radial-gradient(circle at 18% 22%, rgba(212, 165, 116, 0.10), transparent 62%),
+        radial-gradient(circle at 82% 78%, rgba(72, 110, 80, 0.06), transparent 70%);
     border-radius: var(--card-radius);
-    padding: 2rem 2rem 1.85rem;
+    padding: 2.15rem 2.25rem 2rem;
     width: 100%;
-    max-width: 500px;
+    max-width: 560px;
     box-shadow: var(--card-shadow-a), var(--card-shadow-b), var(--card-shadow-c);
     border: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
-    transition: transform 260ms cubic-bezier(.22, 1, .36, 1), box-shadow 260ms ease, background 600ms ease;
+    transition: transform 320ms cubic-bezier(.22, 1, .36, 1), box-shadow 320ms ease, background 680ms ease;
     overflow: visible;
     box-sizing: border-box;
     backdrop-filter: blur(6px) saturate(160%);
     -webkit-backdrop-filter: blur(6px) saturate(160%);
+    /* Gentle inward gradient ring to echo slideshow organic mask */
+    --ring-color: rgba(212, 165, 116, 0.18);
+    background-image:
+        radial-gradient(circle at 18% 22%, rgba(212, 165, 116, 0.07), transparent 60%),
+        radial-gradient(circle at 82% 78%, rgba(72, 110, 80, 0.05), transparent 70%),
+        linear-gradient(175deg, var(--card-bg-1) 0%, var(--card-bg-2) 65%, var(--card-bg-3) 100%);
 }
 
 /* Hover & focus state for card — subtle lift for emphasis (keyboard-accessible with :focus-within) */
+/* Calmer hover: subtle lift & inset sheen (no extra animated effects) */
 .hero-card.compact-card:hover,
 .hero-card.compact-card:focus-within {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
     box-shadow:
-        0 4px 10px -2px rgba(45, 74, 45, 0.06),
-        0 20px 40px -10px rgba(45, 74, 45, 0.16);
+        0 6px 18px -4px rgba(45, 74, 45, 0.09),
+        0 28px 60px -18px rgba(45, 74, 45, 0.22);
+    background:
+        linear-gradient(155deg, var(--card-bg-1) 0%, var(--card-bg-2) 55%, var(--card-bg-3) 100%),
+        radial-gradient(circle at 18% 22%, rgba(212, 165, 116, 0.16), transparent 60%),
+        radial-gradient(circle at 78% 78%, rgba(72, 110, 80, 0.09), transparent 70%);
 }
 
 /* Small decorative emblem in the corner with very low opacity */
@@ -110,7 +125,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: linear-gradient(140deg, rgba(212, 165, 116, 0.10), rgba(255, 255, 255, 0) 70%);
+    background: linear-gradient(140deg, rgba(212, 165, 116, 0.12), rgba(255, 255, 255, 0) 72%);
     z-index: -1;
     filter: blur(10px) saturate(140%);
     opacity: .45;
@@ -156,9 +171,19 @@
     margin: 0;
 }
 
+/* Remove shimmer & sparkle; keep solid accent color */
 .title-accent {
     font-weight: 600;
     margin-left: 0.35rem;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    color: var(--gold) !important;
+    position: relative;
+}
+
+.title-accent::after {
+    display: none !important;
 }
 
 /* Subtitle smaller and lighter */
@@ -337,5 +362,138 @@
     .description-compact {
         font-size: 0.98rem;
         line-height: 1.6;
+    }
+}
+
+/* Minimal focus ring unify */
+.btn-compact:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+/* =====================================================
+     REMOVE NON-ESSENTIAL ANIMATIONS (keep emoji animation) 
+     ===================================================== */
+/* Disable decorative / busy animations from base hero.css */
+.half-circle-wrapper::before,
+.half-circle-wrapper::after,
+.freeform-border,
+.floating-leaf,
+.leaf-1,
+.leaf-2,
+.leaf-3,
+.title-accent::after,
+.hero-card.compact-card>* {
+    animation: none !important;
+}
+
+/* Stop rotating rings & border pulsing */
+.half-circle-wrapper::before,
+.half-circle-wrapper::after {
+    animation: none !important;
+}
+
+.freeform-border {
+    animation: none !important;
+}
+
+/* Stop floating leaves */
+.floating-leaf {
+    animation: none !important;
+    opacity: .15;
+}
+
+/* Stop shimmer / sparkle defined in base */
+.title-accent {
+    animation: none !important;
+}
+
+/* Disable card stagger (ensure visible immediately) */
+.hero-card.compact-card>* {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Remove ripple effect */
+.ripple {
+    display: none !important;
+}
+
+/* Keep slideshow functional transitions—no override here */
+
+/* Optional subtle entry fade for the whole card (single, non-looping) */
+.hero-card.compact-card {
+    opacity: 0;
+    animation: cardFadeIn .55s ease forwards;
+}
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Floating Om decorative element (non-intrusive) */
+.floating-om {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.75rem;
+    font-size: 1.55rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .18));
+    opacity: .0;
+    animation: omFloat 14s ease-in-out infinite, omIn .8s ease .2s forwards;
+    pointer-events: none;
+}
+
+@keyframes omIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(.9);
+    }
+
+    to {
+        opacity: .9;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes omFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-6deg);
+    }
+
+    25% {
+        transform: translateY(-6px) rotate(4deg);
+    }
+
+    50% {
+        transform: translateY(2px) rotate(-2deg);
+    }
+
+    75% {
+        transform: translateY(-4px) rotate(3deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .floating-om {
+        animation: none;
+        opacity: .85;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-card.compact-card {
+        animation: none;
+        opacity: 1;
     }
 }
