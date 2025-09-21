@@ -41,18 +41,18 @@
         <div class="freeform-clip" role="presentation" aria-hidden="false">
           <div class="slide-track" role="list">
             <div class="slide active" role="listitem" aria-hidden="false">
-              <img src="/assets/test1st.png" alt="Traditional Ayurvedic herbs and spices" class="slide-image" loading="lazy" width="1200" height="800">
+              <img src="/assets/1stslide.png" alt="Traditional Ayurvedic herbs and spices" class="slide-image" loading="lazy" width="1200" height="800">
             </div>
             <div class="slide" role="listitem" aria-hidden="true">
-              <img src="/assets/test1st.png" alt="Consultation" class="slide-image" loading="lazy" width="1200" height="800">
+              <img src="/assets/2ndslide.png" alt="Consultation" class="slide-image" loading="lazy" width="1200" height="800">
             </div>
             <div class="slide" role="listitem" aria-hidden="true">
-              <img src="/assets/test1st.png" alt="Treatment methods" class="slide-image" loading="lazy" width="1200" height="800">
+              <img src="/assets/3rdslide.png" alt="Treatment methods" class="slide-image" loading="lazy" width="1200" height="800">
             </div>
           </div>
         </div>
 
-        <!-- <img src="/assets/freeform-border-clean.png" alt="" aria-hidden="true" class="freeform-border"> -->
+        <img src="/assets/freeform-border-clean.png" alt="" aria-hidden="true" class="freeform-border">
       </div>
 
       <div class="sr-only" aria-live="polite" id="slideshow-status">Slide 1 of 4</div>
@@ -652,14 +652,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const interval = parseInt(carousel.dataset.interval,10) || 4500;
     const autoplay = carousel.dataset.autoplay === 'true' && !prefersReduced;
 
-    function applyActive(i){
-      index = (i + slides.length) % slides.length;
+    function applyActive(newIndex){
+      if(transitioning) return; // guard
+      const target = (newIndex + slides.length) % slides.length;
+      if(target === index) return;
+      transitioning = true;
+      const currentSlide = slides[index];
+      const nextSlide = slides[target];
+      // prepare neighboring classes (optional aesthetic)
       slides.forEach((s,idx)=>{
-        const active = idx === index;
-        s.classList.toggle('active', active);
-        s.setAttribute('aria-hidden', !active);
+        s.classList.remove('prepping-next','prepping-prev');
+        if(idx === (target+1)%slides.length) s.classList.add('prepping-next');
+        if(idx === (target-1+slides.length)%slides.length) s.classList.add('prepping-prev');
       });
-      if(status) status.textContent = `Slide ${index+1} of ${slides.length}`;
+      nextSlide.classList.add('active');
+      nextSlide.setAttribute('aria-hidden','false');
+      currentSlide.classList.add('leaving');
+      currentSlide.classList.remove('active');
+      currentSlide.setAttribute('aria-hidden','true');
+      const done = ()=>{
+        currentSlide.classList.remove('leaving');
+        index = target;
+        transitioning = false;
+        if(status) status.textContent = `Slide ${index+1} of ${slides.length}`;
+      };
+      // use transitionend fallback
+      let ended = false;
+      const handler = (e)=>{ if(e.target!==currentSlide) return; if(ended) return; ended=true; currentSlide.removeEventListener('transitionend',handler); done(); };
+      currentSlide.addEventListener('transitionend', handler);
+      setTimeout(()=>{ if(!ended){ done(); } }, 1400); // safety timeout
     }
 
     function setSlide(i, fromUser=false){
@@ -683,8 +704,44 @@ document.addEventListener('DOMContentLoaded', () => {
       if(document.hidden) clearInterval(timer); else if(autoplay) restartTimer();
     });
 
-    applyActive(0);
+    // initial state (avoid transition flash)
+    slides.forEach((s,idx)=>{ s.classList.toggle('active', idx===0); s.setAttribute('aria-hidden', idx!==0); });
+    if(status) status.textContent = `Slide 1 of ${slides.length}`;
     if(autoplay) restartTimer();
+
+    // Pointer tilt effect (desktop, not reduced-motion)
+    if(!prefersReduced){
+      let tiltRAF = null;
+      const maxTilt = 8; // degrees
+      const clip = carousel.querySelector('.freeform-clip');
+      if(clip){
+        carousel.classList.add('tilting');
+        carousel.dataset.tilt = 'on';
+        const rectCache = {w:0,h:0,left:0,top:0};
+        function updateRect(){ const r = clip.getBoundingClientRect(); rectCache.w=r.width; rectCache.h=r.height; rectCache.left=r.left; rectCache.top=r.top; }
+        updateRect();
+        window.addEventListener('resize', updateRect);
+        function applyTilt(x,y){
+          clip.style.setProperty('--tilt-x', y+'deg');
+          clip.style.setProperty('--tilt-y', x+'deg');
+        }
+        function handleMove(e){
+          if(tiltRAF) cancelAnimationFrame(tiltRAF);
+          const cx = rectCache.left + rectCache.w/2;
+          const cy = rectCache.top + rectCache.h/2;
+          const dx = (e.clientX - cx) / (rectCache.w/2);
+          const dy = (e.clientY - cy) / (rectCache.h/2);
+          tiltRAF = requestAnimationFrame(()=>{
+            const rotateY = (dx * maxTilt).toFixed(2); // left/right
+            const rotateX = (-dy * maxTilt).toFixed(2); // up/down
+            applyTilt(rotateY, rotateX);
+          });
+        }
+        function resetTilt(){ applyTilt(0,0); }
+        carousel.addEventListener('pointermove', handleMove);
+        carousel.addEventListener('pointerleave', resetTilt);
+      }
+    }
   }());
 
   (function(){

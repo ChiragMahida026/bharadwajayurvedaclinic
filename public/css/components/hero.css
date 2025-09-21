@@ -273,6 +273,9 @@ body {
     margin: 0;
     padding-left: 2.4rem;
     box-sizing: content-box;
+    /* 3D context */
+    perspective: 1400px;
+    perspective-origin: 44% 50%;
 }
 
 .half-circle-wrapper {
@@ -389,20 +392,34 @@ body {
 
 .freeform-clip .slide {
     opacity: 0;
-    transform: scale(1.035) translateY(14px);
-    /* filter: saturate(90%) brightness(.94); */
-    transition: opacity .75s ease, transform 1.05s cubic-bezier(.22, 1, .36, 1), filter 1.05s;
+    transform: translate3d(0, 28px, -160px) scale(1.08) rotateX(12deg) rotateY(-8deg);
+    transform-origin: center center;
+    transition: opacity .8s ease, filter 1.2s ease, transform 1.25s cubic-bezier(.22, 1, .36, 1);
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
 }
 
 .freeform-clip .slide.leaving {
     opacity: 0;
-    transform: scale(.985) translateY(-4px);
-    filter: saturate(80%) brightness(.9);
+    transform: translate3d(0, -18px, -260px) scale(.9) rotateX(-10deg) rotateY(10deg);
+    filter: saturate(80%) brightness(.88);
 }
 
 .freeform-clip .slide.active {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translate3d(0, 0, 0) scale(1) rotateX(0deg) rotateY(0deg);
+    z-index: 3;
+}
+
+/* Optional: pre-position previous and next for smoother perceived continuity */
+.freeform-clip .slide.prepping-next {
+    opacity: 0;
+    transform: translate3d(0, 34px, -200px) scale(1.05) rotateX(14deg) rotateY(-6deg);
+}
+
+.freeform-clip .slide.prepping-prev {
+    opacity: 0;
+    transform: translate3d(0, 34px, -200px) scale(1.05) rotateX(14deg) rotateY(6deg);
 }
 
 .freeform-clip .slide-image {
@@ -414,7 +431,7 @@ body {
     filter: saturate(90%) brightness(.94);
     will-change: transform;
     transform-origin: center center;
-    transition: transform 12s linear;
+    transition: transform 14s linear;
 }
 
 .freeform-clip .slide.active .slide-image {
@@ -429,6 +446,16 @@ body {
     .hero-right:hover .freeform-clip .slide.active .slide-image {
         transform: scale(1.13) translate3d(4px, -6px, 0);
     }
+}
+
+/* Subtle tilt interaction container (JS adds .tilting + CSS custom props) */
+.half-circle-slideshow.tilting .freeform-clip {
+    transition: transform .4s ease;
+    transform-style: preserve-3d;
+}
+
+.half-circle-slideshow.tilting[data-tilt="on"] .freeform-clip {
+    transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
 }
 
 /* Decorative stroke overlay */
@@ -788,6 +815,14 @@ body {
 
     .freeform-clip .slide.leaving {
         display: none !important;
+    }
+
+    .half-circle-slideshow {
+        perspective: none !important;
+    }
+
+    .half-circle-slideshow.tilting .freeform-clip {
+        transform: none !important;
     }
 }
 
